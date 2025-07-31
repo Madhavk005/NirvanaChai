@@ -30,12 +30,23 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate initial loading time
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
+    const initializeApp = async () => {
+      try {
+        // Detect user location for personalization
+        await locationService.detectLocation();
 
-    return () => clearTimeout(timer);
+        // Simulate minimum loading time for smooth experience
+        await new Promise(resolve => setTimeout(resolve, 2500));
+
+        setIsLoading(false);
+      } catch (error) {
+        console.log('Initialization error:', error);
+        // Still proceed even if location detection fails
+        setTimeout(() => setIsLoading(false), 2500);
+      }
+    };
+
+    initializeApp();
   }, []);
 
   return (
@@ -44,7 +55,7 @@ const App = () => {
         <Toaster />
         <Sonner />
         <LanguageCurrencyProvider>
-          <TeaLoader isLoading={isLoading} onComplete={() => setIsLoading(false)} />
+          <ElegantLoader isLoading={isLoading} onComplete={() => setIsLoading(false)} />
           <BrowserRouter>
             <Layout>
               <Routes>
