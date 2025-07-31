@@ -421,58 +421,83 @@ export default function Shop() {
           {/* Products Section */}
           <div className="flex-1">
             {/* Enhanced Toolbar */}
-            <div 
+            <div
               ref={productsAnimation.elementRef}
-              className={`flex flex-col lg:flex-row justify-between items-center mb-8 gap-4 ${animationClasses.fadeInUp(productsAnimation.isVisible)}`}
+              className={`bg-white/80 backdrop-blur-sm border border-sage-200 rounded-2xl p-6 mb-8 shadow-lg ${animationClasses.fadeInUp(productsAnimation.isVisible)}`}
             >
-              <div className="text-sage-600 font-semibold text-lg">
-                {sortedProducts.length > 0 ? (
-                  <>Showing <span className="text-sage-800">{sortedProducts.length}</span> of <span className="text-sage-800">{products.length}</span> premium teas</>
-                ) : (
-                  'No teas found'
-                )}
-              </div>
-              
-              <div className="flex items-center gap-4">
-                {/* Sort */}
-                <div className="relative">
-                  <select
-                    value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value)}
-                    className="appearance-none bg-white border border-sage-200 rounded-xl px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-sage-400 cursor-pointer font-medium shadow-sm"
-                  >
-                    <option value="featured">🌟 Featured First</option>
-                    <option value="name">📝 Name A-Z</option>
-                    <option value="price-low">💰 Price: Low to High</option>
-                    <option value="price-high">💎 Price: High to Low</option>
-                    <option value="rating">⭐ Highest Rated</option>
-                    <option value="reviews">💬 Most Reviews</option>
-                  </select>
-                  <ArrowUpDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-sage-400 pointer-events-none" />
+              <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+                {/* Results Counter */}
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                  <div className="text-sage-600 font-semibold text-lg">
+                    {sortedProducts.length > 0 ? (
+                      <>Showing <span className="text-sage-800 bg-sage-100 px-2 py-1 rounded-lg">{sortedProducts.length}</span> of <span className="text-sage-800">{products.length}</span> premium teas</>
+                    ) : (
+                      'No teas found'
+                    )}
+                  </div>
+                  {hasActiveFilters && (
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm text-sage-500">•</span>
+                      <span className="text-sm text-sage-600 bg-clay-100 px-3 py-1 rounded-full font-medium">
+                        Filters applied
+                      </span>
+                    </div>
+                  )}
                 </div>
 
-                {/* View Mode */}
-                <div className="flex bg-sage-100 border border-sage-200 rounded-xl p-1 shadow-sm">
-                  <button
-                    onClick={() => setViewMode('grid')}
-                    className={`p-3 rounded-lg transition-all ${
-                      viewMode === 'grid' 
-                        ? 'bg-white text-sage-700 shadow-sm' 
-                        : 'text-sage-500 hover:text-sage-700'
-                    }`}
-                  >
-                    <Grid className="h-4 w-4" />
-                  </button>
-                  <button
-                    onClick={() => setViewMode('list')}
-                    className={`p-3 rounded-lg transition-all ${
-                      viewMode === 'list' 
-                        ? 'bg-white text-sage-700 shadow-sm' 
-                        : 'text-sage-500 hover:text-sage-700'
-                    }`}
-                  >
-                    <List className="h-4 w-4" />
-                  </button>
+                {/* Controls */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full lg:w-auto">
+                  {/* Currency Display */}
+                  <div className="flex items-center gap-2 text-sm text-sage-600 bg-sage-50 px-3 py-2 rounded-lg border border-sage-200">
+                    <span className="font-medium">Currency:</span>
+                    <span className="font-bold text-sage-800">{currentCurrency.code}</span>
+                    <span className="text-sage-500">({currentCurrency.symbol})</span>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    {/* Sort */}
+                    <div className="relative">
+                      <select
+                        value={sortBy}
+                        onChange={(e) => setSortBy(e.target.value)}
+                        className="appearance-none bg-white border border-sage-200 rounded-xl px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-sage-400 cursor-pointer font-medium shadow-sm min-w-[180px]"
+                      >
+                        <option value="featured">🌟 Featured First</option>
+                        <option value="name">📝 Name A-Z</option>
+                        <option value="price-low">💰 Price: Low to High</option>
+                        <option value="price-high">💎 Price: High to Low</option>
+                        <option value="rating">⭐ Highest Rated</option>
+                        <option value="reviews">💬 Most Reviews</option>
+                      </select>
+                      <ArrowUpDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-sage-400 pointer-events-none" />
+                    </div>
+
+                    {/* View Mode */}
+                    <div className="flex bg-sage-100 border border-sage-200 rounded-xl p-1 shadow-sm">
+                      <button
+                        onClick={() => setViewMode('grid')}
+                        className={`p-3 rounded-lg transition-all ${
+                          viewMode === 'grid'
+                            ? 'bg-white text-sage-700 shadow-sm'
+                            : 'text-sage-500 hover:text-sage-700'
+                        }`}
+                        title="Grid View"
+                      >
+                        <Grid className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => setViewMode('list')}
+                        className={`p-3 rounded-lg transition-all ${
+                          viewMode === 'list'
+                            ? 'bg-white text-sage-700 shadow-sm'
+                            : 'text-sage-500 hover:text-sage-700'
+                        }`}
+                        title="List View"
+                      >
+                        <List className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
