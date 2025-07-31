@@ -688,19 +688,33 @@ export default function Shop() {
                         {/* Action Button */}
                         <div className={`${viewMode === 'list' ? 'button-container-list flex-shrink-0 self-end' : 'button-container-grid w-full'}`}>
                           {product.inStock ? (
-                            <button className="group relative overflow-hidden bg-gradient-to-r from-sage-600 via-sage-700 to-chai-700 hover:from-sage-700 hover:via-sage-800 hover:to-chai-800 text-white px-8 py-4 rounded-2xl transition-all duration-500 flex items-center justify-center gap-3 font-bold shadow-xl hover:shadow-2xl transform hover:-translate-y-1 w-full min-w-[160px]">
+                            <button
+                              className="group relative overflow-hidden bg-gradient-to-r from-sage-600 via-sage-700 to-chai-700 hover:from-sage-700 hover:via-sage-800 hover:to-chai-800 text-white px-8 py-4 rounded-2xl transition-all duration-500 flex items-center justify-center gap-3 font-bold shadow-xl hover:shadow-2xl transform hover:-translate-y-1 w-full min-w-[160px] active:scale-95"
+                              onClick={() => {
+                                // Add to cart logic would go here
+                                console.log(`Adding ${product.name} to cart`);
+                              }}
+                            >
                               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-                              <ShoppingCart className="h-5 w-5 relative z-10" />
+                              <ShoppingCart className="h-5 w-5 relative z-10 group-hover:scale-110 transition-transform duration-300" />
                               <span className="relative z-10 whitespace-nowrap">Add to Cart</span>
+
+                              {/* Price in button for better UX */}
+                              <span className="relative z-10 text-sage-200 text-sm font-medium">
+                                {formatPrice(product.price)}
+                              </span>
                             </button>
                           ) : (
-                            <button disabled className="relative bg-gradient-to-r from-sage-200 to-sage-300 text-sage-600 px-8 py-4 rounded-2xl cursor-not-allowed flex items-center justify-center gap-3 font-bold shadow-sm border border-sage-300 w-full min-w-[160px]">
+                            <button disabled className="relative bg-gradient-to-r from-sage-200 to-sage-300 text-sage-600 px-8 py-4 rounded-2xl cursor-not-allowed flex items-center justify-center gap-3 font-bold shadow-sm border border-sage-300 w-full min-w-[160px] opacity-75">
                               <div className="h-5 w-5 relative flex-shrink-0">
                                 <div className="absolute inset-0 bg-sage-400 rounded-full opacity-30"></div>
                                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-0.5 bg-sage-600 rotate-45"></div>
                                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-0.5 bg-sage-600 -rotate-45"></div>
                               </div>
                               <span className="whitespace-nowrap">Sold Out</span>
+                              <span className="text-sage-500 text-sm">
+                                Notify Me
+                              </span>
                             </button>
                           )}
                         </div>
