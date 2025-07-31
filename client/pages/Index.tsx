@@ -140,19 +140,20 @@ export default function Index() {
                 {t('hero.subtitle', 'From ancient gardens to your cup — experience the art of mindful tea drinking that connects cultures, generations, and moments of pure tranquility.')}
               </p>
 
-              {/* Enhanced CTAs with trust indicators */}
-              <div className="space-y-4">
+              {/* Enhanced CTAs with better visual design */}
+              <div className="space-y-6">
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Link
                     to="/shop"
-                    className="bg-sage-600 hover:bg-sage-700 text-white px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 flex items-center justify-center group shadow-lg hover:shadow-xl transform hover:scale-105"
+                    className="group relative bg-gradient-to-r from-sage-600 to-chai-600 hover:from-sage-700 hover:to-chai-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 flex items-center justify-center shadow-xl hover:shadow-2xl transform hover:scale-105 overflow-hidden"
                   >
-                    {t('hero.cta_primary', 'Start Your Journey')}
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    <span className="relative z-10">{t('hero.cta_primary', 'Start Your Journey')}</span>
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform relative z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                   </Link>
                   <Link
                     to="/shop"
-                    className="border-2 border-white text-white hover:bg-white hover:text-sage-800 px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 backdrop-blur-sm transform hover:scale-105"
+                    className="border-2 border-white/80 text-white hover:bg-white hover:text-sage-800 px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 backdrop-blur-sm transform hover:scale-105 flex items-center justify-center"
                   >
                     {t('hero.cta_secondary', 'Explore Collection')}
                   </Link>
