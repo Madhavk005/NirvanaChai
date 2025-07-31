@@ -3,6 +3,7 @@ import { Minus, Plus, Trash2, ShoppingBag, CreditCard, Truck, Shield, ArrowRight
 import { useLanguageCurrency } from '../contexts/LanguageCurrencyContext';
 
 export default function Cart() {
+  const { formatPrice } = useLanguageCurrency();
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
