@@ -12,6 +12,10 @@ export function Layout({ children }: LayoutProps) {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
   const location = useLocation();
+  const { currentLanguage, languages, setLanguage, currentCurrency, currencies, setCurrency, t } = useLanguageCurrency();
+
+  const languageRef = useRef<HTMLDivElement>(null);
+  const currencyRef = useRef<HTMLDivElement>(null);
 
   const navigation = [
     { name: 'Home', href: '/' },
