@@ -346,36 +346,69 @@ export default function About() {
       </section>
 
       {/* Values Section */}
-      <section className="py-20 bg-sage-800 text-white">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-heading font-bold mb-12">
+      <section className="relative py-16 sm:py-20 lg:py-24 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <OptimizedImage
+            src={teaImages.teaGarden}
+            alt="Tea garden landscape"
+            className="w-full h-full"
+            aspectRatio="wide"
+          />
+          <div className="absolute inset-0 bg-sage-900/85"></div>
+        </div>
+
+        <div
+          ref={valuesRef.elementRef as React.RefObject<HTMLDivElement>}
+          className={`relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center ${fadeInUp} ${
+            valuesRef.isVisible ? fadeInUpVisible : fadeInUpHidden
+          }`}
+        >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-8 lg:mb-16">
             Our Values
           </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="space-y-4">
-              <div className="text-4xl">🌱</div>
-              <h3 className="text-xl font-heading font-semibold">Sustainability</h3>
-              <p className="text-sage-200">
-                We partner with farms that prioritize environmental stewardship and sustainable growing practices.
-              </p>
-            </div>
-            
-            <div className="space-y-4">
-              <div className="text-4xl">🤝</div>
-              <h3 className="text-xl font-heading font-semibold">Fair Trade</h3>
-              <p className="text-sage-200">
-                Our partnerships ensure fair wages and working conditions for tea growers and their communities.
-              </p>
-            </div>
-            
-            <div className="space-y-4">
-              <div className="text-4xl">✨</div>
-              <h3 className="text-xl font-heading font-semibold">Quality</h3>
-              <p className="text-sage-200">
-                We never compromise on quality, selecting only the finest leaves that meet our exacting standards.
-              </p>
-            </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            {[
+              {
+                icon: "🌱",
+                title: "Sustainability",
+                description: "We partner with farms that prioritize environmental stewardship and sustainable growing practices."
+              },
+              {
+                icon: "🤝",
+                title: "Fair Trade",
+                description: "Our partnerships ensure fair wages and working conditions for tea growers and their communities."
+              },
+              {
+                icon: "✨",
+                title: "Quality",
+                description: "We never compromise on quality, selecting only the finest leaves that meet our exacting standards."
+              }
+            ].map((value, index) => {
+              const valueReveal = useScrollReveal({ threshold: 0.3 });
+
+              return (
+                <div
+                  key={index}
+                  ref={valueReveal.elementRef as React.RefObject<HTMLDivElement>}
+                  className={`bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 lg:p-8 hover:bg-white/20 transition-all duration-500 hover:-translate-y-2 group ${fadeInUp} ${
+                    valueReveal.isVisible ? fadeInUpVisible : fadeInUpHidden
+                  }`}
+                  style={{ transitionDelay: `${index * 200}ms` }}
+                >
+                  <div className="w-16 h-16 mx-auto mb-6 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div className="text-3xl">{value.icon}</div>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-heading font-semibold text-white mb-4">
+                    {value.title}
+                  </h3>
+                  <p className="text-sage-100 leading-relaxed text-sm sm:text-base">
+                    {value.description}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
