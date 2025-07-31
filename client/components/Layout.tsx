@@ -164,9 +164,11 @@ export function Layout({ children }: LayoutProps) {
               </Link>
               <Link to="/cart" className="p-2 hover:bg-muted rounded-md relative group transition-all duration-200 hover:scale-110">
                 <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform duration-200" />
-                <span className="absolute -top-1 -right-1 bg-sage-600 text-white text-xs rounded-full h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center font-medium shadow-lg animate-pulse">
+                <span className="absolute -top-1 -right-1 bg-gradient-to-r from-sage-600 to-chai-600 text-white text-xs rounded-full h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center font-bold shadow-lg border-2 border-white">
                   0
                 </span>
+                {/* Pulse animation for new items */}
+                <div className="absolute -top-1 -right-1 bg-sage-600 rounded-full h-4 w-4 sm:h-5 sm:w-5 animate-ping opacity-75"></div>
               </Link>
               
               {/* Mobile Menu Button */}
