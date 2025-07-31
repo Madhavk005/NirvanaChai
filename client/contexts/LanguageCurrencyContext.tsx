@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { locationService } from '../services/locationService';
 
 export interface Language {
   code: string;
@@ -111,7 +113,7 @@ const translations: Record<string, Record<string, string>> = {
     'hero.shop_now': 'Купить Сейчас',
     
     // Why Choose section
-    'why_choose.title': 'Почему в��бирают Нирвана Чай?',
+    'why_choose.title': 'Почему выбирают Нирвана Чай?',
     'why_choose.subtitle': 'Откройте для себя, что делает наше чайное путешествие необычным и почему любители чая во всем мире доверяют нашему наследию.',
     'why_choose.expertise': 'Три поколения опыта',
     'why_choose.global': 'Источники по всему миру',
@@ -127,7 +129,7 @@ const translations: Record<string, Record<string, string>> = {
     
     // Featured Products
     'featured.title': 'Рекомендуемые Смеси',
-    'featured.subtitle': 'Откройте для себя наши самые любимые чайные коллекции, тщательно созданные, чтобы принести вам моменты спокойствия и радости.',
+    'featured.subtitle': 'Откройте для себя наши самые любимые чайные коллекции, тщательно создан��ые, чтобы принести вам моменты спокойствия и радости.',
     'featured.add_to_cart': 'В Корзину',
     'featured.view_all': 'Посмотреть Все Товары',
     
@@ -165,13 +167,13 @@ const translations: Record<string, Record<string, string>> = {
     'why_choose.expertise': 'Үш ұрпақтың тәжірибесі',
     'why_choose.global': 'Әлемнен алынған',
     'why_choose.curated': 'Таңдалған қоспалар',
-    'why_choose.pure': 'Таза ингредиен��тер',
+    'why_choose.pure': 'Таза ингредиенттер',
     'why_choose.sustainable': 'Тұрақты көздер',
     'why_choose.fresh': 'Жаңа оралған',
     
     // Global Sourcing
     'global_sourcing.title': 'Ғаламдық Көздер, Жергілікті Жан',
-    'global_sourcing.subtitle': 'Біздің шай саяхатымыз әлемдегі ең танымал шай өңірлерін қамтиды, олардың әрқайсысы мәдениеттер мен ұрпақтарды байланыстыратын тамаша кесені жасау үшін өзіндік сипатын қосады.',
+    'global_sourcing.subtitle': 'Біздің шай саяхатымыз әлемдегі ең танымал шай өңірлерін қамтиды, олардың әрқайсысы мәдениеттер мен ұрпақтарды байланыстыратын т��маша кесені жасау үшін өзіндік сипатын қосады.',
     'global_sourcing.learn_story': 'Біздің Тарихымызды Үйреніңіз',
     
     // Featured Products
