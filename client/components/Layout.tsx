@@ -134,33 +134,36 @@ export function Layout({ children }: LayoutProps) {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                  className={`text-sm font-medium transition-all duration-200 hover:text-primary relative group ${
                     location.pathname === item.href
-                      ? 'text-primary border-b-2 border-primary'
+                      ? 'text-primary'
                       : 'text-muted-foreground'
                   }`}
                 >
                   {item.name}
+                  <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-200 ${
+                    location.pathname === item.href ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                  }`}></span>
                 </Link>
               ))}
             </div>
 
             {/* Right Actions */}
-            <div className="flex items-center space-x-4">
-              <button className="p-2 hover:bg-muted rounded-md">
-                <Search className="h-5 w-5" />
+            <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4">
+              <button className="p-2 hover:bg-muted rounded-md transition-all duration-200 hover:scale-110">
+                <Search className="h-4 w-4 sm:h-5 sm:w-5" />
               </button>
-              <Link to="/account" className="p-2 hover:bg-muted rounded-md">
-                <User className="h-5 w-5" />
+              <Link to="/account" className="p-2 hover:bg-muted rounded-md transition-all duration-200 hover:scale-110">
+                <User className="h-4 w-4 sm:h-5 sm:w-5" />
               </Link>
-              <Link to="/cart" className="p-2 hover:bg-muted rounded-md relative group transition-all duration-200">
-                <ShoppingCart className="h-5 w-5 group-hover:scale-110 transition-transform duration-200" />
-                <span className="absolute -top-1 -right-1 bg-sage-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium shadow-lg animate-pulse">
+              <Link to="/cart" className="p-2 hover:bg-muted rounded-md relative group transition-all duration-200 hover:scale-110">
+                <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform duration-200" />
+                <span className="absolute -top-1 -right-1 bg-sage-600 text-white text-xs rounded-full h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center font-medium shadow-lg animate-pulse">
                   0
                 </span>
               </Link>
