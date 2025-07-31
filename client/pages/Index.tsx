@@ -3,6 +3,8 @@ import { ArrowRight, Leaf, Globe, Award, Heart, Recycle, Package } from 'lucide-
 import { useLanguageCurrency } from '../contexts/LanguageCurrencyContext';
 
 export default function Index() {
+  const { t, formatPrice } = useLanguageCurrency();
+
   const features = [
     {
       icon: <Award className="h-12 w-12 text-sage-600" />,
