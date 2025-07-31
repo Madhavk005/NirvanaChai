@@ -402,8 +402,8 @@ export default function Shop() {
                 {sortedProducts.map((product, index) => (
                   <div
                     key={product.id}
-                    className={`group bg-white/80 backdrop-blur-sm border border-sage-200 rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-sage-200/50 transition-all duration-500 hover:-translate-y-2 ${
-                      viewMode === 'list' ? 'flex' : ''
+                    className={`group bg-white/90 backdrop-blur-sm border border-sage-200 rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-sage-200/50 transition-all duration-500 hover:-translate-y-2 ${
+                      viewMode === 'list' ? 'flex' : 'flex flex-col'
                     } ${!product.inStock ? 'opacity-75' : ''}`}
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
