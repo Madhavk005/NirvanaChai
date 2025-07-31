@@ -23,7 +23,7 @@ const App = () => (
         <Layout>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/shop" element={<PlaceholderPage title="Shop" description="Explore our premium tea collection from around the world." />} />
+            <Route path="/shop" element={<Shop />} />
             <Route path="/about" element={<PlaceholderPage title="About Us" description="Learn about our three generations of tea expertise and global sourcing story." />} />
             <Route path="/blog" element={<PlaceholderPage title="Ritual Journal" description="Discover tea wisdom, brewing guides, and stories from our global tea community." />} />
             <Route path="/community" element={<PlaceholderPage title="Community" description="Join our global tea family and share your tea moments with fellow enthusiasts." />} />
