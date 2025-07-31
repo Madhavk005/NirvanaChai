@@ -504,7 +504,7 @@ export default function Shop() {
 
             {/* Products Grid */}
             {sortedProducts.length > 0 ? (
-              <div className={`grid gap-6 ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4' : 'grid-cols-1 max-w-5xl'}`}>
+              <div className={`grid gap-6 ${viewMode === 'grid' ? 'product-grid-md product-grid-lg product-grid-2xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4' : 'grid-cols-1 max-w-5xl'}`}>
                 {sortedProducts.map((product, index) => (
                   <div
                     key={product.id}
