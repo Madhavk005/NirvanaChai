@@ -91,28 +91,27 @@ export default function Index() {
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-7xl font-heading font-bold text-sage-800 mb-6 leading-tight">
-            Experience
-            <span className="block text-chai-600">Nirvanachai</span>
+            {t('hero.title1', 'Experience')}
+            <span className="block text-chai-600">{t('hero.title2', 'Nirvanachai')}</span>
           </h1>
-          
+
           <p className="text-lg md:text-xl text-sage-700 mb-8 max-w-2xl mx-auto leading-relaxed">
-            More than a drink — tea is a daily ritual, a quiet companion, and a global connector. 
-            Join us on a journey that spans continents and generations.
+            {t('hero.subtitle', 'More than a drink — tea is a daily ritual, a quiet companion, and a global connector. Join us on a journey that spans continents and generations.')}
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
+            <Link
               to="/shop"
               className="bg-sage-600 hover:bg-sage-700 text-white px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 flex items-center justify-center group"
             >
-              Explore Blends
+              {t('hero.explore_blends', 'Explore Blends')}
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link 
+            <Link
               to="/shop"
               className="border-2 border-sage-600 text-sage-600 hover:bg-sage-600 hover:text-white px-8 py-4 rounded-full text-lg font-medium transition-all duration-300"
             >
-              Shop Now
+              {t('hero.shop_now', 'Shop Now')}
             </Link>
           </div>
         </div>
