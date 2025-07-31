@@ -390,9 +390,8 @@ export default function Index() {
         </div>
 
         <div
-          ref={newsletterMotion.elementRef as React.RefObject<HTMLDivElement>}
-          style={newsletterMotion.getMotionStyles('fadeInUp')}
-          className="relative max-w-5xl mx-auto px-4 text-center"
+          ref={newsletterAnimation.elementRef}
+          className={`relative max-w-5xl mx-auto px-4 text-center ${animationClasses.fadeInUp(newsletterAnimation.isVisible)}`}
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-4">
             {t('newsletter.title', 'Join 10,000+ Tea Enthusiasts')}
