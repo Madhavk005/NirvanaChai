@@ -483,9 +483,9 @@ export default function Shop() {
                       </div>
 
                       {/* Price and Actions */}
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <div className="flex items-center gap-3 mb-1">
+                      <div className={`mt-auto ${viewMode === 'list' ? 'flex items-end justify-between' : 'space-y-4'}`}>
+                        <div className={`${viewMode === 'list' ? 'flex-grow' : ''}`}>
+                          <div className="flex items-baseline gap-3 mb-2">
                             <span className="text-2xl font-bold text-sage-800">
                               {formatPrice(product.price)}
                             </span>
@@ -496,23 +496,35 @@ export default function Shop() {
                             )}
                           </div>
                           {product.originalPrice && (
-                            <span className="text-sm text-green-600 font-semibold">
-                              Save {formatPrice(product.originalPrice - product.price)}
-                            </span>
+                            <div className="flex items-center gap-2">
+                              <span className="text-sm text-green-600 font-semibold bg-green-50 px-2 py-1 rounded-lg">
+                                Save {formatPrice(product.originalPrice - product.price)}
+                              </span>
+                              <span className="text-xs text-green-600">
+                                ({Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% off)
+                              </span>
+                            </div>
                           )}
                         </div>
-                        
-                        <button 
-                          disabled={!product.inStock}
-                          className={`${
-                            product.inStock 
-                              ? 'bg-sage-600 hover:bg-sage-700 text-white' 
-                              : 'bg-sage-200 text-sage-500 cursor-not-allowed'
-                          } px-6 py-3 rounded-2xl transition-all duration-300 flex items-center gap-2 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:transform-none disabled:shadow-lg`}
-                        >
-                          <ShoppingCart className="h-4 w-4" />
-                          {product.inStock ? 'Add to Cart' : 'Sold Out'}
-                        </button>
+
+                        <div className={`${viewMode === 'list' ? 'ml-6' : ''}`}>
+                          {product.inStock ? (
+                            <button className="group relative overflow-hidden bg-gradient-to-r from-sage-600 to-sage-700 hover:from-sage-700 hover:to-sage-800 text-white px-8 py-3.5 rounded-xl transition-all duration-300 flex items-center gap-3 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 border border-sage-600/20">
+                              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                              <ShoppingCart className="h-5 w-5 relative z-10" />
+                              <span className="relative z-10">Add to Cart</span>
+                            </button>
+                          ) : (
+                            <button disabled className="relative bg-gradient-to-r from-sage-200 to-sage-300 text-sage-600 px-8 py-3.5 rounded-xl cursor-not-allowed flex items-center gap-3 font-semibold shadow-sm border border-sage-300">
+                              <div className="h-5 w-5 relative">
+                                <div className="absolute inset-0 bg-sage-400 rounded-full opacity-30"></div>
+                                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-0.5 bg-sage-600 rotate-45"></div>
+                                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-0.5 bg-sage-600 -rotate-45"></div>
+                              </div>
+                              <span>Sold Out</span>
+                            </button>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
