@@ -212,10 +212,10 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-sage-800 mb-4">
-              Featured Blends
+              {t('featured.title', 'Featured Blends')}
             </h2>
             <p className="text-lg text-sage-600 max-w-2xl mx-auto">
-              Discover our most beloved tea collections, carefully crafted to bring you moments of tranquility and joy.
+              {t('featured.subtitle', 'Discover our most beloved tea collections, carefully crafted to bring you moments of tranquility and joy.')}
             </p>
           </div>
 
@@ -224,19 +224,19 @@ export default function Index() {
               {
                 name: "Morning Serenity",
                 description: "A gentle blend of Darjeeling and chamomile",
-                price: "$24.99",
+                price: 24.99,
                 image: "🌅"
               },
               {
-                name: "Evening Bliss", 
+                name: "Evening Bliss",
                 description: "Calming Ceylon tea with lavender notes",
-                price: "$26.99",
+                price: 26.99,
                 image: "🌙"
               },
               {
                 name: "Heritage Chai",
                 description: "Traditional Assam blend with warming spices",
-                price: "$22.99",
+                price: 22.99,
                 image: "☕"
               }
             ].map((product, index) => (
