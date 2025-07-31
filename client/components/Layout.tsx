@@ -3,6 +3,7 @@ import { ShoppingCart, Search, Globe, User, Menu, X, Phone, Mail, ChevronDown } 
 import { useState, useRef, useEffect } from 'react';
 import { useLanguageCurrency } from '../contexts/LanguageCurrencyContext';
 import { FloatingActions } from './FloatingActions';
+import { AnnouncementBar } from './AnnouncementBar';
 
 interface LayoutProps {
   children: React.ReactNode;
