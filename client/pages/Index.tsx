@@ -385,30 +385,55 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Newsletter Signup */}
-      <section className="py-20 bg-sage-800 text-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-heading font-bold mb-4">
-            {t('newsletter.title', 'Join Our Tea Journey')}
+      {/* Newsletter Signup - Enhanced with FOMO and value props */}
+      <section className="py-20 bg-sage-800 text-white relative overflow-hidden">
+        {/* Background pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className={"absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.1\"%3E%3Cpath d=\"M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"}></div>
+        </div>
+
+        <div
+          ref={newsletterMotion.elementRef as React.RefObject<HTMLDivElement>}
+          style={newsletterMotion.getMotionStyles('fadeInUp')}
+          className="relative max-w-5xl mx-auto px-4 text-center"
+        >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-4">
+            {t('newsletter.title', 'Join 10,000+ Tea Enthusiasts')}
           </h2>
-          <p className="text-xl text-sage-200 mb-8">
-            {t('newsletter.subtitle', 'Subscribe to receive tea wisdom, exclusive blends, and stories from our global tea family.')}
+          <p className="text-xl text-sage-200 mb-8 max-w-3xl mx-auto">
+            {t('newsletter.subtitle', 'Get exclusive access to new blends, brewing secrets, and special offers before anyone else.')}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder={t('newsletter.email_placeholder', 'Enter your email')}
-              className="flex-1 px-6 py-4 rounded-full text-sage-800 focus:outline-none focus:ring-2 focus:ring-sage-400"
-            />
-            <button className="bg-clay-500 hover:bg-clay-600 text-white px-8 py-4 rounded-full font-medium transition-colors">
-              {t('newsletter.subscribe', 'Subscribe')}
-            </button>
+          {/* Value propositions */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 max-w-3xl mx-auto">
+            <div className="flex items-center justify-center text-sage-200">
+              {t('newsletter.benefit1', '🎁 20% off your first order')}
+            </div>
+            <div className="flex items-center justify-center text-sage-200">
+              {t('newsletter.benefit2', '🍃 Early access to new blends')}
+            </div>
+            <div className="flex items-center justify-center text-sage-200">
+              {t('newsletter.benefit3', '📚 Free brewing guides')}
+            </div>
           </div>
 
-          <p className="text-sm text-sage-300 mt-4">
-            {t('newsletter.no_spam', 'No spam, just tea love. Unsubscribe anytime.')}
-          </p>
+          {/* Enhanced signup form */}
+          <div className="max-w-md mx-auto">
+            <div className="flex flex-col sm:flex-row gap-4 mb-4">
+              <input
+                type="email"
+                placeholder={t('newsletter.email_placeholder', 'Enter your email address')}
+                className="flex-1 px-6 py-4 rounded-full text-sage-800 focus:outline-none focus:ring-2 focus:ring-clay-400 transition-all duration-300"
+              />
+              <button className="bg-clay-500 hover:bg-clay-600 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                {t('newsletter.subscribe', 'Get Exclusive Access')}
+              </button>
+            </div>
+
+            <p className="text-sm text-sage-300">
+              {t('newsletter.no_spam', 'Premium content only. Unsubscribe anytime.')}
+            </p>
+          </div>
         </div>
       </section>
     </div>
