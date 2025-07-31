@@ -3,6 +3,7 @@ import { Search, Filter, Grid, List, Star, ShoppingCart } from 'lucide-react';
 import { useLanguageCurrency } from '../contexts/LanguageCurrencyContext';
 
 export default function Shop() {
+  const { formatPrice } = useLanguageCurrency();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
