@@ -16,8 +16,6 @@ export function Layout({ children }: LayoutProps) {
     { name: 'Home', href: '/' },
     { name: 'Shop', href: '/shop' },
     { name: 'About', href: '/about' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Community', href: '/community' },
     { name: 'Contact', href: '/contact' },
   ];
 
