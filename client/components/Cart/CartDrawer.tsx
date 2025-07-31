@@ -1,23 +1,29 @@
-import { Fragment } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-import { XMarkIcon, ShoppingBagIcon, TrashIcon, PlusIcon, MinusIcon } from '@heroicons/react/24/outline';
-import { useCartStore } from '../../stores/useStore';
-import { useLanguageCurrency } from '../../contexts/LanguageCurrencyContext';
-import { showToast } from '../Toast/ToastProvider';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Fragment } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import {
+  XMarkIcon,
+  ShoppingBagIcon,
+  TrashIcon,
+  PlusIcon,
+  MinusIcon,
+} from "@heroicons/react/24/outline";
+import { useCartStore } from "../../stores/useStore";
+import { useLanguageCurrency } from "../../contexts/LanguageCurrencyContext";
+import { showToast } from "../Toast/ToastProvider";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function CartDrawer() {
-  const { 
-    items, 
-    isOpen, 
-    toggleCart, 
-    updateQuantity, 
-    removeItem, 
-    clearCart, 
-    getTotalItems, 
-    getTotalPrice 
+  const {
+    items,
+    isOpen,
+    toggleCart,
+    updateQuantity,
+    removeItem,
+    clearCart,
+    getTotalItems,
+    getTotalPrice,
   } = useCartStore();
-  
+
   const { formatPrice } = useLanguageCurrency();
 
   const handleQuantityChange = (productId: number, newQuantity: number) => {
@@ -31,7 +37,7 @@ export function CartDrawer() {
   const handleCheckout = () => {
     const itemCount = getTotalItems();
     const total = formatPrice(getTotalPrice());
-    
+
     // Simulate checkout process
     showToast.promise(
       new Promise((resolve) => {
@@ -42,10 +48,10 @@ export function CartDrawer() {
         }, 2000);
       }),
       {
-        loading: 'Processing your order...',
-        success: 'Order placed successfully!',
-        error: 'Failed to place order. Please try again.',
-      }
+        loading: "Processing your order...",
+        success: "Order placed successfully!",
+        error: "Failed to place order. Please try again.",
+      },
     );
 
     // Show checkout success toast after promise resolves
@@ -114,7 +120,9 @@ export function CartDrawer() {
                           {items.length === 0 ? (
                             <div className="text-center py-12">
                               <ShoppingBagIcon className="mx-auto h-12 w-12 text-gray-400" />
-                              <h3 className="mt-2 text-sm font-medium text-gray-900">Your cart is empty</h3>
+                              <h3 className="mt-2 text-sm font-medium text-gray-900">
+                                Your cart is empty
+                              </h3>
                               <p className="mt-1 text-sm text-gray-500">
                                 Start shopping to add items to your cart.
                               </p>
@@ -128,13 +136,16 @@ export function CartDrawer() {
                               </div>
                             </div>
                           ) : (
-                            <ul role="list" className="-my-6 divide-y divide-gray-200">
+                            <ul
+                              role="list"
+                              className="-my-6 divide-y divide-gray-200"
+                            >
                               <AnimatePresence>
                                 {items.map((item) => (
                                   <motion.li
                                     key={item.id}
                                     initial={{ opacity: 0, height: 0 }}
-                                    animate={{ opacity: 1, height: 'auto' }}
+                                    animate={{ opacity: 1, height: "auto" }}
                                     exit={{ opacity: 0, height: 0 }}
                                     transition={{ duration: 0.3 }}
                                     className="flex py-6"
@@ -153,21 +164,35 @@ export function CartDrawer() {
                                           <h3>
                                             <a href="#">{item.name}</a>
                                           </h3>
-                                          <p className="ml-4">{formatPrice(item.price * item.quantity)}</p>
+                                          <p className="ml-4">
+                                            {formatPrice(
+                                              item.price * item.quantity,
+                                            )}
+                                          </p>
                                         </div>
-                                        <p className="mt-1 text-sm text-gray-500">{item.category}</p>
+                                        <p className="mt-1 text-sm text-gray-500">
+                                          {item.category}
+                                        </p>
                                         <p className="text-sm text-gray-500">
                                           {formatPrice(item.price)} each
                                         </p>
                                       </div>
                                       <div className="flex flex-1 items-end justify-between text-sm">
                                         <div className="flex items-center space-x-2">
-                                          <label htmlFor={`quantity-${item.id}`} className="sr-only">
+                                          <label
+                                            htmlFor={`quantity-${item.id}`}
+                                            className="sr-only"
+                                          >
                                             Quantity, {item.name}
                                           </label>
                                           <div className="flex items-center border border-gray-300 rounded-md">
                                             <button
-                                              onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
+                                              onClick={() =>
+                                                handleQuantityChange(
+                                                  item.id,
+                                                  item.quantity - 1,
+                                                )
+                                              }
                                               className="p-1 hover:bg-gray-100 rounded-l-md"
                                               disabled={item.quantity <= 1}
                                             >
@@ -177,7 +202,12 @@ export function CartDrawer() {
                                               {item.quantity}
                                             </span>
                                             <button
-                                              onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
+                                              onClick={() =>
+                                                handleQuantityChange(
+                                                  item.id,
+                                                  item.quantity + 1,
+                                                )
+                                              }
                                               className="p-1 hover:bg-gray-100 rounded-r-md"
                                             >
                                               <PlusIcon className="h-4 w-4" />
@@ -219,7 +249,9 @@ export function CartDrawer() {
                             <span>Shipping</span>
                             <span>
                               {shipping === 0 ? (
-                                <span className="text-green-600 font-medium">Free</span>
+                                <span className="text-green-600 font-medium">
+                                  Free
+                                </span>
                               ) : (
                                 formatPrice(shipping)
                               )}
@@ -231,7 +263,8 @@ export function CartDrawer() {
                           </div>
                           {subtotal < 50 && (
                             <div className="text-xs text-sage-600 bg-sage-50 p-2 rounded">
-                              💡 Add {formatPrice(50 - subtotal)} more for free shipping!
+                              💡 Add {formatPrice(50 - subtotal)} more for free
+                              shipping!
                             </div>
                           )}
                         </div>
@@ -240,8 +273,10 @@ export function CartDrawer() {
                           <p>Total</p>
                           <p>{formatPrice(total)}</p>
                         </div>
-                        <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
-                        
+                        <p className="mt-0.5 text-sm text-gray-500">
+                          Shipping and taxes calculated at checkout.
+                        </p>
+
                         <div className="mt-6 space-y-3">
                           <button
                             onClick={handleCheckout}
@@ -255,12 +290,12 @@ export function CartDrawer() {
                           >
                             Continue Shopping
                           </button>
-                          
+
                           {items.length > 1 && (
                             <button
                               onClick={() => {
                                 clearCart();
-                                showToast.info('Cart cleared');
+                                showToast.info("Cart cleared");
                               }}
                               className="flex w-full items-center justify-center text-sm text-gray-500 hover:text-red-600 transition-colors"
                             >

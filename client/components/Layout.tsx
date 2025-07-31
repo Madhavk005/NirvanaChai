@@ -1,10 +1,20 @@
-import { Link, useLocation } from 'react-router-dom';
-import { ShoppingCart, Search, Globe, User, Menu, X, Phone, Mail, ChevronDown } from 'lucide-react';
-import { useState, useRef, useEffect } from 'react';
-import { useLanguageCurrency } from '../contexts/LanguageCurrencyContext';
-import { useCartStore } from '../stores/useStore';
-import { FloatingActions } from './FloatingActions';
-import { AnnouncementBar } from './AnnouncementBar';
+import { Link, useLocation } from "react-router-dom";
+import {
+  ShoppingCart,
+  Search,
+  Globe,
+  User,
+  Menu,
+  X,
+  Phone,
+  Mail,
+  ChevronDown,
+} from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { useLanguageCurrency } from "../contexts/LanguageCurrencyContext";
+import { useCartStore } from "../stores/useStore";
+import { FloatingActions } from "./FloatingActions";
+import { AnnouncementBar } from "./AnnouncementBar";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -15,7 +25,15 @@ export function Layout({ children }: LayoutProps) {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
   const location = useLocation();
-  const { currentLanguage, languages, setLanguage, currentCurrency, currencies, setCurrency, t } = useLanguageCurrency();
+  const {
+    currentLanguage,
+    languages,
+    setLanguage,
+    currentCurrency,
+    currencies,
+    setCurrency,
+    t,
+  } = useLanguageCurrency();
   const { getTotalItems, toggleCart } = useCartStore();
 
   const languageRef = useRef<HTMLDivElement>(null);
@@ -24,23 +42,29 @@ export function Layout({ children }: LayoutProps) {
   // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (languageRef.current && !languageRef.current.contains(event.target as Node)) {
+      if (
+        languageRef.current &&
+        !languageRef.current.contains(event.target as Node)
+      ) {
         setIsLanguageOpen(false);
       }
-      if (currencyRef.current && !currencyRef.current.contains(event.target as Node)) {
+      if (
+        currencyRef.current &&
+        !currencyRef.current.contains(event.target as Node)
+      ) {
         setIsCurrencyOpen(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const navigation = [
-    { name: t('nav.home', 'Home'), href: '/' },
-    { name: t('nav.shop', 'Shop'), href: '/shop' },
-    { name: t('nav.about', 'About'), href: '/about' },
-    { name: t('nav.contact', 'Contact'), href: '/contact' },
+    { name: t("nav.home", "Home"), href: "/" },
+    { name: t("nav.shop", "Shop"), href: "/shop" },
+    { name: t("nav.about", "About"), href: "/about" },
+    { name: t("nav.contact", "Contact"), href: "/contact" },
   ];
 
   return (
@@ -71,8 +95,12 @@ export function Layout({ children }: LayoutProps) {
                   className="flex items-center space-x-1 text-sage-700 hover:text-sage-900 transition-colors group"
                 >
                   <Globe className="h-3 w-3" />
-                  <span className="font-medium">{currentLanguage.code.toUpperCase()}</span>
-                  <ChevronDown className={`h-3 w-3 transition-transform ${isLanguageOpen ? 'rotate-180' : ''}`} />
+                  <span className="font-medium">
+                    {currentLanguage.code.toUpperCase()}
+                  </span>
+                  <ChevronDown
+                    className={`h-3 w-3 transition-transform ${isLanguageOpen ? "rotate-180" : ""}`}
+                  />
                 </button>
                 {isLanguageOpen && (
                   <div className="absolute right-0 mt-2 w-44 bg-background border border-border rounded-lg shadow-lg z-50 py-1">
@@ -80,7 +108,9 @@ export function Layout({ children }: LayoutProps) {
                       <button
                         key={lang.code}
                         className={`w-full px-4 py-2 text-left hover:bg-sage-50 flex items-center space-x-3 transition-colors ${
-                          currentLanguage.code === lang.code ? 'bg-sage-100 text-sage-800' : 'text-sage-600'
+                          currentLanguage.code === lang.code
+                            ? "bg-sage-100 text-sage-800"
+                            : "text-sage-600"
                         }`}
                         onClick={() => {
                           setLanguage(lang);
@@ -90,7 +120,9 @@ export function Layout({ children }: LayoutProps) {
                         <span className="text-lg">{lang.flag}</span>
                         <div className="flex flex-col">
                           <span className="font-medium">{lang.name}</span>
-                          <span className="text-xs text-sage-500">{lang.nativeName}</span>
+                          <span className="text-xs text-sage-500">
+                            {lang.nativeName}
+                          </span>
                         </div>
                       </button>
                     ))}
@@ -104,7 +136,9 @@ export function Layout({ children }: LayoutProps) {
                   className="flex items-center space-x-1 text-sage-700 hover:text-sage-900 transition-colors"
                 >
                   <span className="font-medium">{currentCurrency.code}</span>
-                  <ChevronDown className={`h-3 w-3 transition-transform ${isCurrencyOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown
+                    className={`h-3 w-3 transition-transform ${isCurrencyOpen ? "rotate-180" : ""}`}
+                  />
                 </button>
                 {isCurrencyOpen && (
                   <div className="absolute right-0 mt-2 w-36 bg-background border border-border rounded-lg shadow-lg z-50 py-1">
@@ -112,7 +146,9 @@ export function Layout({ children }: LayoutProps) {
                       <button
                         key={currency.code}
                         className={`w-full px-4 py-2 text-left hover:bg-sage-50 flex items-center justify-between transition-colors ${
-                          currentCurrency.code === currency.code ? 'bg-sage-100 text-sage-800' : 'text-sage-600'
+                          currentCurrency.code === currency.code
+                            ? "bg-sage-100 text-sage-800"
+                            : "text-sage-600"
                         }`}
                         onClick={() => {
                           setCurrency(currency);
@@ -148,14 +184,18 @@ export function Layout({ children }: LayoutProps) {
                   to={item.href}
                   className={`text-sm font-medium transition-all duration-200 hover:text-primary relative group ${
                     location.pathname === item.href
-                      ? 'text-primary'
-                      : 'text-muted-foreground'
+                      ? "text-primary"
+                      : "text-muted-foreground"
                   }`}
                 >
                   {item.name}
-                  <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-200 ${
-                    location.pathname === item.href ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                  }`}></span>
+                  <span
+                    className={`absolute -bottom-1 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-200 ${
+                      location.pathname === item.href
+                        ? "scale-x-100"
+                        : "scale-x-0 group-hover:scale-x-100"
+                    }`}
+                  ></span>
                 </Link>
               ))}
             </div>
@@ -165,7 +205,10 @@ export function Layout({ children }: LayoutProps) {
               <button className="p-2 hover:bg-muted rounded-md transition-all duration-200 hover:scale-110">
                 <Search className="h-4 w-4 sm:h-5 sm:w-5" />
               </button>
-              <Link to="/account" className="p-2 hover:bg-muted rounded-md transition-all duration-200 hover:scale-110">
+              <Link
+                to="/account"
+                className="p-2 hover:bg-muted rounded-md transition-all duration-200 hover:scale-110"
+              >
                 <User className="h-4 w-4 sm:h-5 sm:w-5" />
               </Link>
               <button
@@ -183,22 +226,28 @@ export function Layout({ children }: LayoutProps) {
                   </>
                 )}
               </button>
-              
+
               {/* Mobile Menu Button */}
               <button
                 className="lg:hidden p-2 hover:bg-muted rounded-md transition-all duration-200 hover:scale-110"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label="Toggle mobile menu"
               >
-                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                {isMobileMenuOpen ? (
+                  <X className="h-5 w-5" />
+                ) : (
+                  <Menu className="h-5 w-5" />
+                )}
               </button>
             </div>
           </div>
 
           {/* Mobile Navigation */}
-          <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-            isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-          }`}>
+          <div
+            className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+              isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+            }`}
+          >
             <div className="mt-4 pb-6 border-t border-border bg-sage-50/50 rounded-b-lg mx-4 sm:mx-6">
               <div className="pt-4 px-4 space-y-1">
                 {navigation.map((item, index) => (
@@ -206,11 +255,11 @@ export function Layout({ children }: LayoutProps) {
                     key={item.name}
                     to={item.href}
                     className={`block px-4 py-3 text-base font-medium transition-all duration-200 hover:text-primary hover:bg-white rounded-lg transform ${
-                      isMobileMenuOpen ? 'translate-x-0' : 'translate-x-4'
+                      isMobileMenuOpen ? "translate-x-0" : "translate-x-4"
                     } ${
                       location.pathname === item.href
-                        ? 'text-primary bg-white shadow-sm'
-                        : 'text-muted-foreground'
+                        ? "text-primary bg-white shadow-sm"
+                        : "text-muted-foreground"
                     }`}
                     style={{ transitionDelay: `${index * 50}ms` }}
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -233,10 +282,13 @@ export function Layout({ children }: LayoutProps) {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Brand */}
             <div className="col-span-1 md:col-span-2">
-              <h3 className="text-2xl font-heading font-semibold mb-4">Nirvana Chai</h3>
+              <h3 className="text-2xl font-heading font-semibold mb-4">
+                Nirvana Chai
+              </h3>
               <p className="text-sage-200 mb-4">
-                More than a drink — tea is a daily ritual, a quiet companion, and a global connector. 
-                Join us on a journey that spans continents and generations.
+                More than a drink — tea is a daily ritual, a quiet companion,
+                and a global connector. Join us on a journey that spans
+                continents and generations.
               </p>
               <div className="space-y-2 text-sm">
                 <div className="flex items-center space-x-2">
@@ -255,9 +307,24 @@ export function Layout({ children }: LayoutProps) {
             <div>
               <h4 className="font-semibold mb-4">Quick Links</h4>
               <ul className="space-y-2 text-sm">
-                <li><Link to="/shop" className="text-sage-200 hover:text-white">Shop</Link></li>
-                <li><Link to="/about" className="text-sage-200 hover:text-white">About Us</Link></li>
-                <li><Link to="/contact" className="text-sage-200 hover:text-white">Contact</Link></li>
+                <li>
+                  <Link to="/shop" className="text-sage-200 hover:text-white">
+                    Shop
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/about" className="text-sage-200 hover:text-white">
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/contact"
+                    className="text-sage-200 hover:text-white"
+                  >
+                    Contact
+                  </Link>
+                </li>
               </ul>
             </div>
 
@@ -265,10 +332,35 @@ export function Layout({ children }: LayoutProps) {
             <div>
               <h4 className="font-semibold mb-4">Customer Care</h4>
               <ul className="space-y-2 text-sm">
-                <li><Link to="/faq" className="text-sage-200 hover:text-white">FAQ</Link></li>
-                <li><Link to="/shipping" className="text-sage-200 hover:text-white">Shipping</Link></li>
-                <li><Link to="/returns" className="text-sage-200 hover:text-white">Returns</Link></li>
-                <li><Link to="/privacy" className="text-sage-200 hover:text-white">Privacy Policy</Link></li>
+                <li>
+                  <Link to="/faq" className="text-sage-200 hover:text-white">
+                    FAQ
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/shipping"
+                    className="text-sage-200 hover:text-white"
+                  >
+                    Shipping
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/returns"
+                    className="text-sage-200 hover:text-white"
+                  >
+                    Returns
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/privacy"
+                    className="text-sage-200 hover:text-white"
+                  >
+                    Privacy Policy
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>

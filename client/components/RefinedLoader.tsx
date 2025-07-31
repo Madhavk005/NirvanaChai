@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 interface RefinedLoaderProps {
   isLoading: boolean;
@@ -13,7 +13,7 @@ export function RefinedLoader({ isLoading, onComplete }: RefinedLoaderProps) {
     { text: "Sourcing premium tea leaves...", duration: 800 },
     { text: "Selecting finest origins...", duration: 600 },
     { text: "Brewing your experience...", duration: 700 },
-    { text: "Almost ready...", duration: 500 }
+    { text: "Almost ready...", duration: 500 },
   ];
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export function RefinedLoader({ isLoading, onComplete }: RefinedLoaderProps) {
       progressInterval = setInterval(() => {
         currentProgress += 1;
         setProgress(currentProgress);
-        
+
         // Update stage based on progress
         const newStage = Math.floor((currentProgress / 100) * stages.length);
         if (newStage !== currentStage && newStage < stages.length) {
@@ -64,9 +64,12 @@ export function RefinedLoader({ isLoading, onComplete }: RefinedLoaderProps) {
           <div className="w-24 h-24 mx-auto relative">
             {/* Outer ring */}
             <div className="absolute inset-0 border-4 border-sage-200 rounded-full animate-spin-slow"></div>
-            
+
             {/* Progress ring */}
-            <svg className="absolute inset-0 w-full h-full transform -rotate-90" viewBox="0 0 24 24">
+            <svg
+              className="absolute inset-0 w-full h-full transform -rotate-90"
+              viewBox="0 0 24 24"
+            >
               <circle
                 cx="12"
                 cy="12"
@@ -88,7 +91,7 @@ export function RefinedLoader({ isLoading, onComplete }: RefinedLoaderProps) {
                 className="transition-all duration-300 ease-out"
               />
             </svg>
-            
+
             {/* Center tea icon */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-10 h-10 bg-gradient-to-br from-sage-500 to-chai-600 rounded-full flex items-center justify-center shadow-lg animate-pulse-soft">
@@ -105,10 +108,7 @@ export function RefinedLoader({ isLoading, onComplete }: RefinedLoaderProps) {
 
         {/* Dynamic Message */}
         <div className="h-6 mb-6 flex items-center justify-center">
-          <p 
-            key={stage}
-            className="text-sage-600 text-base animate-fade-in-up"
-          >
+          <p key={stage} className="text-sage-600 text-base animate-fade-in-up">
             {stages[stage]?.text || "Loading..."}
           </p>
         </div>
@@ -121,7 +121,7 @@ export function RefinedLoader({ isLoading, onComplete }: RefinedLoaderProps) {
               style={{ width: `${progress}%` }}
             />
           </div>
-          
+
           <div className="flex justify-between items-center mt-3 text-xs text-sage-500">
             <span>Loading</span>
             <span className="font-medium">{Math.round(progress)}%</span>

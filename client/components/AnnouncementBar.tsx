@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { X, Gift, Truck, Percent } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
-import { useLanguageCurrency } from '../contexts/LanguageCurrencyContext';
+import { useState } from "react";
+import { X, Gift, Truck, Percent } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { useLanguageCurrency } from "../contexts/LanguageCurrencyContext";
 
 export function AnnouncementBar() {
   const [isVisible, setIsVisible] = useState(true);
@@ -15,30 +15,35 @@ export function AnnouncementBar() {
       icon: <Gift className="h-4 w-4" />,
       text: "New Customer? Get 20% OFF your first order",
       cta: "SHOP NOW",
-      urgency: false
+      urgency: false,
     },
     {
       icon: <Truck className="h-4 w-4" />,
-      text: shippingInfo ? `Free shipping on orders over ${formatPrice(shippingInfo.freeShippingThreshold)}` : "Free worldwide shipping on orders over $50",
+      text: shippingInfo
+        ? `Free shipping on orders over ${formatPrice(shippingInfo.freeShippingThreshold)}`
+        : "Free worldwide shipping on orders over $50",
       cta: "EXPLORE",
-      urgency: false
+      urgency: false,
     },
     {
       icon: <Percent className="h-4 w-4" />,
       text: "Limited Time: Premium Tea Collection 25% OFF",
       cta: "GET DEAL",
-      urgency: true
-    }
+      urgency: true,
+    },
   ];
 
   // Randomly select an announcement
-  const selectedAnnouncement = announcements[Math.floor(Math.random() * announcements.length)];
+  const selectedAnnouncement =
+    announcements[Math.floor(Math.random() * announcements.length)];
 
   return (
-    <div className={`
+    <div
+      className={`
       relative bg-gradient-to-r from-sage-600 via-chai-600 to-clay-600 text-white text-sm
-      ${selectedAnnouncement.urgency ? 'animate-pulse-soft' : ''}
-    `}>
+      ${selectedAnnouncement.urgency ? "animate-pulse-soft" : ""}
+    `}
+    >
       <div className="container mx-auto px-4 py-2 flex items-center justify-center relative">
         <div className="flex items-center space-x-2 font-medium">
           {selectedAnnouncement.icon}
@@ -47,7 +52,7 @@ export function AnnouncementBar() {
             {selectedAnnouncement.cta}
           </button>
         </div>
-        
+
         <button
           onClick={() => setIsVisible(false)}
           className="absolute right-4 p-1 hover:bg-white/10 rounded-full transition-colors duration-200"
@@ -56,7 +61,7 @@ export function AnnouncementBar() {
           <X className="h-4 w-4" />
         </button>
       </div>
-      
+
       {/* Moving highlight effect for urgency */}
       {selectedAnnouncement.urgency && (
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>

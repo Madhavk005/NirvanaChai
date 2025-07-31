@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 interface ElegantLoaderProps {
   isLoading: boolean;
@@ -8,13 +8,15 @@ interface ElegantLoaderProps {
 export function ElegantLoader({ isLoading, onComplete }: ElegantLoaderProps) {
   const [progress, setProgress] = useState(0);
   const [stage, setStage] = useState(0);
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
+  const [particles, setParticles] = useState<
+    Array<{ id: number; x: number; y: number; delay: number }>
+  >([]);
 
   const stages = [
     { text: "Awakening the senses...", duration: 800 },
     { text: "Selecting finest tea gardens...", duration: 600 },
     { text: "Crafting your experience...", duration: 700 },
-    { text: "Welcome to Nirvana...", duration: 500 }
+    { text: "Welcome to Nirvana...", duration: 500 },
   ];
 
   useEffect(() => {
@@ -25,7 +27,7 @@ export function ElegantLoader({ isLoading, onComplete }: ElegantLoaderProps) {
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      delay: Math.random() * 4
+      delay: Math.random() * 4,
     }));
     setParticles(newParticles);
 
@@ -37,7 +39,7 @@ export function ElegantLoader({ isLoading, onComplete }: ElegantLoaderProps) {
       progressInterval = setInterval(() => {
         currentProgress += 0.8;
         setProgress(currentProgress);
-        
+
         // Update stage based on progress
         const newStage = Math.floor((currentProgress / 100) * stages.length);
         if (newStage !== currentStage && newStage < stages.length) {
@@ -76,7 +78,7 @@ export function ElegantLoader({ isLoading, onComplete }: ElegantLoaderProps) {
               left: `${particle.x}%`,
               top: `${particle.y}%`,
               animationDelay: `${particle.delay}s`,
-              animationDuration: `${6 + particle.delay}s`
+              animationDuration: `${6 + particle.delay}s`,
             }}
           >
             🍃
@@ -91,13 +93,13 @@ export function ElegantLoader({ isLoading, onComplete }: ElegantLoaderProps) {
             {/* Outer rotating rings */}
             <div className="absolute inset-0 border border-sage-200/60 rounded-full animate-spin-slow"></div>
             <div className="absolute inset-2 border border-clay-200/40 rounded-full animate-spin-reverse"></div>
-            
+
             {/* Center tea symbol with breathing effect */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="relative">
                 {/* Pulsing background */}
                 <div className="absolute inset-0 w-16 h-16 bg-gradient-to-br from-sage-400/20 to-clay-400/20 rounded-full animate-pulse-gentle blur-md"></div>
-                
+
                 {/* Main tea cup icon */}
                 <div className="relative w-16 h-16 bg-gradient-to-br from-sage-500 to-clay-600 rounded-full flex items-center justify-center shadow-2xl">
                   <div className="relative">
@@ -107,7 +109,7 @@ export function ElegantLoader({ isLoading, onComplete }: ElegantLoaderProps) {
                       <div className="w-1 h-2 bg-gradient-to-t from-sage-400/40 to-transparent rounded-full animate-steam-2 ml-1"></div>
                       <div className="w-1 h-3 bg-gradient-to-t from-sage-400/50 to-transparent rounded-full animate-steam-3 -ml-1"></div>
                     </div>
-                    
+
                     {/* Tea cup */}
                     <span className="text-white text-2xl">☕</span>
                   </div>
@@ -116,7 +118,10 @@ export function ElegantLoader({ isLoading, onComplete }: ElegantLoaderProps) {
             </div>
 
             {/* Progress ring */}
-            <svg className="absolute inset-0 w-full h-full transform -rotate-90" viewBox="0 0 32 32">
+            <svg
+              className="absolute inset-0 w-full h-full transform -rotate-90"
+              viewBox="0 0 32 32"
+            >
               <circle
                 cx="16"
                 cy="16"
@@ -138,7 +143,13 @@ export function ElegantLoader({ isLoading, onComplete }: ElegantLoaderProps) {
                 className="transition-all duration-500 ease-out"
               />
               <defs>
-                <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <linearGradient
+                  id="progressGradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="0%"
+                >
                   <stop offset="0%" stopColor="#9CA68C" />
                   <stop offset="50%" stopColor="#8B7355" />
                   <stop offset="100%" stopColor="#9CA68C" />
@@ -151,25 +162,80 @@ export function ElegantLoader({ isLoading, onComplete }: ElegantLoaderProps) {
         {/* Brand Name with Typography Animation */}
         <div className="mb-8">
           <h1 className="text-4xl lg:text-5xl font-heading font-bold text-sage-800 mb-2 tracking-wider">
-            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '0.1s' }}>N</span>
-            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '0.2s' }}>i</span>
-            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '0.3s' }}>r</span>
-            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '0.4s' }}>v</span>
-            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '0.5s' }}>a</span>
-            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '0.6s' }}>n</span>
-            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '0.7s' }}>a</span>
+            <span
+              className="inline-block animate-fade-in-letter"
+              style={{ animationDelay: "0.1s" }}
+            >
+              N
+            </span>
+            <span
+              className="inline-block animate-fade-in-letter"
+              style={{ animationDelay: "0.2s" }}
+            >
+              i
+            </span>
+            <span
+              className="inline-block animate-fade-in-letter"
+              style={{ animationDelay: "0.3s" }}
+            >
+              r
+            </span>
+            <span
+              className="inline-block animate-fade-in-letter"
+              style={{ animationDelay: "0.4s" }}
+            >
+              v
+            </span>
+            <span
+              className="inline-block animate-fade-in-letter"
+              style={{ animationDelay: "0.5s" }}
+            >
+              a
+            </span>
+            <span
+              className="inline-block animate-fade-in-letter"
+              style={{ animationDelay: "0.6s" }}
+            >
+              n
+            </span>
+            <span
+              className="inline-block animate-fade-in-letter"
+              style={{ animationDelay: "0.7s" }}
+            >
+              a
+            </span>
             <span className="inline-block mx-3"></span>
-            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '0.8s' }}>C</span>
-            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '0.9s' }}>h</span>
-            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '1.0s' }}>a</span>
-            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '1.1s' }}>i</span>
+            <span
+              className="inline-block animate-fade-in-letter"
+              style={{ animationDelay: "0.8s" }}
+            >
+              C
+            </span>
+            <span
+              className="inline-block animate-fade-in-letter"
+              style={{ animationDelay: "0.9s" }}
+            >
+              h
+            </span>
+            <span
+              className="inline-block animate-fade-in-letter"
+              style={{ animationDelay: "1.0s" }}
+            >
+              a
+            </span>
+            <span
+              className="inline-block animate-fade-in-letter"
+              style={{ animationDelay: "1.1s" }}
+            >
+              i
+            </span>
           </h1>
           <div className="h-1 w-32 mx-auto bg-gradient-to-r from-transparent via-sage-400 to-transparent animate-expand"></div>
         </div>
 
         {/* Dynamic Message with Smooth Transitions */}
         <div className="h-8 mb-8 flex items-center justify-center overflow-hidden">
-          <p 
+          <p
             key={stage}
             className="text-sage-600 text-lg font-medium animate-slide-up"
           >
@@ -190,14 +256,23 @@ export function ElegantLoader({ isLoading, onComplete }: ElegantLoaderProps) {
               </div>
             </div>
           </div>
-          
+
           {/* Progress percentage */}
           <div className="flex justify-center items-center space-x-4 text-sm">
             <span className="text-sage-500 font-medium">Loading</span>
             <div className="flex space-x-1">
-              <div className="w-1 h-1 bg-sage-400 rounded-full animate-dot-bounce" style={{ animationDelay: '0s' }}></div>
-              <div className="w-1 h-1 bg-sage-400 rounded-full animate-dot-bounce" style={{ animationDelay: '0.2s' }}></div>
-              <div className="w-1 h-1 bg-sage-400 rounded-full animate-dot-bounce" style={{ animationDelay: '0.4s' }}></div>
+              <div
+                className="w-1 h-1 bg-sage-400 rounded-full animate-dot-bounce"
+                style={{ animationDelay: "0s" }}
+              ></div>
+              <div
+                className="w-1 h-1 bg-sage-400 rounded-full animate-dot-bounce"
+                style={{ animationDelay: "0.2s" }}
+              ></div>
+              <div
+                className="w-1 h-1 bg-sage-400 rounded-full animate-dot-bounce"
+                style={{ animationDelay: "0.4s" }}
+              ></div>
             </div>
             <span className="text-sage-600 font-bold min-w-[3rem] text-right">
               {Math.round(progress)}%

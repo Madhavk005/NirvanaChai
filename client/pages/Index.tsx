@@ -1,13 +1,33 @@
-import { Link } from 'react-router-dom';
-import { ArrowRight, Leaf, Globe, Award, Heart, Recycle, Package, MapPin, Truck } from 'lucide-react';
-import { useLanguageCurrency } from '../contexts/LanguageCurrencyContext';
-import { OptimizedImage, teaImages } from '../components/OptimizedImage';
-import { useSimpleAnimation, animationClasses, useHoverAnimation } from '../hooks/useSimpleAnimation';
-import { useTranslation } from 'react-i18next';
-import { CompactTrustIndicators } from '../components/TrustIndicators';
+import { Link } from "react-router-dom";
+import {
+  ArrowRight,
+  Leaf,
+  Globe,
+  Award,
+  Heart,
+  Recycle,
+  Package,
+  MapPin,
+  Truck,
+} from "lucide-react";
+import { useLanguageCurrency } from "../contexts/LanguageCurrencyContext";
+import { OptimizedImage, teaImages } from "../components/OptimizedImage";
+import {
+  useSimpleAnimation,
+  animationClasses,
+  useHoverAnimation,
+} from "../hooks/useSimpleAnimation";
+import { useTranslation } from "react-i18next";
+import { CompactTrustIndicators } from "../components/TrustIndicators";
 
 export default function Index() {
-  const { t: tLegacy, formatPrice, detectedLocation, shippingInfo, isLocationDetected } = useLanguageCurrency();
+  const {
+    t: tLegacy,
+    formatPrice,
+    detectedLocation,
+    shippingInfo,
+    isLocationDetected,
+  } = useLanguageCurrency();
   const { t } = useTranslation();
 
   // Features array - moved before hooks to prevent reference error
@@ -16,38 +36,40 @@ export default function Index() {
       key: "expertise",
       icon: <Award className="h-12 w-12 text-sage-600" />,
       title: "Three generations of mastery",
-      description: "Traditional wisdom passed down through generations of tea artisans"
+      description:
+        "Traditional wisdom passed down through generations of tea artisans",
     },
     {
       key: "global",
       icon: <Globe className="h-12 w-12 text-sage-600" />,
       title: "Ethically sourced worldwide",
-      description: "Premium teas from the world's most celebrated tea gardens"
+      description: "Premium teas from the world's most celebrated tea gardens",
     },
     {
       key: "curated",
       icon: <Leaf className="h-12 w-12 text-sage-600" />,
       title: "Mindfully crafted blends",
-      description: "Each blend tells a story of flavor, aroma, and cultural heritage"
+      description:
+        "Each blend tells a story of flavor, aroma, and cultural heritage",
     },
     {
       key: "pure",
       icon: <Heart className="h-12 w-12 text-sage-600" />,
       title: "Pure, natural ingredients",
-      description: "No artificial additives — just the pure essence of tea"
+      description: "No artificial additives — just the pure essence of tea",
     },
     {
       key: "sustainable",
       icon: <Recycle className="h-12 w-12 text-sage-600" />,
       title: "Sustainably cultivated",
-      description: "Supporting communities and preserving tea traditions"
+      description: "Supporting communities and preserving tea traditions",
     },
     {
       key: "fresh",
       icon: <Package className="h-12 w-12 text-sage-600" />,
       title: "Peak freshness guaranteed",
-      description: "From garden to cup in days, not months"
-    }
+      description: "From garden to cup in days, not months",
+    },
   ];
 
   // Simple, reliable animation hooks
@@ -63,43 +85,44 @@ export default function Index() {
       country: "India",
       description: "Elegant, floral teas from the Himalayan foothills",
       image: "🏔️",
-      color: "from-blue-50 to-blue-100"
+      color: "from-blue-50 to-blue-100",
     },
     {
       name: "Assam",
-      country: "India", 
+      country: "India",
       description: "Bold, malty black teas with deep character",
       image: "🌿",
-      color: "from-green-50 to-green-100"
+      color: "from-green-50 to-green-100",
     },
     {
       name: "Kenya",
       country: "Kenya",
       description: "Bright, brisk flavors ideal for rich blends",
       image: "🦒",
-      color: "from-orange-50 to-orange-100"
+      color: "from-orange-50 to-orange-100",
     },
     {
       name: "Ceylon",
       country: "Sri Lanka",
       description: "Crisp, citrusy profiles from high-grown estates",
       image: "🌴",
-      color: "from-teal-50 to-teal-100"
+      color: "from-teal-50 to-teal-100",
     },
     {
       name: "Fujian",
       country: "China",
-      description: "Ancient tea traditions and refined green, white, and oolong varieties",
+      description:
+        "Ancient tea traditions and refined green, white, and oolong varieties",
       image: "🏮",
-      color: "from-red-50 to-red-100"
+      color: "from-red-50 to-red-100",
     },
     {
       name: "Vietnamese Highlands",
       country: "Vietnam",
       description: "Smooth, delicate teas with unique regional character",
       image: "🎋",
-      color: "from-purple-50 to-purple-100"
-    }
+      color: "from-purple-50 to-purple-100",
+    },
   ];
 
   return (
@@ -128,17 +151,23 @@ export default function Index() {
               {isLocationDetected && detectedLocation && (
                 <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-6 text-white/90 text-sm font-medium">
                   <MapPin className="h-4 w-4 mr-2" />
-                  {t('shipping.your_location', 'Shipping to')} {detectedLocation}
+                  {t("shipping.your_location", "Shipping to")}{" "}
+                  {detectedLocation}
                 </div>
               )}
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-white mb-6 leading-tight">
-                {t('hero.title1', 'Discover Your')}
-                <span className="block text-clay-300">{t('hero.title2', 'Perfect Cup')}</span>
+                {t("hero.title1", "Discover Your")}
+                <span className="block text-clay-300">
+                  {t("hero.title2", "Perfect Cup")}
+                </span>
               </h1>
 
               <p className="text-lg sm:text-xl text-sage-100 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                {t('hero.subtitle', 'From ancient gardens to your cup — experience the art of mindful tea drinking that connects cultures, generations, and moments of pure tranquility.')}
+                {t(
+                  "hero.subtitle",
+                  "From ancient gardens to your cup — experience the art of mindful tea drinking that connects cultures, generations, and moments of pure tranquility.",
+                )}
               </p>
 
               {/* Enhanced CTAs with better visual design */}
@@ -148,7 +177,9 @@ export default function Index() {
                     to="/shop"
                     className="group relative bg-gradient-to-r from-sage-600 to-chai-600 hover:from-sage-700 hover:to-chai-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 flex items-center justify-center shadow-xl hover:shadow-2xl transform hover:scale-105 overflow-hidden"
                   >
-                    <span className="relative z-10">{t('hero.cta_primary', 'Start Your Journey')}</span>
+                    <span className="relative z-10">
+                      {t("hero.cta_primary", "Start Your Journey")}
+                    </span>
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform relative z-10" />
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                   </Link>
@@ -156,7 +187,7 @@ export default function Index() {
                     to="/shop"
                     className="border-2 border-white/80 text-white hover:bg-white hover:text-sage-800 px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 backdrop-blur-sm transform hover:scale-105 flex items-center justify-center"
                   >
-                    {t('hero.cta_secondary', 'Explore Collection')}
+                    {t("hero.cta_secondary", "Explore Collection")}
                   </Link>
                 </div>
 
@@ -168,9 +199,13 @@ export default function Index() {
                     <div className="flex items-center justify-center lg:justify-start text-sm text-white/90">
                       <Truck className="h-4 w-4 mr-2 text-clay-300" />
                       <span>
-                        {t('shipping.free_shipping_from', 'Free shipping from')}
-                        <span className="font-semibold text-clay-300 ml-1">{formatPrice(shippingInfo.freeShippingThreshold)}</span>
-                        <span className="text-white/70 ml-2">• {shippingInfo.estimatedDays}</span>
+                        {t("shipping.free_shipping_from", "Free shipping from")}
+                        <span className="font-semibold text-clay-300 ml-1">
+                          {formatPrice(shippingInfo.freeShippingThreshold)}
+                        </span>
+                        <span className="text-white/70 ml-2">
+                          • {shippingInfo.estimatedDays}
+                        </span>
                       </span>
                     </div>
                   )}
@@ -197,13 +232,22 @@ export default function Index() {
 
         {/* Floating Tea Leaves Animation */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 text-sage-300/60 animate-bounce" style={{animationDelay: '0s', animationDuration: '3s'}}>
+          <div
+            className="absolute top-1/4 left-1/4 text-sage-300/60 animate-bounce"
+            style={{ animationDelay: "0s", animationDuration: "3s" }}
+          >
             🍃
           </div>
-          <div className="absolute top-1/3 right-1/3 text-sage-300/40 animate-bounce" style={{animationDelay: '1s', animationDuration: '4s'}}>
+          <div
+            className="absolute top-1/3 right-1/3 text-sage-300/40 animate-bounce"
+            style={{ animationDelay: "1s", animationDuration: "4s" }}
+          >
             🍃
           </div>
-          <div className="absolute bottom-1/4 right-1/4 text-sage-300/50 animate-bounce" style={{animationDelay: '2s', animationDuration: '5s'}}>
+          <div
+            className="absolute bottom-1/4 right-1/4 text-sage-300/50 animate-bounce"
+            style={{ animationDelay: "2s", animationDuration: "5s" }}
+          >
             🍃
           </div>
         </div>
@@ -214,7 +258,9 @@ export default function Index() {
             <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
               <div className="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
             </div>
-            <span className="text-sm mt-2 text-white/70">Scroll to explore</span>
+            <span className="text-sm mt-2 text-white/70">
+              Scroll to explore
+            </span>
           </div>
         </div>
       </section>
@@ -227,16 +273,21 @@ export default function Index() {
             className={`text-center mb-16 ${animationClasses.fadeInUp(featuresAnimation.isVisible)}`}
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-sage-800 mb-6">
-              {t('why_choose.title', 'Why Tea Lovers Choose Nirvanachai')}
+              {t("why_choose.title", "Why Tea Lovers Choose Nirvanachai")}
             </h2>
             <p className="text-lg sm:text-xl text-sage-600 max-w-4xl mx-auto leading-relaxed">
-              {t('why_choose.subtitle', 'Discover the difference that three generations of passion, premium sourcing, and mindful curation make in every sip.')}
+              {t(
+                "why_choose.subtitle",
+                "Discover the difference that three generations of passion, premium sourcing, and mindful curation make in every sip.",
+              )}
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {features.map((feature, index) => {
-              const featureAnimation = useSimpleAnimation({ delay: index * 150 });
+              const featureAnimation = useSimpleAnimation({
+                delay: index * 150,
+              });
               const hoverAnimation = useHoverAnimation();
 
               return (
@@ -271,16 +322,19 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-sage-800 mb-4">
-              {t('global_sourcing.title', 'Global Sourcing, Local Soul')}
+              {t("global_sourcing.title", "Global Sourcing, Local Soul")}
             </h2>
             <p className="text-lg text-sage-600 max-w-3xl mx-auto">
-              {t('global_sourcing.subtitle', 'Our tea journey spans the world\'s most renowned tea regions, each contributing its unique character to create the perfect cup that connects cultures and generations.')}
+              {t(
+                "global_sourcing.subtitle",
+                "Our tea journey spans the world's most renowned tea regions, each contributing its unique character to create the perfect cup that connects cultures and generations.",
+              )}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {regions.map((region, index) => (
-              <div 
+              <div
                 key={index}
                 className={`bg-gradient-to-br ${region.color} border border-border rounded-2xl p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1`}
               >
@@ -299,7 +353,7 @@ export default function Index() {
           </div>
 
           <div className="text-center mt-12">
-            <Link 
+            <Link
               to="/about"
               className="inline-flex items-center bg-sage-600 hover:bg-sage-700 text-white px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 group"
             >
@@ -315,10 +369,13 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-sage-800 mb-4">
-              {t('featured.title', 'Featured Blends')}
+              {t("featured.title", "Featured Blends")}
             </h2>
             <p className="text-lg text-sage-600 max-w-2xl mx-auto">
-              {t('featured.subtitle', 'Discover our most beloved tea collections, carefully crafted to bring you moments of tranquility and joy.')}
+              {t(
+                "featured.subtitle",
+                "Discover our most beloved tea collections, carefully crafted to bring you moments of tranquility and joy.",
+              )}
             </p>
           </div>
 
@@ -328,22 +385,22 @@ export default function Index() {
                 name: "Morning Serenity",
                 description: "A gentle blend of Darjeeling and chamomile",
                 price: 24.99,
-                image: "🌅"
+                image: "🌅",
               },
               {
                 name: "Evening Bliss",
                 description: "Calming Ceylon tea with lavender notes",
                 price: 26.99,
-                image: "🌙"
+                image: "🌙",
               },
               {
                 name: "Heritage Chai",
                 description: "Traditional Assam blend with warming spices",
                 price: 22.99,
-                image: "☕"
-              }
+                image: "☕",
+              },
             ].map((product, index) => (
-              <div 
+              <div
                 key={index}
                 className="bg-card border border-border rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
               >
@@ -354,15 +411,13 @@ export default function Index() {
                   <h3 className="text-xl font-heading font-semibold text-sage-800 mb-2">
                     {product.name}
                   </h3>
-                  <p className="text-sage-600 mb-4">
-                    {product.description}
-                  </p>
+                  <p className="text-sage-600 mb-4">{product.description}</p>
                   <div className="flex justify-between items-center">
                     <span className="text-2xl font-semibold text-sage-800">
                       {formatPrice(product.price)}
                     </span>
                     <button className="bg-sage-600 hover:bg-sage-700 text-white px-6 py-2 rounded-full transition-colors">
-                      {t('featured.add_to_cart', 'Add to Cart')}
+                      {t("featured.add_to_cart", "Add to Cart")}
                     </button>
                   </div>
                 </div>
@@ -371,7 +426,7 @@ export default function Index() {
           </div>
 
           <div className="text-center mt-12">
-            <Link 
+            <Link
               to="/shop"
               className="inline-flex items-center border-2 border-sage-600 text-sage-600 hover:bg-sage-600 hover:text-white px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 group"
             >
@@ -386,7 +441,11 @@ export default function Index() {
       <section className="py-20 bg-sage-800 text-white relative overflow-hidden">
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-10">
-          <div className={"absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.1\"%3E%3Cpath d=\"M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"}></div>
+          <div
+            className={
+              'absolute inset-0 bg-[url(\'data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Cpath d="M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\')] opacity-30'
+            }
+          ></div>
         </div>
 
         <div
@@ -394,22 +453,25 @@ export default function Index() {
           className={`relative max-w-5xl mx-auto px-4 text-center ${animationClasses.fadeInUp(newsletterAnimation.isVisible)}`}
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-4">
-            {t('newsletter.title', 'Join 10,000+ Tea Enthusiasts')}
+            {t("newsletter.title", "Join 10,000+ Tea Enthusiasts")}
           </h2>
           <p className="text-xl text-sage-200 mb-8 max-w-3xl mx-auto">
-            {t('newsletter.subtitle', 'Get exclusive access to new blends, brewing secrets, and special offers before anyone else.')}
+            {t(
+              "newsletter.subtitle",
+              "Get exclusive access to new blends, brewing secrets, and special offers before anyone else.",
+            )}
           </p>
 
           {/* Value propositions */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 max-w-3xl mx-auto">
             <div className="flex items-center justify-center text-sage-200">
-              {t('newsletter.benefit1', '🎁 20% off your first order')}
+              {t("newsletter.benefit1", "🎁 20% off your first order")}
             </div>
             <div className="flex items-center justify-center text-sage-200">
-              {t('newsletter.benefit2', '🍃 Early access to new blends')}
+              {t("newsletter.benefit2", "🍃 Early access to new blends")}
             </div>
             <div className="flex items-center justify-center text-sage-200">
-              {t('newsletter.benefit3', '📚 Free brewing guides')}
+              {t("newsletter.benefit3", "📚 Free brewing guides")}
             </div>
           </div>
 
@@ -418,16 +480,22 @@ export default function Index() {
             <div className="flex flex-col sm:flex-row gap-4 mb-4">
               <input
                 type="email"
-                placeholder={t('newsletter.email_placeholder', 'Enter your email address')}
+                placeholder={t(
+                  "newsletter.email_placeholder",
+                  "Enter your email address",
+                )}
                 className="flex-1 px-6 py-4 rounded-full text-sage-800 focus:outline-none focus:ring-2 focus:ring-clay-400 transition-all duration-300"
               />
               <button className="bg-clay-500 hover:bg-clay-600 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                {t('newsletter.subscribe', 'Get Exclusive Access')}
+                {t("newsletter.subscribe", "Get Exclusive Access")}
               </button>
             </div>
 
             <p className="text-sm text-sage-300">
-              {t('newsletter.no_spam', 'Premium content only. Unsubscribe anytime.')}
+              {t(
+                "newsletter.no_spam",
+                "Premium content only. Unsubscribe anytime.",
+              )}
             </p>
           </div>
         </div>
