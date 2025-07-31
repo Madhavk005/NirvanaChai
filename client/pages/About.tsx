@@ -1,4 +1,6 @@
 import { Leaf, Globe, Award, Heart, Recycle, Package } from 'lucide-react';
+import { OptimizedImage, teaImages } from '../components/OptimizedImage';
+import { useScrollReveal, fadeInUp, fadeInUpVisible, fadeInUpHidden, fadeInLeft, fadeInLeftVisible, fadeInLeftHidden, fadeInRight, fadeInRightVisible, fadeInRightHidden } from '../hooks/useScrollReveal';
 
 export default function About() {
   const features = [
