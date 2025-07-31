@@ -9,7 +9,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageCurrencyProvider } from "./contexts/LanguageCurrencyContext";
 import { Layout } from "./components/Layout";
-import { RefinedLoader } from "./components/RefinedLoader";
+import { ElegantLoader } from "./components/ElegantLoader";
 import { useState, useEffect } from "react";
 import { locationService } from "./services/locationService";
 import Index from "./pages/Index";
