@@ -180,20 +180,20 @@ export function Layout({ children }: LayoutProps) {
           </div>
 
           {/* Mobile Navigation */}
-          <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
             isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           }`}>
-            <div className="mt-4 pb-4 border-t border-border">
-              <div className="pt-4 space-y-2">
+            <div className="mt-4 pb-6 border-t border-border bg-sage-50/50 rounded-b-lg mx-4 sm:mx-6">
+              <div className="pt-4 px-4 space-y-1">
                 {navigation.map((item, index) => (
                   <Link
                     key={item.name}
                     to={item.href}
-                    className={`block px-3 py-2 text-base font-medium transition-all duration-200 hover:text-primary hover:bg-muted rounded-md transform ${
+                    className={`block px-4 py-3 text-base font-medium transition-all duration-200 hover:text-primary hover:bg-white rounded-lg transform ${
                       isMobileMenuOpen ? 'translate-x-0' : 'translate-x-4'
                     } ${
                       location.pathname === item.href
-                        ? 'text-primary bg-muted'
+                        ? 'text-primary bg-white shadow-sm'
                         : 'text-muted-foreground'
                     }`}
                     style={{ transitionDelay: `${index * 50}ms` }}
