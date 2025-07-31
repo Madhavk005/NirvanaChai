@@ -6,6 +6,10 @@ import { useScrollReveal, fadeInUp, fadeInUpVisible, fadeInUpHidden } from '../h
 
 export default function Index() {
   const { t, formatPrice } = useLanguageCurrency();
+  const heroRef = useScrollReveal();
+  const featuresRef = useScrollReveal();
+  const sourcingRef = useScrollReveal();
+  const productsRef = useScrollReveal();
 
   const features = [
     {
