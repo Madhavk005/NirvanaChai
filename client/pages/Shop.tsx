@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useState } from 'react';
 import { Search, Filter, Grid, List, Star, ShoppingCart, Heart, Eye, ArrowUpDown, ChevronDown, X, SlidersHorizontal, Tag, MapPin, Clock, Zap } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguageCurrency } from '../contexts/LanguageCurrencyContext';
