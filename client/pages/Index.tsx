@@ -4,6 +4,7 @@ import { useLanguageCurrency } from '../contexts/LanguageCurrencyContext';
 import { OptimizedImage, teaImages } from '../components/OptimizedImage';
 import { useSimpleAnimation, animationClasses, useHoverAnimation } from '../hooks/useSimpleAnimation';
 import { useTranslation } from 'react-i18next';
+import { CompactTrustIndicators } from '../components/TrustIndicators';
 
 export default function Index() {
   const { t: tLegacy, formatPrice, detectedLocation, shippingInfo, isLocationDetected } = useLanguageCurrency();
