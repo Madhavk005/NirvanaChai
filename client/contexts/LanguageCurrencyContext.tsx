@@ -124,7 +124,7 @@ const translations: Record<string, Record<string, string>> = {
     
     // Why Choose section
     'why_choose.title': 'Почему выбирают Нирвана Чай?',
-    'why_choose.subtitle': 'Откройте для себя, что делает наше чайное путешествие необычным и почему любители чая во всем мире доверяют нашему наследию.',
+    'why_choose.subtitle': 'Откройте д��я себя, что делает наше чайное путешествие необычным и почему любители чая во всем мире доверяют нашему наследию.',
     'why_choose.expertise': 'Три поколения опыта',
     'why_choose.global': 'Источники по всему миру',
     'why_choose.curated': 'Тщательно отобранные смеси',
@@ -148,7 +148,7 @@ const translations: Record<string, Record<string, string>> = {
     'newsletter.subtitle': 'Подпишитесь, чтобы получать чайную мудрость, эксклюзивные смеси и истории от нашей глобальной чайной семьи.',
     'newsletter.email_placeholder': 'Введите ваш email',
     'newsletter.subscribe': 'Подписаться',
-    'newsletter.no_spam': 'Никакого ��пама, только чайная любовь. Отпишитесь в любое время.',
+    'newsletter.no_spam': 'Никакого спама, только чайная любовь. Отпишитесь в любое время.',
     
     // Contact Info
     'contact.phone': '+7 702 201 0652',
@@ -173,7 +173,7 @@ const translations: Record<string, Record<string, string>> = {
     
     // Why Choose section
     'why_choose.title': 'Неліктен Нирвана Шайды Таңдау Керек?',
-    'why_choose.subtitle': 'Біздің шай саяхатымызды ерекше ететінді және нелік��ен әлемдегі шай сүйерлер біздің мұраға сенетінін табыңыз.',
+    'why_choose.subtitle': 'Біздің шай саяхатымызды ерекше ететінді және неліктен әлемдегі шай сүйерлер біздің мұраға сенетінін табыңыз.',
     'why_choose.expertise': 'Үш ұрпақтың тәжірибесі',
     'why_choose.global': 'Әлемнен алынған',
     'why_choose.curated': 'Таңдалған қоспалар',
@@ -188,7 +188,7 @@ const translations: Record<string, Record<string, string>> = {
     
     // Featured Products
     'featured.title': 'Ұсынылатын Қоспалар',
-    'featured.subtitle': 'Сізге тыныштық пен қуаныш сәттерін әкелу үшін мұқият жасалған біздің ең сүйікті шай к��ллекцияларын табыңыз.',
+    'featured.subtitle': 'Сізге тыныштық пен қуаныш сәттерін әкелу үшін мұқият жасалған біздің ең сүйікті шай коллекцияларын табыңыз.',
     'featured.add_to_cart': 'Себетке Қосу',
     'featured.view_all': 'Барлық Өнімдерді Көру',
     
@@ -217,45 +217,69 @@ export const useLanguageCurrency = () => {
 };
 
 export const LanguageCurrencyProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { i18n } = useTranslation();
   const [currentLanguage, setCurrentLanguage] = useState<Language>(languages[0]);
   const [currentCurrency, setCurrentCurrency] = useState<Currency>(currencies[0]);
+  const [detectedLocation, setDetectedLocation] = useState<string>('');
+  const [suggestedCurrency, setSuggestedCurrency] = useState<string>('');
+  const [shippingInfo, setShippingInfo] = useState<any>(null);
+  const [isLocationDetected, setIsLocationDetected] = useState(false);
 
-  // Load saved preferences from localStorage
+  // Enhanced location-based initialization
   useEffect(() => {
-    const savedLanguage = localStorage.getItem('nirvanachai-language');
-    const savedCurrency = localStorage.getItem('nirvanachai-currency');
-    
-    if (savedLanguage) {
-      const lang = languages.find(l => l.code === savedLanguage);
-      if (lang) setCurrentLanguage(lang);
-    } else {
-      // Auto-detect language based on browser
-      const browserLang = navigator.language.split('-')[0];
-      const detectedLang = languages.find(l => l.code === browserLang);
-      if (detectedLang) setCurrentLanguage(detectedLang);
-    }
-    
-    if (savedCurrency) {
-      const curr = currencies.find(c => c.code === savedCurrency);
-      if (curr) setCurrentCurrency(curr);
-    } else {
-      // Auto-detect currency based on location (simplified)
-      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      if (timezone.includes('Europe')) {
-        const eur = currencies.find(c => c.code === 'EUR');
-        if (eur) setCurrentCurrency(eur);
-      } else if (timezone.includes('Asia/Almaty') || timezone.includes('Kazakhstan')) {
-        const kzt = currencies.find(c => c.code === 'KZT');
-        if (kzt) setCurrentCurrency(kzt);
-      } else if (timezone.includes('Moscow') || timezone.includes('Russia')) {
-        const rub = currencies.find(c => c.code === 'RUB');
-        if (rub) setCurrentCurrency(rub);
-      } else if (timezone.includes('Asia/Kolkata') || timezone.includes('India')) {
-        const inr = currencies.find(c => c.code === 'INR');
-        if (inr) setCurrentCurrency(inr);
+    const initializeWithLocation = async () => {
+      try {
+        // Get location data
+        const locationData = await locationService.detectLocation();
+
+        if (locationData) {
+          setDetectedLocation(`${locationData.city || locationData.country}`);
+          setSuggestedCurrency(locationData.currency);
+          setShippingInfo(locationService.getShippingInfo(locationData.countryCode));
+          setIsLocationDetected(true);
+
+          // Auto-suggest language and currency based on location
+          const savedLanguage = localStorage.getItem('nirvanachai-language');
+          const savedCurrency = localStorage.getItem('nirvanachai-currency');
+
+          if (!savedLanguage) {
+            const detectedLang = languages.find(l => l.code === locationData.language);
+            if (detectedLang) {
+              setCurrentLanguage(detectedLang);
+              i18n.changeLanguage(detectedLang.code);
+            }
+          } else {
+            const lang = languages.find(l => l.code === savedLanguage);
+            if (lang) {
+              setCurrentLanguage(lang);
+              i18n.changeLanguage(lang.code);
+            }
+          }
+
+          if (!savedCurrency) {
+            const detectedCurr = currencies.find(c => c.code === locationData.currency);
+            if (detectedCurr) {
+              setCurrentCurrency(detectedCurr);
+            }
+          } else {
+            const curr = currencies.find(c => c.code === savedCurrency);
+            if (curr) setCurrentCurrency(curr);
+          }
+        }
+      } catch (error) {
+        console.log('Location initialization failed:', error);
+        // Fallback to browser detection
+        const browserLang = navigator.language.split('-')[0];
+        const detectedLang = languages.find(l => l.code === browserLang);
+        if (detectedLang) {
+          setCurrentLanguage(detectedLang);
+          i18n.changeLanguage(detectedLang.code);
+        }
       }
-    }
-  }, []);
+    };
+
+    initializeWithLocation();
+  }, [i18n]);
 
   const setLanguage = (language: Language) => {
     setCurrentLanguage(language);
