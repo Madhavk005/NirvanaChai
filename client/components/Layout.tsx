@@ -58,46 +58,62 @@ export function Layout({ children }: LayoutProps) {
             </div>
             <div className="flex items-center space-x-4">
               {/* Language Selector */}
-              <div className="relative">
-                <button 
+              <div className="relative" ref={languageRef}>
+                <button
                   onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-                  className="flex items-center space-x-1 text-sage-700 hover:text-sage-900"
+                  className="flex items-center space-x-1 text-sage-700 hover:text-sage-900 transition-colors group"
                 >
                   <Globe className="h-3 w-3" />
-                  <span>EN</span>
+                  <span className="font-medium">{currentLanguage.code.toUpperCase()}</span>
+                  <ChevronDown className={`h-3 w-3 transition-transform ${isLanguageOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {isLanguageOpen && (
-                  <div className="absolute right-0 mt-2 w-40 bg-background border border-border rounded-md shadow-lg z-50">
+                  <div className="absolute right-0 mt-2 w-44 bg-background border border-border rounded-lg shadow-lg z-50 py-1">
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
-                        className="w-full px-4 py-2 text-left hover:bg-muted flex items-center space-x-2"
-                        onClick={() => setIsLanguageOpen(false)}
+                        className={`w-full px-4 py-2 text-left hover:bg-sage-50 flex items-center space-x-3 transition-colors ${
+                          currentLanguage.code === lang.code ? 'bg-sage-100 text-sage-800' : 'text-sage-600'
+                        }`}
+                        onClick={() => {
+                          setLanguage(lang);
+                          setIsLanguageOpen(false);
+                        }}
                       >
-                        <span>{lang.flag}</span>
-                        <span>{lang.name}</span>
+                        <span className="text-lg">{lang.flag}</span>
+                        <div className="flex flex-col">
+                          <span className="font-medium">{lang.name}</span>
+                          <span className="text-xs text-sage-500">{lang.nativeName}</span>
+                        </div>
                       </button>
                     ))}
                   </div>
                 )}
               </div>
               {/* Currency Selector */}
-              <div className="relative">
-                <button 
+              <div className="relative" ref={currencyRef}>
+                <button
                   onClick={() => setIsCurrencyOpen(!isCurrencyOpen)}
-                  className="text-sage-700 hover:text-sage-900"
+                  className="flex items-center space-x-1 text-sage-700 hover:text-sage-900 transition-colors"
                 >
-                  USD
+                  <span className="font-medium">{currentCurrency.code}</span>
+                  <ChevronDown className={`h-3 w-3 transition-transform ${isCurrencyOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {isCurrencyOpen && (
-                  <div className="absolute right-0 mt-2 w-20 bg-background border border-border rounded-md shadow-lg z-50">
+                  <div className="absolute right-0 mt-2 w-36 bg-background border border-border rounded-lg shadow-lg z-50 py-1">
                     {currencies.map((currency) => (
                       <button
                         key={currency.code}
-                        className="w-full px-4 py-2 text-left hover:bg-muted"
-                        onClick={() => setIsCurrencyOpen(false)}
+                        className={`w-full px-4 py-2 text-left hover:bg-sage-50 flex items-center justify-between transition-colors ${
+                          currentCurrency.code === currency.code ? 'bg-sage-100 text-sage-800' : 'text-sage-600'
+                        }`}
+                        onClick={() => {
+                          setCurrency(currency);
+                          setIsCurrencyOpen(false);
+                        }}
                       >
-                        {currency.code}
+                        <span className="font-medium">{currency.code}</span>
+                        <span className="text-sage-500">{currency.symbol}</span>
                       </button>
                     ))}
                   </div>
