@@ -7,180 +7,377 @@ interface ElegantLoaderProps {
 
 export function ElegantLoader({ isLoading, onComplete }: ElegantLoaderProps) {
   const [progress, setProgress] = useState(0);
-  const [currentMessage, setCurrentMessage] = useState(0);
+  const [stage, setStage] = useState(0);
+  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
 
-  const messages = [
-    "Sourcing premium tea leaves...",
-    "Selecting the finest blends...",
-    "Preparing your tea journey...",
-    "Almost ready to serve..."
+  const stages = [
+    { text: "Awakening the senses...", duration: 800 },
+    { text: "Selecting finest tea gardens...", duration: 600 },
+    { text: "Crafting your experience...", duration: 700 },
+    { text: "Welcome to Nirvana...", duration: 500 }
   ];
 
   useEffect(() => {
-    if (isLoading) {
-      const interval = setInterval(() => {
-        setProgress(prev => {
-          const newProgress = prev + 0.8;
-          
-          // Update message based on progress
-          if (newProgress >= 75 && currentMessage < 3) {
-            setCurrentMessage(3);
-          } else if (newProgress >= 50 && currentMessage < 2) {
-            setCurrentMessage(2);
-          } else if (newProgress >= 25 && currentMessage < 1) {
-            setCurrentMessage(1);
-          }
-          
-          if (newProgress >= 100) {
-            clearInterval(interval);
-            setTimeout(() => onComplete?.(), 800);
-            return 100;
-          }
-          return newProgress;
-        });
-      }, 25);
-      
-      return () => clearInterval(interval);
-    }
-  }, [isLoading, onComplete, currentMessage]);
+    if (!isLoading) return;
+
+    // Generate floating particles
+    const newParticles = Array.from({ length: 12 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      delay: Math.random() * 4
+    }));
+    setParticles(newParticles);
+
+    let progressInterval: NodeJS.Timeout;
+    let currentProgress = 0;
+    let currentStage = 0;
+
+    const updateProgress = () => {
+      progressInterval = setInterval(() => {
+        currentProgress += 0.8;
+        setProgress(currentProgress);
+        
+        // Update stage based on progress
+        const newStage = Math.floor((currentProgress / 100) * stages.length);
+        if (newStage !== currentStage && newStage < stages.length) {
+          currentStage = newStage;
+          setStage(currentStage);
+        }
+
+        if (currentProgress >= 100) {
+          clearInterval(progressInterval);
+          setTimeout(() => {
+            onComplete?.();
+          }, 800);
+        }
+      }, 20);
+    };
+
+    // Start after a brief delay
+    setTimeout(updateProgress, 300);
+
+    return () => {
+      clearInterval(progressInterval);
+    };
+  }, [isLoading, onComplete]);
 
   if (!isLoading) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] bg-gradient-to-br from-sage-50 via-off-white to-clay-50 flex items-center justify-center">
-      <div className="text-center">
-        {/* Animated Tea Leaves Circle */}
-        <div className="relative w-32 h-32 mx-auto mb-8">
-          {/* Outer spinning circle */}
-          <div className="absolute inset-0 border-4 border-sage-200 rounded-full animate-pulse"></div>
-          
-          {/* Tea leaves orbiting */}
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-6 h-6 flex items-center justify-center"
-              style={{
-                top: '50%',
-                left: '50%',
-                transform: `translate(-50%, -50%) rotate(${i * 60}deg) translateY(-48px)`,
-                animation: `spin ${3 + i * 0.2}s linear infinite`,
-              }}
-            >
-              <div 
-                className="text-sage-600 text-lg animate-bounce"
-                style={{ 
-                  animationDelay: `${i * 0.2}s`,
-                  animationDuration: '1.5s'
-                }}
-              >
-                🍃
+    <div className="fixed inset-0 z-[100] bg-gradient-to-br from-sage-50 via-off-white to-clay-50/30 flex items-center justify-center transition-all duration-1000">
+      {/* Floating Tea Leaves */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {particles.map((particle) => (
+          <div
+            key={particle.id}
+            className="absolute text-sage-300/30 text-2xl animate-float"
+            style={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              animationDelay: `${particle.delay}s`,
+              animationDuration: `${6 + particle.delay}s`
+            }}
+          >
+            🍃
+          </div>
+        ))}
+      </div>
+
+      <div className="text-center max-w-lg mx-auto px-8 relative z-10">
+        {/* Main Logo Animation */}
+        <div className="relative mb-12">
+          <div className="w-32 h-32 mx-auto relative">
+            {/* Outer rotating rings */}
+            <div className="absolute inset-0 border border-sage-200/60 rounded-full animate-spin-slow"></div>
+            <div className="absolute inset-2 border border-clay-200/40 rounded-full animate-spin-reverse"></div>
+            
+            {/* Center tea symbol with breathing effect */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="relative">
+                {/* Pulsing background */}
+                <div className="absolute inset-0 w-16 h-16 bg-gradient-to-br from-sage-400/20 to-clay-400/20 rounded-full animate-pulse-gentle blur-md"></div>
+                
+                {/* Main tea cup icon */}
+                <div className="relative w-16 h-16 bg-gradient-to-br from-sage-500 to-clay-600 rounded-full flex items-center justify-center shadow-2xl">
+                  <div className="relative">
+                    {/* Steam animation */}
+                    <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 space-y-1">
+                      <div className="w-1 h-3 bg-gradient-to-t from-sage-400/60 to-transparent rounded-full animate-steam-1"></div>
+                      <div className="w-1 h-2 bg-gradient-to-t from-sage-400/40 to-transparent rounded-full animate-steam-2 ml-1"></div>
+                      <div className="w-1 h-3 bg-gradient-to-t from-sage-400/50 to-transparent rounded-full animate-steam-3 -ml-1"></div>
+                    </div>
+                    
+                    {/* Tea cup */}
+                    <span className="text-white text-2xl">☕</span>
+                  </div>
+                </div>
               </div>
             </div>
-          ))}
-          
-          {/* Center tea cup */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-12 h-12 bg-gradient-to-br from-sage-400 to-chai-500 rounded-full flex items-center justify-center shadow-lg animate-pulse">
-              <span className="text-white text-xl">🫖</span>
-            </div>
+
+            {/* Progress ring */}
+            <svg className="absolute inset-0 w-full h-full transform -rotate-90" viewBox="0 0 32 32">
+              <circle
+                cx="16"
+                cy="16"
+                r="14"
+                fill="none"
+                stroke="#e5e7eb"
+                strokeWidth="0.5"
+              />
+              <circle
+                cx="16"
+                cy="16"
+                r="14"
+                fill="none"
+                stroke="url(#progressGradient)"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeDasharray={`${2 * Math.PI * 14}`}
+                strokeDashoffset={`${2 * Math.PI * 14 * (1 - progress / 100)}`}
+                className="transition-all duration-500 ease-out"
+              />
+              <defs>
+                <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#9CA68C" />
+                  <stop offset="50%" stopColor="#8B7355" />
+                  <stop offset="100%" stopColor="#9CA68C" />
+                </linearGradient>
+              </defs>
+            </svg>
           </div>
-          
-          {/* Progress ring */}
-          <svg className="absolute inset-0 w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-            <circle
-              cx="50"
-              cy="50"
-              r="45"
-              fill="none"
-              stroke="#e5e7eb"
-              strokeWidth="2"
-            />
-            <circle
-              cx="50"
-              cy="50"
-              r="45"
-              fill="none"
-              stroke="#9CA68C"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeDasharray={`${2 * Math.PI * 45}`}
-              strokeDashoffset={`${2 * Math.PI * 45 * (1 - progress / 100)}`}
-              className="transition-all duration-300 ease-out"
-            />
-          </svg>
         </div>
 
-        {/* Brand and Message */}
-        <div className="space-y-4 max-w-md mx-auto">
-          <h2 className="text-3xl font-heading font-bold text-sage-800 tracking-wide">
-            Nirvana Chai
-          </h2>
-          
-          <div className="h-8 flex items-center justify-center">
-            <p 
-              key={currentMessage}
-              className="text-sage-600 text-lg animate-fade-in"
-            >
-              {messages[currentMessage]}
-            </p>
-          </div>
-          
-          {/* Progress bar */}
-          <div className="w-64 h-1 bg-sage-200 rounded-full mx-auto overflow-hidden">
-            <div
-              className="h-full bg-gradient-to-r from-sage-500 via-chai-500 to-clay-500 rounded-full transition-all duration-300 ease-out"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-          
-          {/* Percentage */}
-          <p className="text-sm text-sage-500 font-medium">
-            {Math.round(progress)}%
+        {/* Brand Name with Typography Animation */}
+        <div className="mb-8">
+          <h1 className="text-4xl lg:text-5xl font-heading font-bold text-sage-800 mb-2 tracking-wider">
+            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '0.1s' }}>N</span>
+            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '0.2s' }}>i</span>
+            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '0.3s' }}>r</span>
+            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '0.4s' }}>v</span>
+            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '0.5s' }}>a</span>
+            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '0.6s' }}>n</span>
+            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '0.7s' }}>a</span>
+            <span className="inline-block mx-3"></span>
+            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '0.8s' }}>C</span>
+            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '0.9s' }}>h</span>
+            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '1.0s' }}>a</span>
+            <span className="inline-block animate-fade-in-letter" style={{ animationDelay: '1.1s' }}>i</span>
+          </h1>
+          <div className="h-1 w-32 mx-auto bg-gradient-to-r from-transparent via-sage-400 to-transparent animate-expand"></div>
+        </div>
+
+        {/* Dynamic Message with Smooth Transitions */}
+        <div className="h-8 mb-8 flex items-center justify-center overflow-hidden">
+          <p 
+            key={stage}
+            className="text-sage-600 text-lg font-medium animate-slide-up"
+          >
+            {stages[stage]?.text || "Preparing your journey..."}
           </p>
         </div>
 
-        {/* Floating particles */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(12)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute text-sage-300/40 animate-float"
-              style={{
-                top: `${20 + Math.random() * 60}%`,
-                left: `${10 + Math.random() * 80}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${4 + Math.random() * 3}s`,
-                fontSize: `${12 + Math.random() * 8}px`,
-              }}
-            >
-              🍃
+        {/* Elegant Progress Indicator */}
+        <div className="space-y-4">
+          {/* Progress bar */}
+          <div className="w-80 max-w-full mx-auto">
+            <div className="h-0.5 bg-sage-200/60 rounded-full overflow-hidden backdrop-blur-sm">
+              <div
+                className="h-full bg-gradient-to-r from-sage-500 via-clay-500 to-sage-600 rounded-full transition-all duration-700 ease-out relative"
+                style={{ width: `${progress}%` }}
+              >
+                <div className="absolute right-0 top-0 w-4 h-full bg-white/30 rounded-full animate-shimmer"></div>
+              </div>
             </div>
-          ))}
+          </div>
+          
+          {/* Progress percentage */}
+          <div className="flex justify-center items-center space-x-4 text-sm">
+            <span className="text-sage-500 font-medium">Loading</span>
+            <div className="flex space-x-1">
+              <div className="w-1 h-1 bg-sage-400 rounded-full animate-dot-bounce" style={{ animationDelay: '0s' }}></div>
+              <div className="w-1 h-1 bg-sage-400 rounded-full animate-dot-bounce" style={{ animationDelay: '0.2s' }}></div>
+              <div className="w-1 h-1 bg-sage-400 rounded-full animate-dot-bounce" style={{ animationDelay: '0.4s' }}></div>
+            </div>
+            <span className="text-sage-600 font-bold min-w-[3rem] text-right">
+              {Math.round(progress)}%
+            </span>
+          </div>
         </div>
+
+        {/* Tagline */}
+        <p className="text-sage-500 text-sm mt-8 opacity-80 animate-fade-in-slow tracking-wide">
+          Where every sip is a moment of mindfulness
+        </p>
       </div>
 
       <style jsx>{`
-        @keyframes spin {
-          from { transform: translate(-50%, -50%) rotate(0deg) translateY(-48px); }
-          to { transform: translate(-50%, -50%) rotate(360deg) translateY(-48px); }
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
         
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
+        @keyframes spin-reverse {
+          from { transform: rotate(360deg); }
+          to { transform: rotate(0deg); }
+        }
+        
+        @keyframes fade-in-letter {
+          from { 
+            opacity: 0; 
+            transform: translateY(20px) scale(0.8); 
+          }
+          to { 
+            opacity: 1; 
+            transform: translateY(0) scale(1); 
+          }
+        }
+        
+        @keyframes slide-up {
+          from { 
+            opacity: 0; 
+            transform: translateY(30px); 
+          }
+          to { 
+            opacity: 1; 
+            transform: translateY(0); 
+          }
+        }
+        
+        @keyframes expand {
+          from { 
+            width: 0; 
+            opacity: 0; 
+          }
+          to { 
+            width: 8rem; 
+            opacity: 1; 
+          }
+        }
+        
+        @keyframes pulse-gentle {
+          0%, 100% { 
+            transform: scale(1); 
+            opacity: 0.8; 
+          }
+          50% { 
+            transform: scale(1.1); 
+            opacity: 0.6; 
+          }
+        }
+        
+        @keyframes steam-1 {
+          0%, 100% { 
+            opacity: 0.6; 
+            transform: translateY(0) translateX(0); 
+          }
+          50% { 
+            opacity: 0.3; 
+            transform: translateY(-10px) translateX(2px); 
+          }
+        }
+        
+        @keyframes steam-2 {
+          0%, 100% { 
+            opacity: 0.4; 
+            transform: translateY(0) translateX(0); 
+          }
+          50% { 
+            opacity: 0.2; 
+            transform: translateY(-8px) translateX(-1px); 
+          }
+        }
+        
+        @keyframes steam-3 {
+          0%, 100% { 
+            opacity: 0.5; 
+            transform: translateY(0) translateX(0); 
+          }
+          50% { 
+            opacity: 0.2; 
+            transform: translateY(-12px) translateX(1px); 
+          }
         }
         
         @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
-          50% { transform: translateY(-20px) rotate(180deg); opacity: 0.7; }
+          0%, 100% { 
+            transform: translateY(0) rotate(0deg); 
+            opacity: 0.3; 
+          }
+          50% { 
+            transform: translateY(-20px) rotate(180deg); 
+            opacity: 0.1; 
+          }
         }
         
-        .animate-fade-in {
-          animation: fade-in 0.5s ease-out;
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
+        
+        @keyframes dot-bounce {
+          0%, 60%, 100% { transform: translateY(0); }
+          30% { transform: translateY(-8px); }
+        }
+        
+        @keyframes fade-in-slow {
+          from { opacity: 0; }
+          to { opacity: 0.8; }
+        }
+        
+        .animate-spin-slow {
+          animation: spin-slow 8s linear infinite;
+        }
+        
+        .animate-spin-reverse {
+          animation: spin-reverse 12s linear infinite;
+        }
+        
+        .animate-fade-in-letter {
+          animation: fade-in-letter 0.6s ease-out forwards;
+          opacity: 0;
+        }
+        
+        .animate-slide-up {
+          animation: slide-up 0.5s ease-out;
+        }
+        
+        .animate-expand {
+          animation: expand 1.5s ease-out 1.2s forwards;
+          width: 0;
+        }
+        
+        .animate-pulse-gentle {
+          animation: pulse-gentle 3s ease-in-out infinite;
+        }
+        
+        .animate-steam-1 {
+          animation: steam-1 2s ease-in-out infinite;
+        }
+        
+        .animate-steam-2 {
+          animation: steam-2 2.5s ease-in-out infinite;
+        }
+        
+        .animate-steam-3 {
+          animation: steam-3 2.2s ease-in-out infinite;
         }
         
         .animate-float {
           animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-shimmer {
+          animation: shimmer 2s ease-in-out infinite;
+        }
+        
+        .animate-dot-bounce {
+          animation: dot-bounce 1.4s ease-in-out infinite;
+        }
+        
+        .animate-fade-in-slow {
+          animation: fade-in-slow 2s ease-out 1.5s forwards;
+          opacity: 0;
         }
       `}</style>
     </div>
