@@ -686,7 +686,7 @@ export default function Shop() {
                         </div>
 
                         {/* Action Button */}
-                        <div className={`${viewMode === 'list' ? 'flex-shrink-0 self-end' : 'w-full'}`}>
+                        <div className={`${viewMode === 'list' ? 'button-container-list flex-shrink-0 self-end' : 'button-container-grid w-full'}`}>
                           {product.inStock ? (
                             <button className="group relative overflow-hidden bg-gradient-to-r from-sage-600 via-sage-700 to-chai-700 hover:from-sage-700 hover:via-sage-800 hover:to-chai-800 text-white px-8 py-4 rounded-2xl transition-all duration-500 flex items-center justify-center gap-3 font-bold shadow-xl hover:shadow-2xl transform hover:-translate-y-1 w-full min-w-[160px]">
                               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
