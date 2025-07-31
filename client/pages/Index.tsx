@@ -9,16 +9,7 @@ export default function Index() {
   const { t: tLegacy, formatPrice, detectedLocation, shippingInfo, isLocationDetected } = useLanguageCurrency();
   const { t } = useTranslation();
 
-  // Enhanced motion hooks
-  const heroMotion = useEnhancedMotion({ delay: 200, duration: 800 });
-  const featuresMotion = useEnhancedMotion({ delay: 100, duration: 600 });
-  const sourcingMotion = useEnhancedMotion({ delay: 100, duration: 600 });
-  const productsMotion = useEnhancedMotion({ delay: 100, duration: 600 });
-  const newsletterMotion = useEnhancedMotion({ delay: 100, duration: 600 });
-
-  // Staggered animations for feature cards
-  const featureStaggered = useStaggeredMotion(features, 200, 150);
-
+  // Features array - moved before hooks to prevent reference error
   const features = [
     {
       key: "expertise",
