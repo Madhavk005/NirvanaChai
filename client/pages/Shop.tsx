@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Search, Filter, Grid, List, Star, ShoppingCart, Heart, Eye, ArrowUpDown, ChevronDown, X, SlidersHorizontal, Tag, MapPin, Clock, Zap } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguageCurrency } from '../contexts/LanguageCurrencyContext';
 import { useSimpleAnimation, animationClasses } from '../hooks/useSimpleAnimation';
+import { useCartStore, useWishlistStore, Product } from '../stores/useStore';
+import { showToast } from '../components/Toast/ToastProvider';
+import { currencyUtil, useCurrency } from '../utils/currency';
 
 export default function Shop() {
   const { formatPrice, currentCurrency } = useLanguageCurrency();
