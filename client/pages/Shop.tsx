@@ -4,7 +4,7 @@ import { useLanguageCurrency } from '../contexts/LanguageCurrencyContext';
 import { useSimpleAnimation, animationClasses } from '../hooks/useSimpleAnimation';
 
 export default function Shop() {
-  const { formatPrice } = useLanguageCurrency();
+  const { formatPrice, currentCurrency } = useLanguageCurrency();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
