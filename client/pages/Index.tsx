@@ -113,37 +113,65 @@ export default function Index() {
         </div>
 
         <div
-          ref={heroRef.elementRef as React.RefObject<HTMLDivElement>}
-          className={`relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${fadeInUp} ${
-            heroRef.isVisible ? fadeInUpVisible : fadeInUpHidden
-          }`}
+          ref={heroMotion.elementRef as React.RefObject<HTMLDivElement>}
+          style={heroMotion.getMotionStyles('fadeInUp')}
+          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Text Content */}
             <div className="text-center lg:text-left">
+              {/* Location-based greeting */}
+              {isLocationDetected && detectedLocation && (
+                <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-6 text-white/90 text-sm font-medium">
+                  <MapPin className="h-4 w-4 mr-2" />
+                  {t('shipping.your_location', 'Shipping to')} {detectedLocation}
+                </div>
+              )}
+
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-white mb-6 leading-tight">
-                {t('hero.title1', 'Experience')}
-                <span className="block text-clay-300">{t('hero.title2', 'Nirvanachai')}</span>
+                {t('hero.title1', 'Discover Your')}
+                <span className="block text-clay-300">{t('hero.title2', 'Perfect Cup')}</span>
               </h1>
 
               <p className="text-lg sm:text-xl text-sage-100 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                {t('hero.subtitle', 'More than a drink — tea is a daily ritual, a quiet companion, and a global connector. Join us on a journey that spans continents and generations.')}
+                {t('hero.subtitle', 'From ancient gardens to your cup — experience the art of mindful tea drinking that connects cultures, generations, and moments of pure tranquility.')}
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Link
-                  to="/shop"
-                  className="bg-sage-600 hover:bg-sage-700 text-white px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 flex items-center justify-center group shadow-lg hover:shadow-xl"
-                >
-                  {t('hero.explore_blends', 'Explore Blends')}
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link
-                  to="/shop"
-                  className="border-2 border-white text-white hover:bg-white hover:text-sage-800 px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 backdrop-blur-sm"
-                >
-                  {t('hero.shop_now', 'Shop Now')}
-                </Link>
+              {/* Enhanced CTAs with trust indicators */}
+              <div className="space-y-4">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                  <Link
+                    to="/shop"
+                    className="bg-sage-600 hover:bg-sage-700 text-white px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 flex items-center justify-center group shadow-lg hover:shadow-xl transform hover:scale-105"
+                  >
+                    {t('hero.cta_primary', 'Start Your Journey')}
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                  <Link
+                    to="/shop"
+                    className="border-2 border-white text-white hover:bg-white hover:text-sage-800 px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 backdrop-blur-sm transform hover:scale-105"
+                  >
+                    {t('hero.cta_secondary', 'Explore Collection')}
+                  </Link>
+                </div>
+
+                {/* Trust indicators */}
+                <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-sm text-white/80">
+                  <div className="flex items-center">
+                    <span className="text-green-400 mr-1">✓</span>
+                    {t('trust.money_back', '30-Day Money Back')}
+                  </div>
+                  {shippingInfo && (
+                    <div className="flex items-center">
+                      <Truck className="h-4 w-4 mr-1" />
+                      {t('shipping.free_shipping_from', 'Free shipping from')} {formatPrice(shippingInfo.freeShippingThreshold)}
+                    </div>
+                  )}
+                  <div className="flex items-center">
+                    <span className="text-green-400 mr-1">✓</span>
+                    {t('trust.trusted_by', 'Trusted by 10,000+ customers')}
+                  </div>
+                </div>
               </div>
             </div>
 
