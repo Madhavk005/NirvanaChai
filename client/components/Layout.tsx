@@ -124,11 +124,11 @@ export function Layout({ children }: LayoutProps) {
         </div>
 
         {/* Main Navigation */}
-        <nav className="max-w-7xl mx-auto px-4 py-4">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="text-2xl font-heading font-semibold text-sage-700">
+            <Link to="/" className="flex items-center space-x-2 group">
+              <div className="text-xl sm:text-2xl font-heading font-semibold text-sage-700 group-hover:text-sage-800 transition-colors">
                 Nirvana Chai
               </div>
             </Link>
