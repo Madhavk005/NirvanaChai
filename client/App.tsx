@@ -55,7 +55,7 @@ const App = () => {
         <Toaster />
         <Sonner />
         <LanguageCurrencyProvider>
-          <RefinedLoader isLoading={isLoading} onComplete={() => setIsLoading(false)} />
+          <ElegantLoader isLoading={isLoading} onComplete={() => setIsLoading(false)} />
           <BrowserRouter>
             <Layout>
               <Routes>
