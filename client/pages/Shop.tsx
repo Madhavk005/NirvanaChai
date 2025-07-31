@@ -580,7 +580,7 @@ export default function Shop() {
                     </div>
                     
                     {/* Product Info */}
-                    <div className={`p-6 lg:p-8 ${viewMode === 'list' ? 'flex-1 flex flex-col' : 'flex flex-col h-full'}`}>
+                    <div className={`p-6 lg:p-8 product-card-content ${viewMode === 'list' ? 'flex-1 flex flex-col' : 'flex flex-col h-full'}`}>
                       <div className="flex-grow">
                         <div className="flex items-center justify-between mb-3">
                           <h3 className="text-xl lg:text-2xl font-heading font-bold text-sage-800 group-hover:text-sage-700 transition-colors leading-tight">
