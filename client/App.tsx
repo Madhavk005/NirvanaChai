@@ -13,6 +13,9 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Account from "./pages/Account";
 import Cart from "./pages/Cart";
+import FAQ from "./pages/FAQ";
+import Shipping from "./pages/Shipping";
+import Returns from "./pages/Returns";
 import NotFound from "./pages/NotFound";
 import PlaceholderPage from "./pages/PlaceholderPage";
 
