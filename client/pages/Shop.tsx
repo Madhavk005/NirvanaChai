@@ -732,20 +732,20 @@ export default function Shop() {
 
       <style jsx>{`
         @keyframes float {
-          0%, 100% { 
-            transform: translateY(0) rotate(0deg); 
-            opacity: 0.3; 
+          0%, 100% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0.3;
           }
-          50% { 
-            transform: translateY(-20px) rotate(180deg); 
-            opacity: 0.1; 
+          50% {
+            transform: translateY(-20px) rotate(180deg);
+            opacity: 0.1;
           }
         }
-        
+
         .animate-float {
           animation: float 6s ease-in-out infinite;
         }
-        
+
         .slider::-webkit-slider-thumb {
           appearance: none;
           height: 20px;
@@ -756,7 +756,7 @@ export default function Shop() {
           box-shadow: 0 4px 8px rgba(0,0,0,0.2);
           border: 2px solid white;
         }
-        
+
         .slider::-moz-range-thumb {
           height: 20px;
           width: 20px;
@@ -765,6 +765,68 @@ export default function Shop() {
           cursor: pointer;
           border: 2px solid white;
           box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Enhanced typography for price display */
+        .price-display {
+          font-feature-settings: 'tnum' 1, 'lnum' 1;
+          letter-spacing: -0.02em;
+        }
+
+        .original-price {
+          font-feature-settings: 'tnum' 1, 'lnum' 1;
+        }
+
+        /* Better alignment for currency symbols */
+        .currency-align {
+          display: inline-flex;
+          align-items: baseline;
+          gap: 0.25rem;
+        }
+
+        /* Improved card content spacing */
+        .product-card-content {
+          display: flex;
+          flex-direction: column;
+          min-height: 100%;
+        }
+
+        /* Better button alignment in different view modes */
+        .button-container-grid {
+          margin-top: auto;
+          width: 100%;
+        }
+
+        .button-container-list {
+          flex-shrink: 0;
+          align-self: flex-end;
+          margin-left: 1.5rem;
+        }
+
+        /* Enhanced spacing for price sections */
+        .price-section {
+          border-top: 1px solid rgba(156, 166, 140, 0.1);
+          padding-top: 1rem;
+          margin-top: 1rem;
+        }
+
+        /* Better responsive grid alignment */
+        @media (min-width: 1536px) {
+          .product-grid-2xl {
+            grid-template-columns: repeat(4, minmax(280px, 1fr));
+          }
+        }
+
+        @media (min-width: 1024px) and (max-width: 1535px) {
+          .product-grid-lg {
+            grid-template-columns: repeat(3, minmax(260px, 1fr));
+          }
+        }
+
+        @media (min-width: 640px) and (max-width: 1023px) {
+          .product-grid-md {
+            grid-template-columns: repeat(2, minmax(240px, 1fr));
+          }
         }
       `}</style>
     </div>
