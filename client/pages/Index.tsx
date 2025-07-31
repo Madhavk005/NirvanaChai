@@ -224,9 +224,8 @@ export default function Index() {
       <section className="py-16 sm:py-20 lg:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
-            ref={featuresMotion.elementRef as React.RefObject<HTMLDivElement>}
-            style={featuresMotion.getMotionStyles('fadeInUp')}
-            className="text-center mb-16"
+            ref={featuresAnimation.elementRef}
+            className={`text-center mb-16 ${animationClasses.fadeInUp(featuresAnimation.isVisible)}`}
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-sage-800 mb-6">
               {t('why_choose.title', 'Why Tea Lovers Choose Nirvanachai')}
@@ -238,18 +237,19 @@ export default function Index() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {features.map((feature, index) => {
-              const hoverMotion = useHoverMotion();
+              const featureAnimation = useSimpleAnimation({ delay: index * 150 });
+              const hoverAnimation = useHoverAnimation();
 
               return (
                 <div
                   key={index}
-                  ref={featureStaggered[index].elementRef as React.RefObject<HTMLDivElement>}
-                  style={{
-                    ...featureStaggered[index].getMotionStyles('fadeInUp'),
-                    ...hoverMotion.getHoverStyles({ scale: 1.03, translateY: -8 })
-                  }}
-                  {...hoverMotion.hoverProps}
-                  className="bg-card border border-border rounded-2xl p-6 lg:p-8 text-center group cursor-pointer"
+                  ref={featureAnimation.elementRef}
+                  className={`
+                    bg-card border border-border rounded-2xl p-6 lg:p-8 text-center group cursor-pointer
+                    ${animationClasses.fadeInUp(featureAnimation.isVisible)}
+                    ${hoverAnimation.hoverClasses}
+                  `}
+                  {...hoverAnimation.hoverProps}
                 >
                   <div className="flex justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
                     {feature.icon}
