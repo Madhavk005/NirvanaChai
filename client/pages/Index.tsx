@@ -168,11 +168,10 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-sage-800 mb-4">
-              Global Sourcing, Local Soul
+              {t('global_sourcing.title', 'Global Sourcing, Local Soul')}
             </h2>
             <p className="text-lg text-sage-600 max-w-3xl mx-auto">
-              Our tea journey spans the world's most renowned tea regions, each contributing its unique character 
-              to create the perfect cup that connects cultures and generations.
+              {t('global_sourcing.subtitle', 'Our tea journey spans the world\'s most renowned tea regions, each contributing its unique character to create the perfect cup that connects cultures and generations.')}
             </p>
           </div>
 
