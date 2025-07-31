@@ -639,18 +639,18 @@ export default function Shop() {
                       </div>
 
                       {/* Price and Actions */}
-                      <div className={`mt-auto ${viewMode === 'list' ? 'flex items-end justify-between gap-6' : 'space-y-5'}`}>
+                      <div className={`price-section ${viewMode === 'list' ? 'flex items-end justify-between gap-6' : 'space-y-5'}`}>
                         <div className={`${viewMode === 'list' ? 'flex-shrink-0' : ''}`}>
                           {/* Price Display */}
-                          <div className="space-y-2">
-                            <div className="flex items-baseline gap-3">
-                              <div className="price-display">
+                          <div className="space-y-3">
+                            <div className="flex items-baseline gap-3 flex-wrap">
+                              <div className="price-display currency-align">
                                 <span className="text-2xl lg:text-3xl font-bold text-sage-800 tabular-nums">
                                   {formatPrice(product.price)}
                                 </span>
                               </div>
                               {product.originalPrice && (
-                                <div className="original-price">
+                                <div className="original-price currency-align">
                                   <span className="text-lg text-sage-400 line-through tabular-nums">
                                     {formatPrice(product.originalPrice)}
                                   </span>
