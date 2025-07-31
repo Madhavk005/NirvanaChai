@@ -205,47 +205,78 @@ export default function About() {
       </section>
 
       {/* Global Sourcing Section */}
-      <section className="py-20 bg-sage-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-sage-800 mb-6">
+      <section className="py-16 sm:py-20 lg:py-24 bg-sage-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div
+            ref={regionsRef.elementRef as React.RefObject<HTMLDivElement>}
+            className={`text-center mb-16 ${fadeInUp} ${
+              regionsRef.isVisible ? fadeInUpVisible : fadeInUpHidden
+            }`}
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-sage-800 mb-6">
               Global Sourcing, Local Soul
             </h2>
-            <div className="text-lg text-sage-700 max-w-4xl mx-auto leading-relaxed">
+            <div className="text-lg sm:text-xl text-sage-700 max-w-4xl mx-auto leading-relaxed">
               <p className="mb-4">
-                While proudly rooted in India's rich tea heritage, Nirvanachai goes beyond borders to source 
+                While proudly rooted in India's rich tea heritage, Nirvanachai goes beyond borders to source
                 handpicked, high-grade teas from some of the most celebrated tea-growing regions in the world:
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {regions.map((region, index) => (
-              <div 
-                key={index}
-                className="bg-card border border-border rounded-2xl p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="flex items-center mb-4">
-                  <span className="text-4xl mr-4">{region.image}</span>
-                  <div>
-                    <h3 className="text-xl font-heading font-semibold text-sage-800">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {regions.map((region, index) => {
+              const regionReveal = useScrollReveal({ threshold: 0.3 });
+              const regionImages = [
+                teaImages.darjeeling,
+                teaImages.assam,
+                teaImages.kenya,
+                teaImages.ceylon,
+                teaImages.china,
+                teaImages.vietnam
+              ];
+
+              return (
+                <div
+                  key={index}
+                  ref={regionReveal.elementRef as React.RefObject<HTMLDivElement>}
+                  className={`group bg-card border border-border rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2 ${fadeInUp} ${
+                    regionReveal.isVisible ? fadeInUpVisible : fadeInUpHidden
+                  }`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  {/* Region Image */}
+                  <div className="relative h-48 sm:h-56 overflow-hidden">
+                    <OptimizedImage
+                      src={regionImages[index]}
+                      alt={`${region.name} tea region`}
+                      className="w-full h-full group-hover:scale-110 transition-transform duration-700"
+                      aspectRatio="landscape"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <span className="text-3xl mr-2">{region.image}</span>
+                      <span className="text-lg font-semibold">{region.location}</span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6">
+                    <h3 className="text-xl sm:text-2xl font-heading font-semibold text-sage-800 mb-3 group-hover:text-sage-900 transition-colors">
                       {region.name}
                     </h3>
-                    <p className="text-sm font-medium text-sage-600">
-                      {region.location}
+
+                    <p className="text-sage-700 mb-4 font-medium text-sm sm:text-base">
+                      {region.description}
+                    </p>
+
+                    <p className="text-sm text-sage-600 leading-relaxed">
+                      {region.characteristics}
                     </p>
                   </div>
                 </div>
-                
-                <p className="text-sage-700 mb-3 font-medium">
-                  {region.description}
-                </p>
-                
-                <p className="text-sm text-sage-600 leading-relaxed">
-                  {region.characteristics}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
