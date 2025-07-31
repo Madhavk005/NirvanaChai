@@ -160,22 +160,20 @@ export default function Index() {
                   </Link>
                 </div>
 
-                {/* Trust indicators */}
-                <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-sm text-white/80">
-                  <div className="flex items-center">
-                    <span className="text-green-400 mr-1">✓</span>
-                    {t('trust.money_back', '30-Day Money Back')}
-                  </div>
+                {/* Enhanced Trust indicators */}
+                <div className="space-y-3">
+                  <CompactTrustIndicators />
+
                   {shippingInfo && (
-                    <div className="flex items-center">
-                      <Truck className="h-4 w-4 mr-1" />
-                      {t('shipping.free_shipping_from', 'Free shipping from')} {formatPrice(shippingInfo.freeShippingThreshold)}
+                    <div className="flex items-center justify-center lg:justify-start text-sm text-white/90">
+                      <Truck className="h-4 w-4 mr-2 text-clay-300" />
+                      <span>
+                        {t('shipping.free_shipping_from', 'Free shipping from')}
+                        <span className="font-semibold text-clay-300 ml-1">{formatPrice(shippingInfo.freeShippingThreshold)}</span>
+                        <span className="text-white/70 ml-2">• {shippingInfo.estimatedDays}</span>
+                      </span>
                     </div>
                   )}
-                  <div className="flex items-center">
-                    <span className="text-green-400 mr-1">✓</span>
-                    {t('trust.trusted_by', 'Trusted by 10,000+ customers')}
-                  </div>
                 </div>
               </div>
             </div>
