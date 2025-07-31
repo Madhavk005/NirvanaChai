@@ -456,13 +456,13 @@ export default function Shop() {
                       )}
                     </div>
                     
-                    <div className={`p-8 ${viewMode === 'list' ? 'flex-1 flex flex-col justify-between' : ''}`}>
-                      <div>
-                        <h3 className="text-xl font-heading font-bold text-sage-800 mb-3 group-hover:text-sage-700 transition-colors">
+                    <div className={`p-8 ${viewMode === 'list' ? 'flex-1 flex flex-col' : 'flex flex-col h-full'}`}>
+                      <div className="flex-grow">
+                        <h3 className="text-xl font-heading font-bold text-sage-800 mb-3 group-hover:text-sage-700 transition-colors leading-tight">
                           {product.name}
                         </h3>
-                        
-                        <p className="text-sage-600 mb-4 leading-relaxed">
+
+                        <p className="text-sage-600 mb-4 leading-relaxed text-sm">
                           {product.description}
                         </p>
 
@@ -480,6 +480,14 @@ export default function Shop() {
                             {product.rating} ({product.reviews} reviews)
                           </span>
                         </div>
+
+                        {/* Stock indicator for in-stock items */}
+                        {product.inStock && (
+                          <div className="flex items-center gap-2 mb-4">
+                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                            <span className="text-xs text-green-600 font-medium">In Stock</span>
+                          </div>
+                        )}
                       </div>
 
                       {/* Price and Actions */}
