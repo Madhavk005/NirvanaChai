@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Leaf, Globe, Award, Heart, Recycle, Package } from 'lucide-react';
+import { useLanguageCurrency } from '../contexts/LanguageCurrencyContext';
 
 export default function Index() {
   const features = [
