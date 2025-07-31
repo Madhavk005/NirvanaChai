@@ -725,19 +725,58 @@ export default function Shop() {
               </div>
             ) : (
               <div className="text-center py-20">
-                <div className="text-8xl mb-8 opacity-50">🫖</div>
-                <h3 className="text-3xl font-heading font-bold text-sage-800 mb-4">
-                  No teas found
-                </h3>
-                <p className="text-sage-600 mb-8 max-w-md mx-auto text-lg">
-                  We couldn't find any teas matching your criteria. Try adjusting your filters to discover new flavors and experiences.
-                </p>
-                <button
-                  onClick={clearFilters}
-                  className="bg-gradient-to-r from-sage-600 to-chai-600 hover:from-sage-700 hover:to-chai-700 text-white px-8 py-4 rounded-2xl transition-all font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-                >
-                  Clear All Filters
-                </button>
+                <div className="bg-white/80 backdrop-blur-sm border border-sage-200 rounded-3xl p-12 shadow-lg max-w-2xl mx-auto">
+                  <div className="text-8xl mb-8 opacity-50 animate-bounce">🫖</div>
+                  <h3 className="text-3xl font-heading font-bold text-sage-800 mb-4">
+                    No teas found
+                  </h3>
+                  <p className="text-sage-600 mb-8 text-lg leading-relaxed">
+                    We couldn't find any teas matching your criteria. Try adjusting your filters to discover new flavors and experiences from our premium collection.
+                  </p>
+
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button
+                      onClick={clearFilters}
+                      className="bg-gradient-to-r from-sage-600 to-chai-600 hover:from-sage-700 hover:to-chai-700 text-white px-8 py-4 rounded-2xl transition-all font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                    >
+                      Clear All Filters
+                    </button>
+
+                    <div className="text-sm text-sage-500 flex items-center gap-2">
+                      <span>or</span>
+                      <button
+                        onClick={() => {
+                          setSearchTerm('');
+                          setSelectedCategory('all');
+                          setSelectedRegion('all');
+                          setPriceRange([0, 100]);
+                          setSortBy('featured');
+                        }}
+                        className="text-sage-600 hover:text-sage-800 underline font-medium"
+                      >
+                        browse all teas
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Popular suggestions */}
+                  <div className="mt-8 pt-6 border-t border-sage-200">
+                    <p className="text-sm text-sage-600 mb-3">Popular searches:</p>
+                    <div className="flex flex-wrap gap-2 justify-center">
+                      {['Black Tea', 'Green Tea', 'Herbal', 'Premium'].map((suggestion) => (
+                        <button
+                          key={suggestion}
+                          onClick={() => {
+                            setSearchTerm(suggestion.toLowerCase());
+                          }}
+                          className="text-xs bg-sage-100 hover:bg-sage-200 text-sage-700 px-3 py-1 rounded-lg transition-colors font-medium"
+                        >
+                          {suggestion}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
             )}
           </div>
