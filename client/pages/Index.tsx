@@ -117,9 +117,8 @@ export default function Index() {
         </div>
 
         <div
-          ref={heroMotion.elementRef as React.RefObject<HTMLDivElement>}
-          style={heroMotion.getMotionStyles('fadeInUp')}
-          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          ref={heroAnimation.elementRef}
+          className={`relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${animationClasses.fadeInUp(heroAnimation.isVisible)}`}
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Text Content */}
