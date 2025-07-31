@@ -92,46 +92,90 @@ export default function Index() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-sage-50 via-off-white to-clay-50">
-        <div className={"absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%239CA68C\" fill-opacity=\"0.05\" fill-rule=\"nonzero\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"4\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"}></div>
-        
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-7xl font-heading font-bold text-sage-800 mb-6 leading-tight">
-            {t('hero.title1', 'Experience')}
-            <span className="block text-chai-600">{t('hero.title2', 'Nirvanachai')}</span>
-          </h1>
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <OptimizedImage
+            src={teaImages.hero}
+            alt="Premium tea collection hero background"
+            className="w-full h-full"
+            aspectRatio="wide"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-sage-900/70 via-sage-800/50 to-transparent"></div>
+        </div>
 
-          <p className="text-lg md:text-xl text-sage-700 mb-8 max-w-2xl mx-auto leading-relaxed">
-            {t('hero.subtitle', 'More than a drink — tea is a daily ritual, a quiet companion, and a global connector. Join us on a journey that spans continents and generations.')}
-          </p>
+        <div
+          ref={heroRef.elementRef as React.RefObject<HTMLDivElement>}
+          className={`relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${fadeInUp} ${
+            heroRef.isVisible ? fadeInUpVisible : fadeInUpHidden
+          }`}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Text Content */}
+            <div className="text-center lg:text-left">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-white mb-6 leading-tight">
+                {t('hero.title1', 'Experience')}
+                <span className="block text-clay-300">{t('hero.title2', 'Nirvanachai')}</span>
+              </h1>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/shop"
-              className="bg-sage-600 hover:bg-sage-700 text-white px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 flex items-center justify-center group"
-            >
-              {t('hero.explore_blends', 'Explore Blends')}
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link
-              to="/shop"
-              className="border-2 border-sage-600 text-sage-600 hover:bg-sage-600 hover:text-white px-8 py-4 rounded-full text-lg font-medium transition-all duration-300"
-            >
-              {t('hero.shop_now', 'Shop Now')}
-            </Link>
+              <p className="text-lg sm:text-xl text-sage-100 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                {t('hero.subtitle', 'More than a drink — tea is a daily ritual, a quiet companion, and a global connector. Join us on a journey that spans continents and generations.')}
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Link
+                  to="/shop"
+                  className="bg-sage-600 hover:bg-sage-700 text-white px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 flex items-center justify-center group shadow-lg hover:shadow-xl"
+                >
+                  {t('hero.explore_blends', 'Explore Blends')}
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link
+                  to="/shop"
+                  className="border-2 border-white text-white hover:bg-white hover:text-sage-800 px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 backdrop-blur-sm"
+                >
+                  {t('hero.shop_now', 'Shop Now')}
+                </Link>
+              </div>
+            </div>
+
+            {/* Hero Image */}
+            <div className="relative lg:order-last">
+              <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-700">
+                <OptimizedImage
+                  src={teaImages.teaCup}
+                  alt="Premium tea cup"
+                  className="w-full h-96 lg:h-[500px]"
+                  aspectRatio="portrait"
+                />
+              </div>
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -right-4 w-full h-full border-2 border-clay-300/30 rounded-2xl -z-10"></div>
+              <div className="absolute top-4 right-4 w-full h-full bg-gradient-to-br from-sage-400/20 to-transparent rounded-2xl -z-20"></div>
+            </div>
           </div>
         </div>
 
         {/* Floating Tea Leaves Animation */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 text-sage-300 animate-bounce" style={{animationDelay: '0s', animationDuration: '3s'}}>
+          <div className="absolute top-1/4 left-1/4 text-sage-300/60 animate-bounce" style={{animationDelay: '0s', animationDuration: '3s'}}>
             🍃
           </div>
-          <div className="absolute top-1/3 right-1/3 text-sage-300 animate-bounce" style={{animationDelay: '1s', animationDuration: '4s'}}>
+          <div className="absolute top-1/3 right-1/3 text-sage-300/40 animate-bounce" style={{animationDelay: '1s', animationDuration: '4s'}}>
             🍃
           </div>
-          <div className="absolute bottom-1/4 right-1/4 text-sage-300 animate-bounce" style={{animationDelay: '2s', animationDuration: '5s'}}>
+          <div className="absolute bottom-1/4 right-1/4 text-sage-300/50 animate-bounce" style={{animationDelay: '2s', animationDuration: '5s'}}>
             🍃
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+          <div className="flex flex-col items-center">
+            <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+              <div className="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
+            </div>
+            <span className="text-sm mt-2 text-white/70">Scroll to explore</span>
           </div>
         </div>
       </section>
