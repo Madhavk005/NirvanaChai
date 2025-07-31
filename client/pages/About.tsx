@@ -81,25 +81,79 @@ export default function About() {
     }
   ];
 
+  const heroRef = useScrollReveal();
+  const featuresRef = useScrollReveal();
+  const regionsRef = useScrollReveal();
+  const heritageRef = useScrollReveal();
+  const valuesRef = useScrollReveal();
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-sage-50 via-off-white to-clay-50">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-heading font-bold text-sage-800 mb-6">
-            Experience Nirvanachai
-          </h1>
-          
-          <div className="text-lg md:text-xl text-sage-700 leading-relaxed space-y-4 max-w-3xl mx-auto">
-            <p>
-              More than a drink — tea is a daily ritual, a quiet companion, and a global connector.
-            </p>
-            <p>
-              Join us on a journey that spans continents and generations.
-            </p>
-            <p className="text-chai-600 font-medium text-xl">
-              Savor the story, sip the soul — with Nirvanachai.
-            </p>
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <OptimizedImage
+            src={teaImages.meditation}
+            alt="Tea meditation background"
+            className="w-full h-full"
+            aspectRatio="wide"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-sage-900/80 via-sage-800/60 to-transparent"></div>
+        </div>
+
+        {/* Content */}
+        <div
+          ref={heroRef.elementRef as React.RefObject<HTMLDivElement>}
+          className={`relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ${fadeInUp} ${
+            heroRef.isVisible ? fadeInUpVisible : fadeInUpHidden
+          }`}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Text Content */}
+            <div className="text-white">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold mb-6 leading-tight">
+                Experience
+                <span className="block text-clay-300">Nirvanachai</span>
+              </h1>
+
+              <div className="text-lg sm:text-xl leading-relaxed space-y-4 max-w-2xl">
+                <p className="text-sage-100">
+                  More than a drink — tea is a daily ritual, a quiet companion, and a global connector.
+                </p>
+                <p className="text-sage-200">
+                  Join us on a journey that spans continents and generations.
+                </p>
+                <p className="text-clay-200 font-medium text-xl sm:text-2xl mt-6">
+                  Savor the story, sip the soul — with Nirvanachai.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature Image */}
+            <div className="relative">
+              <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-700">
+                <OptimizedImage
+                  src={teaImages.teaCeremony}
+                  alt="Traditional tea ceremony"
+                  className="w-full h-96 lg:h-[500px]"
+                  aspectRatio="portrait"
+                />
+              </div>
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -left-4 w-full h-full border-2 border-clay-300/30 rounded-2xl -z-10"></div>
+              <div className="absolute top-4 left-4 w-full h-full bg-gradient-to-br from-sage-400/20 to-transparent rounded-2xl -z-20"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+          <div className="flex flex-col items-center">
+            <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+              <div className="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
+            </div>
+            <span className="text-sm mt-2 text-white/70">Scroll to explore</span>
           </div>
         </div>
       </section>
