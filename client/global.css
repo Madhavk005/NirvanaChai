@@ -112,6 +112,23 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Performance optimizations */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   /* Responsive improvements */
   @media (max-width: 640px) {
     .text-responsive {
@@ -123,9 +140,44 @@
     }
   }
 
-  /* Smooth transitions for all interactive elements */
+  /* Enhanced smooth transitions for interactive elements */
   button, a, [role="button"] {
-    @apply transition-all duration-200 ease-in-out;
+    @apply transition-all duration-300 ease-out;
+    will-change: transform;
+  }
+
+  button:hover, a:hover, [role="button"]:hover {
+    transform: translateY(-1px);
+  }
+
+  /* Enhanced animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200px 0; }
+    100% { background-position: calc(200px + 100%) 0; }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-soft {
+    animation: pulse-soft 2s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    background-size: 200px 100%;
+    animation: shimmer 2s infinite;
   }
 
   /* Custom scrollbar */
