@@ -49,6 +49,16 @@ export default function Index() {
     }
   ];
 
+  // Enhanced motion hooks - moved after features array
+  const heroMotion = useEnhancedMotion({ delay: 200, duration: 800 });
+  const featuresMotion = useEnhancedMotion({ delay: 100, duration: 600 });
+  const sourcingMotion = useEnhancedMotion({ delay: 100, duration: 600 });
+  const productsMotion = useEnhancedMotion({ delay: 100, duration: 600 });
+  const newsletterMotion = useEnhancedMotion({ delay: 100, duration: 600 });
+
+  // Staggered animations for feature cards
+  const featureStaggered = useStaggeredMotion(features, 200, 150);
+
   const regions = [
     {
       name: "Darjeeling",
