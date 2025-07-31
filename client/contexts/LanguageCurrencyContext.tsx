@@ -126,7 +126,7 @@ const translations: Record<string, Record<string, string>> = {
     'why_choose.title': 'Почему выбирают Нирвана Чай?',
     'why_choose.subtitle': 'Откройте для себя, что делает наше чайное путешествие необычным и почему любители чая во всем мире доверяют нашему наследию.',
     'why_choose.expertise': 'Три поколения опыта',
-    'why_choose.global': 'Источники по всему миру',
+    'why_choose.global': 'Источники по ��сему миру',
     'why_choose.curated': 'Тщательно отобранные смеси',
     'why_choose.pure': 'Чистые ингредиенты',
     'why_choose.sustainable': 'Устойчивые источники',
@@ -141,7 +141,7 @@ const translations: Record<string, Record<string, string>> = {
     'featured.title': 'Рекомендуемые Смеси',
     'featured.subtitle': 'Откройте для себя наши самые любимые чайные коллекции, тщательно создан��ые, чтобы принести вам моменты спокойствия и радости.',
     'featured.add_to_cart': 'В Корзину',
-    'featured.view_all': 'Посмотреть Все Товары',
+    'featured.view_all': 'Посмот��еть Все Товары',
     
     // Newsletter
     'newsletter.title': 'Присоединяйтесь к Нашему Чайному Путешествию',
@@ -183,7 +183,7 @@ const translations: Record<string, Record<string, string>> = {
     
     // Global Sourcing
     'global_sourcing.title': 'Ғаламдық Көздер, Жергілікті Жан',
-    'global_sourcing.subtitle': 'Біздің шай саяхатымыз әлемдегі ең танымал шай өңірлерін қамтиды, олардың әрқайсысы мәдениеттер мен ұрпақтарды байланыстыратын тамаша кесені жасау үшін өзіндік сипатын қосады.',
+    'global_sourcing.subtitle': 'Біздің шай саяхатымыз әлемдегі ең танымал шай өңірлерін қамтиды, олардың ��рқайсысы мәдениеттер мен ұрпақтарды байланыстыратын тамаша кесені жасау үшін өзіндік сипатын қосады.',
     'global_sourcing.learn_story': 'Біздің Тарихымызды Үйреніңіз',
     
     // Featured Products
@@ -194,7 +194,7 @@ const translations: Record<string, Record<string, string>> = {
     
     // Newsletter
     'newsletter.title': 'Біздің Шай Саяхатымызға Қосылыңыз',
-    'newsletter.subtitle': 'Шай данышпандығын, эксклюзивті қоспаларды және бізд��ң ғаламдық шай отбасындағы оқиғаларды алу үшін жазылыңыз.',
+    'newsletter.subtitle': 'Шай данышпандығын, эксклюзивті қоспаларды және біздің ғаламдық шай отбасындағы оқиғаларды алу үшін жазылыңыз.',
     'newsletter.email_placeholder': 'Электрондық поштаңызды енгізіңіз',
     'newsletter.subscribe': 'Жазылу',
     'newsletter.no_spam': 'Спам жоқ, тек шай махabbati. Кез келген уақытта жазылудан бас тартыңыз.',
@@ -293,8 +293,8 @@ export const LanguageCurrencyProvider: React.FC<{ children: React.ReactNode }> =
   };
 
   const t = (key: string, fallback?: string): string => {
-    const translation = translations[currentLanguage.code]?.[key];
-    return translation || fallback || key;
+    const translation = i18n.t(key);
+    return translation !== key ? translation : (fallback || key);
   };
 
   const convertPrice = (price: number): number => {
