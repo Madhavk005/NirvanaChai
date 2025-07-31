@@ -347,17 +347,17 @@ export default function Shop() {
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="text-2xl font-semibold text-sage-800">
-                          ${product.price}
+                          {formatPrice(product.price)}
                         </span>
                         {product.originalPrice && (
                           <span className="text-lg text-sage-400 line-through">
-                            ${product.originalPrice}
+                            {formatPrice(product.originalPrice)}
                           </span>
                         )}
                       </div>
                       {product.originalPrice && (
                         <span className="text-sm text-green-600 font-medium">
-                          Save ${(product.originalPrice - product.price).toFixed(2)}
+                          Save {formatPrice(product.originalPrice - product.price)}
                         </span>
                       )}
                     </div>
