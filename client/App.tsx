@@ -1,4 +1,5 @@
 import "./global.css";
+import "./i18n";
 
 import { Toaster } from "@/components/ui/toaster";
 import { createRoot } from "react-dom/client";
@@ -8,8 +9,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageCurrencyProvider } from "./contexts/LanguageCurrencyContext";
 import { Layout } from "./components/Layout";
-import { TeaLoader } from "./components/TeaLoader";
+import { ElegantLoader } from "./components/ElegantLoader";
 import { useState, useEffect } from "react";
+import { locationService } from "./services/locationService";
 import Index from "./pages/Index";
 import Shop from "./pages/Shop";
 import About from "./pages/About";
