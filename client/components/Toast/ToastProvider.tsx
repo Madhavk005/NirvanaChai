@@ -266,7 +266,7 @@ export function ToastProvider() {
       />
       
       {/* Custom styles for animations */}
-      <style jsx global>{`
+      <style>{`
         @keyframes enter {
           0% {
             transform: translateX(100%);
