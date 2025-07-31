@@ -283,25 +283,25 @@ export default function Index() {
       <section className="py-20 bg-sage-800 text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-4xl font-heading font-bold mb-4">
-            Join Our Tea Journey
+            {t('newsletter.title', 'Join Our Tea Journey')}
           </h2>
           <p className="text-xl text-sage-200 mb-8">
-            Subscribe to receive tea wisdom, exclusive blends, and stories from our global tea family.
+            {t('newsletter.subtitle', 'Subscribe to receive tea wisdom, exclusive blends, and stories from our global tea family.')}
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input 
-              type="email" 
-              placeholder="Enter your email"
+            <input
+              type="email"
+              placeholder={t('newsletter.email_placeholder', 'Enter your email')}
               className="flex-1 px-6 py-4 rounded-full text-sage-800 focus:outline-none focus:ring-2 focus:ring-sage-400"
             />
             <button className="bg-clay-500 hover:bg-clay-600 text-white px-8 py-4 rounded-full font-medium transition-colors">
-              Subscribe
+              {t('newsletter.subscribe', 'Subscribe')}
             </button>
           </div>
-          
+
           <p className="text-sm text-sage-300 mt-4">
-            No spam, just tea love. Unsubscribe anytime.
+            {t('newsletter.no_spam', 'No spam, just tea love. Unsubscribe anytime.')}
           </p>
         </div>
       </section>
