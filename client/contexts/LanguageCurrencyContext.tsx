@@ -124,7 +124,7 @@ const translations: Record<string, Record<string, string>> = {
     
     // Why Choose section
     'why_choose.title': 'Почему выбирают Нирвана Чай?',
-    'why_choose.subtitle': 'Откройте д��я себя, что делает наше чайное путешествие необычным и почему любители чая во всем мире доверяют нашему наследию.',
+    'why_choose.subtitle': 'Откройте для себя, что делает наше чайное путешествие необычным и почему любители чая во всем мире доверяют нашему наследию.',
     'why_choose.expertise': 'Три поколения опыта',
     'why_choose.global': 'Источники по всему миру',
     'why_choose.curated': 'Тщательно отобранные смеси',
@@ -194,7 +194,7 @@ const translations: Record<string, Record<string, string>> = {
     
     // Newsletter
     'newsletter.title': 'Біздің Шай Саяхатымызға Қосылыңыз',
-    'newsletter.subtitle': 'Шай данышпандығын, эксклюзивті қоспаларды және біздің ғаламдық шай отбасындағы оқиғаларды алу үшін жазылыңыз.',
+    'newsletter.subtitle': 'Шай данышпандығын, эксклюзивті қоспаларды және бізд��ң ғаламдық шай отбасындағы оқиғаларды алу үшін жазылыңыз.',
     'newsletter.email_placeholder': 'Электрондық поштаңызды енгізіңіз',
     'newsletter.subscribe': 'Жазылу',
     'newsletter.no_spam': 'Спам жоқ, тек шай махabbati. Кез келген уақытта жазылудан бас тартыңыз.',
@@ -284,6 +284,7 @@ export const LanguageCurrencyProvider: React.FC<{ children: React.ReactNode }> =
   const setLanguage = (language: Language) => {
     setCurrentLanguage(language);
     localStorage.setItem('nirvanachai-language', language.code);
+    i18n.changeLanguage(language.code);
   };
 
   const setCurrency = (currency: Currency) => {
