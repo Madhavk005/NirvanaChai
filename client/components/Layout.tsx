@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingCart, Search, Globe, User, Menu, X, Phone, Mail } from 'lucide-react';
-import { useState } from 'react';
+import { ShoppingCart, Search, Globe, User, Menu, X, Phone, Mail, ChevronDown } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { useLanguageCurrency } from '../contexts/LanguageCurrencyContext';
 
 interface LayoutProps {
   children: React.ReactNode;
