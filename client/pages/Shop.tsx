@@ -659,22 +659,23 @@ export default function Shop() {
                             </div>
                           </div>
                         </div>
-                        
-                        <div className={`${viewMode === 'list' ? 'ml-6' : ''}`}>
+
+                        {/* Action Button */}
+                        <div className={`${viewMode === 'list' ? 'flex-shrink-0 self-end' : 'w-full'}`}>
                           {product.inStock ? (
-                            <button className="group relative overflow-hidden bg-gradient-to-r from-sage-600 via-sage-700 to-chai-700 hover:from-sage-700 hover:via-sage-800 hover:to-chai-800 text-white px-8 py-4 rounded-2xl transition-all duration-500 flex items-center gap-3 font-bold shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+                            <button className="group relative overflow-hidden bg-gradient-to-r from-sage-600 via-sage-700 to-chai-700 hover:from-sage-700 hover:via-sage-800 hover:to-chai-800 text-white px-8 py-4 rounded-2xl transition-all duration-500 flex items-center justify-center gap-3 font-bold shadow-xl hover:shadow-2xl transform hover:-translate-y-1 w-full min-w-[160px]">
                               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
                               <ShoppingCart className="h-5 w-5 relative z-10" />
-                              <span className="relative z-10">Add to Cart</span>
+                              <span className="relative z-10 whitespace-nowrap">Add to Cart</span>
                             </button>
                           ) : (
-                            <button disabled className="relative bg-gradient-to-r from-sage-200 to-sage-300 text-sage-600 px-8 py-4 rounded-2xl cursor-not-allowed flex items-center gap-3 font-bold shadow-sm border border-sage-300">
-                              <div className="h-5 w-5 relative">
+                            <button disabled className="relative bg-gradient-to-r from-sage-200 to-sage-300 text-sage-600 px-8 py-4 rounded-2xl cursor-not-allowed flex items-center justify-center gap-3 font-bold shadow-sm border border-sage-300 w-full min-w-[160px]">
+                              <div className="h-5 w-5 relative flex-shrink-0">
                                 <div className="absolute inset-0 bg-sage-400 rounded-full opacity-30"></div>
                                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-0.5 bg-sage-600 rotate-45"></div>
                                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-0.5 bg-sage-600 -rotate-45"></div>
                               </div>
-                              <span>Sold Out</span>
+                              <span className="whitespace-nowrap">Sold Out</span>
                             </button>
                           )}
                         </div>
