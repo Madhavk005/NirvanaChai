@@ -22,13 +22,23 @@ interface LanguageCurrencyContextType {
   languages: Language[];
   setLanguage: (language: Language) => void;
   t: (key: string, fallback?: string) => string;
-  
+
   // Currency
   currentCurrency: Currency;
   currencies: Currency[];
   setCurrency: (currency: Currency) => void;
   formatPrice: (price: number) => string;
   convertPrice: (price: number) => number;
+
+  // Location-based features
+  detectedLocation: string;
+  suggestedCurrency: string;
+  shippingInfo: {
+    zone: string;
+    estimatedDays: string;
+    freeShippingThreshold: number;
+  } | null;
+  isLocationDetected: boolean;
 }
 
 const languages: Language[] = [
@@ -138,7 +148,7 @@ const translations: Record<string, Record<string, string>> = {
     'newsletter.subtitle': 'Подпишитесь, чтобы получать чайную мудрость, эксклюзивные смеси и истории от нашей глобальной чайной семьи.',
     'newsletter.email_placeholder': 'Введите ваш email',
     'newsletter.subscribe': 'Подписаться',
-    'newsletter.no_spam': 'Никакого спама, только чайная любовь. Отпишитесь в любое время.',
+    'newsletter.no_spam': 'Никакого ��пама, только чайная любовь. Отпишитесь в любое время.',
     
     // Contact Info
     'contact.phone': '+7 702 201 0652',
@@ -163,7 +173,7 @@ const translations: Record<string, Record<string, string>> = {
     
     // Why Choose section
     'why_choose.title': 'Неліктен Нирвана Шайды Таңдау Керек?',
-    'why_choose.subtitle': 'Біздің шай саяхатымызды ерекше ететінді және неліктен әлемдегі шай сүйерлер біздің мұраға сенетінін табыңыз.',
+    'why_choose.subtitle': 'Біздің шай саяхатымызды ерекше ететінді және нелік��ен әлемдегі шай сүйерлер біздің мұраға сенетінін табыңыз.',
     'why_choose.expertise': 'Үш ұрпақтың тәжірибесі',
     'why_choose.global': 'Әлемнен алынған',
     'why_choose.curated': 'Таңдалған қоспалар',
@@ -173,12 +183,12 @@ const translations: Record<string, Record<string, string>> = {
     
     // Global Sourcing
     'global_sourcing.title': 'Ғаламдық Көздер, Жергілікті Жан',
-    'global_sourcing.subtitle': 'Біздің шай саяхатымыз әлемдегі ең танымал шай өңірлерін қамтиды, олардың әрқайсысы мәдениеттер мен ұрпақтарды байланыстыратын т��маша кесені жасау үшін өзіндік сипатын қосады.',
+    'global_sourcing.subtitle': 'Біздің шай саяхатымыз әлемдегі ең танымал шай өңірлерін қамтиды, олардың әрқайсысы мәдениеттер мен ұрпақтарды байланыстыратын тамаша кесені жасау үшін өзіндік сипатын қосады.',
     'global_sourcing.learn_story': 'Біздің Тарихымызды Үйреніңіз',
     
     // Featured Products
     'featured.title': 'Ұсынылатын Қоспалар',
-    'featured.subtitle': 'Сізге тыныштық пен қуаныш сәттерін әкелу үшін мұқият жасалған біздің ең сүйікті шай коллекцияларын табыңыз.',
+    'featured.subtitle': 'Сізге тыныштық пен қуаныш сәттерін әкелу үшін мұқият жасалған біздің ең сүйікті шай к��ллекцияларын табыңыз.',
     'featured.add_to_cart': 'Себетке Қосу',
     'featured.view_all': 'Барлық Өнімдерді Көру',
     
