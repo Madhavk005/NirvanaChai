@@ -43,6 +43,9 @@ export function Layout({ children }: LayoutProps) {
 
   return (
     <div className="min-h-screen bg-background font-body">
+      {/* Announcement Bar */}
+      <AnnouncementBar />
+
       {/* Header */}
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border transition-all duration-300 shadow-sm">
         {/* Top Bar */}
