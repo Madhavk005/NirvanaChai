@@ -102,7 +102,57 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Responsive improvements */
+  @media (max-width: 640px) {
+    .text-responsive {
+      font-size: clamp(1rem, 4vw, 1.5rem);
+    }
+
+    .heading-responsive {
+      font-size: clamp(1.5rem, 8vw, 3rem);
+    }
+  }
+
+  /* Smooth transitions for all interactive elements */
+  button, a, [role="button"] {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-sage-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-sage-400 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-sage-500;
+  }
+
+  /* Focus indicators */
+  *:focus {
+    @apply outline-none ring-2 ring-sage-400 ring-opacity-50;
+  }
+
+  /* Image optimization */
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
