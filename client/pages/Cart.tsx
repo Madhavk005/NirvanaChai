@@ -182,11 +182,11 @@ export default function Cart() {
                           <p className="text-sm text-sage-600">{item.weight}</p>
                           <div className="flex items-center gap-2 mt-1">
                             <span className="text-lg font-semibold text-sage-800">
-                              ${item.price}
+                              {formatPrice(item.price)}
                             </span>
                             {item.originalPrice && (
                               <span className="text-sm text-sage-400 line-through">
-                                ${item.originalPrice}
+                                {formatPrice(item.originalPrice)}
                               </span>
                             )}
                           </div>
