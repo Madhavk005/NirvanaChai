@@ -282,41 +282,64 @@ export default function About() {
       </section>
 
       {/* Heritage Story Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-heading font-bold text-sage-800 mb-6">
+      <section className="py-16 sm:py-20 lg:py-24 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div
+            ref={heritageRef.elementRef as React.RefObject<HTMLDivElement>}
+            className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center ${fadeInUp} ${
+              heritageRef.isVisible ? fadeInUpVisible : fadeInUpHidden
+            }`}
+          >
+            {/* Text Content */}
+            <div className="order-2 lg:order-1">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-sage-800 mb-6 lg:mb-8">
                 Three Generations of Tea Mastery
               </h2>
-              <div className="space-y-4 text-sage-700 leading-relaxed">
+              <div className="space-y-6 text-sage-700 leading-relaxed text-base sm:text-lg">
                 <p>
-                  Our journey began three generations ago in the rolling hills of India, where our ancestors 
-                  first learned the ancient art of tea cultivation and processing. What started as a family 
+                  Our journey began three generations ago in the rolling hills of India, where our ancestors
+                  first learned the ancient art of tea cultivation and processing. What started as a family
                   tradition has grown into a global mission to share the finest teas with the world.
                 </p>
                 <p>
-                  Today, we honor this legacy by combining traditional knowledge with modern quality standards, 
-                  ensuring every cup of Nirvanachai carries the wisdom of generations past and the promise 
+                  Today, we honor this legacy by combining traditional knowledge with modern quality standards,
+                  ensuring every cup of Nirvanachai carries the wisdom of generations past and the promise
                   of excellence for generations to come.
                 </p>
-                <p>
-                  From our family to yours, we invite you to experience the meditation in every sip, 
+                <p className="text-chai-600 font-medium">
+                  From our family to yours, we invite you to experience the meditation in every sip,
                   the mindfulness in every moment, and the connection that only a perfect cup of tea can provide.
                 </p>
               </div>
             </div>
-            
-            <div className="bg-gradient-to-br from-sage-100 to-clay-100 rounded-2xl p-8 text-center">
-              <div className="text-6xl mb-6">🫖</div>
-              <h3 className="text-2xl font-heading font-semibold text-sage-800 mb-4">
-                Our Promise
-              </h3>
-              <p className="text-sage-700 leading-relaxed">
-                Every tea in our collection is carefully selected, ethically sourced, and packed with care 
-                to preserve the authentic flavors and aromas that make each origin unique. We believe that 
-                great tea should not only taste exceptional but also support the communities that grow it.
-              </p>
+
+            {/* Image and Promise Card */}
+            <div className="order-1 lg:order-2 space-y-8">
+              {/* Heritage Image */}
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <OptimizedImage
+                  src={teaImages.heritage}
+                  alt="Three generations of tea mastery"
+                  className="w-full h-64 sm:h-80 lg:h-96"
+                  aspectRatio="landscape"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-sage-900/40 to-transparent"></div>
+              </div>
+
+              {/* Promise Card */}
+              <div className="bg-gradient-to-br from-sage-100 to-clay-100 rounded-2xl p-6 lg:p-8 text-center shadow-lg">
+                <div className="w-16 h-16 mx-auto mb-4 bg-sage-200 rounded-full flex items-center justify-center">
+                  <div className="text-3xl">🫖</div>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-heading font-semibold text-sage-800 mb-4">
+                  Our Promise
+                </h3>
+                <p className="text-sage-700 leading-relaxed text-sm sm:text-base">
+                  Every tea in our collection is carefully selected, ethically sourced, and packed with care
+                  to preserve the authentic flavors and aromas that make each origin unique. We believe that
+                  great tea should not only taste exceptional but also support the communities that grow it.
+                </p>
+              </div>
             </div>
           </div>
         </div>
