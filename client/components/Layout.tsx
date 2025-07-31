@@ -210,7 +210,6 @@ export function Layout({ children }: LayoutProps) {
               <ul className="space-y-2 text-sm">
                 <li><Link to="/shop" className="text-sage-200 hover:text-white">Shop</Link></li>
                 <li><Link to="/about" className="text-sage-200 hover:text-white">About Us</Link></li>
-                <li><Link to="/blog" className="text-sage-200 hover:text-white">Blog</Link></li>
                 <li><Link to="/contact" className="text-sage-200 hover:text-white">Contact</Link></li>
               </ul>
             </div>
