@@ -256,10 +256,10 @@ export default function Index() {
                   </p>
                   <div className="flex justify-between items-center">
                     <span className="text-2xl font-semibold text-sage-800">
-                      {product.price}
+                      {formatPrice(product.price)}
                     </span>
                     <button className="bg-sage-600 hover:bg-sage-700 text-white px-6 py-2 rounded-full transition-colors">
-                      Add to Cart
+                      {t('featured.add_to_cart', 'Add to Cart')}
                     </button>
                   </div>
                 </div>
