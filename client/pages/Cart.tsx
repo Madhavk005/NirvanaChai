@@ -427,20 +427,20 @@ export default function Cart() {
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between text-sage-600">
                     <span>Subtotal</span>
-                    <span>${subtotal.toFixed(2)}</span>
+                    <span>{formatPrice(subtotal)}</span>
                   </div>
                   <div className="flex justify-between text-sage-600">
                     <span>Shipping</span>
-                    <span>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
+                    <span>{shipping === 0 ? 'Free' : formatPrice(shipping)}</span>
                   </div>
                   <div className="flex justify-between text-sage-600">
                     <span>Tax</span>
-                    <span>${tax.toFixed(2)}</span>
+                    <span>{formatPrice(tax)}</span>
                   </div>
                   <div className="border-t border-border pt-3">
                     <div className="flex justify-between text-lg font-semibold text-sage-800">
                       <span>Total</span>
-                      <span>${total.toFixed(2)}</span>
+                      <span>{formatPrice(total)}</span>
                     </div>
                   </div>
                 </div>
