@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Minus, Plus, Trash2, ShoppingBag, CreditCard, Truck, Shield, ArrowRight } from 'lucide-react';
+import { useLanguageCurrency } from '../contexts/LanguageCurrencyContext';
 
 export default function Cart() {
   const [cartItems, setCartItems] = useState([
