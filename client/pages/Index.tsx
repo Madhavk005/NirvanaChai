@@ -21,34 +21,40 @@ export default function Index() {
 
   const features = [
     {
+      key: "expertise",
       icon: <Award className="h-12 w-12 text-sage-600" />,
-      title: "Three generations of expertise",
-      description: "Crafted with knowledge passed down through generations of tea masters"
+      title: "Three generations of mastery",
+      description: "Traditional wisdom passed down through generations of tea artisans"
     },
     {
+      key: "global",
       icon: <Globe className="h-12 w-12 text-sage-600" />,
-      title: "Sourced globally",
-      description: "From India, Sri Lanka, Kenya, China, and Vietnam - the world's finest tea regions"
+      title: "Ethically sourced worldwide",
+      description: "Premium teas from the world's most celebrated tea gardens"
     },
     {
+      key: "curated",
       icon: <Leaf className="h-12 w-12 text-sage-600" />,
-      title: "Curated blends & single-origin",
-      description: "Carefully selected premium teas and expertly crafted signature blends"
+      title: "Mindfully crafted blends",
+      description: "Each blend tells a story of flavor, aroma, and cultural heritage"
     },
     {
+      key: "pure",
       icon: <Heart className="h-12 w-12 text-sage-600" />,
-      title: "Pure ingredients",
-      description: "No artificial additives - just pure, natural tea leaves and botanicals"
+      title: "Pure, natural ingredients",
+      description: "No artificial additives — just the pure essence of tea"
     },
     {
+      key: "sustainable",
       icon: <Recycle className="h-12 w-12 text-sage-600" />,
-      title: "Sustainably sourced",
-      description: "Ethically crafted with respect for our planet and tea communities"
+      title: "Sustainably cultivated",
+      description: "Supporting communities and preserving tea traditions"
     },
     {
+      key: "fresh",
       icon: <Package className="h-12 w-12 text-sage-600" />,
-      title: "Freshly packed",
-      description: "Maximum aroma & flavor preserved in every package we send"
+      title: "Peak freshness guaranteed",
+      description: "From garden to cup in days, not months"
     }
   ];
 
