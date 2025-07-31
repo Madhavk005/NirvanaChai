@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Leaf, Globe, Award, Heart, Recycle, Package } from 'lucide-react';
+import { ArrowRight, Leaf, Globe, Award, Heart, Recycle, Package, MapPin, Truck } from 'lucide-react';
 import { useLanguageCurrency } from '../contexts/LanguageCurrencyContext';
 import { OptimizedImage, teaImages } from '../components/OptimizedImage';
-import { useScrollReveal, fadeInUp, fadeInUpVisible, fadeInUpHidden } from '../hooks/useScrollReveal';
+import { useEnhancedMotion, useHoverMotion, useStaggeredMotion } from '../hooks/useEnhancedMotion';
+import { useTranslation } from 'react-i18next';
 
 export default function Index() {
   const { t, formatPrice } = useLanguageCurrency();
