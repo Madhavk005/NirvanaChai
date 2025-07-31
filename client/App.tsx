@@ -56,8 +56,10 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <ToastProvider />
         <LanguageCurrencyProvider>
           <ElegantLoader isLoading={isLoading} onComplete={() => setIsLoading(false)} />
+          <CartDrawer />
           <BrowserRouter>
             <Layout>
               <Routes>
