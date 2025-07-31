@@ -16,6 +16,7 @@ export function Layout({ children }: LayoutProps) {
   const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
   const location = useLocation();
   const { currentLanguage, languages, setLanguage, currentCurrency, currencies, setCurrency, t } = useLanguageCurrency();
+  const { getTotalItems, toggleCart } = useCartStore();
 
   const languageRef = useRef<HTMLDivElement>(null);
   const currencyRef = useRef<HTMLDivElement>(null);
