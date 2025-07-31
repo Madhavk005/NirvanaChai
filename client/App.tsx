@@ -28,12 +28,10 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/shop" element={<Shop />} />
-            <Route path="/about" element={<PlaceholderPage title="About Us" description="Learn about our three generations of tea expertise and global sourcing story." />} />
-            <Route path="/blog" element={<PlaceholderPage title="Ritual Journal" description="Discover tea wisdom, brewing guides, and stories from our global tea community." />} />
-            <Route path="/community" element={<PlaceholderPage title="Community" description="Join our global tea family and share your tea moments with fellow enthusiasts." />} />
-            <Route path="/contact" element={<PlaceholderPage title="Contact Us" description="Get in touch with our tea experts for personalized recommendations and support." />} />
-            <Route path="/account" element={<PlaceholderPage title="My Account" description="Manage your orders, preferences, and tea journey with us." />} />
-            <Route path="/cart" element={<PlaceholderPage title="Shopping Cart" description="Review your selected teas before completing your order." />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="/faq" element={<PlaceholderPage title="FAQ" description="Find answers to common questions about our teas, shipping, and more." />} />
             <Route path="/shipping" element={<PlaceholderPage title="Shipping Info" description="Learn about our delivery options and shipping policies." />} />
             <Route path="/returns" element={<PlaceholderPage title="Returns" description="Information about our return and refund policies." />} />
