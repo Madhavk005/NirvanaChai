@@ -135,10 +135,10 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-sage-800 mb-4">
-              Why Choose Nirvanachai?
+              {t('why_choose.title', 'Why Choose Nirvanachai?')}
             </h2>
             <p className="text-lg text-sage-600 max-w-2xl mx-auto">
-              Discover what makes our tea journey extraordinary and why tea lovers worldwide trust our heritage.
+              {t('why_choose.subtitle', 'Discover what makes our tea journey extraordinary and why tea lovers worldwide trust our heritage.')}
             </p>
           </div>
 
