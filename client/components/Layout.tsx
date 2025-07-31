@@ -168,14 +168,21 @@ export function Layout({ children }: LayoutProps) {
               <Link to="/account" className="p-2 hover:bg-muted rounded-md transition-all duration-200 hover:scale-110">
                 <User className="h-4 w-4 sm:h-5 sm:w-5" />
               </Link>
-              <Link to="/cart" className="p-2 hover:bg-muted rounded-md relative group transition-all duration-200 hover:scale-110">
+              <button
+                onClick={toggleCart}
+                className="p-2 hover:bg-muted rounded-md relative group transition-all duration-200 hover:scale-110"
+              >
                 <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform duration-200" />
-                <span className="absolute -top-1 -right-1 bg-gradient-to-r from-sage-600 to-chai-600 text-white text-xs rounded-full h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center font-bold shadow-lg border-2 border-white">
-                  0
-                </span>
-                {/* Pulse animation for new items */}
-                <div className="absolute -top-1 -right-1 bg-sage-600 rounded-full h-4 w-4 sm:h-5 sm:w-5 animate-ping opacity-75"></div>
-              </Link>
+                {getTotalItems() > 0 && (
+                  <>
+                    <span className="absolute -top-1 -right-1 bg-gradient-to-r from-sage-600 to-chai-600 text-white text-xs rounded-full h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                      {getTotalItems()}
+                    </span>
+                    {/* Pulse animation for new items */}
+                    <div className="absolute -top-1 -right-1 bg-sage-600 rounded-full h-4 w-4 sm:h-5 sm:w-5 animate-ping opacity-75"></div>
+                  </>
+                )}
+              </button>
               
               {/* Mobile Menu Button */}
               <button
