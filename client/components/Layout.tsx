@@ -17,25 +17,26 @@ export function Layout({ children }: LayoutProps) {
   const languageRef = useRef<HTMLDivElement>(null);
   const currencyRef = useRef<HTMLDivElement>(null);
 
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (languageRef.current && !languageRef.current.contains(event.target as Node)) {
+        setIsLanguageOpen(false);
+      }
+      if (currencyRef.current && !currencyRef.current.contains(event.target as Node)) {
+        setIsCurrencyOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'Shop', href: '/shop' },
-    { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' },
-  ];
-
-  const languages = [
-    { code: 'en', name: 'English', flag: '🇺🇸' },
-    { code: 'ru', name: 'Русский', flag: '🇷🇺' },
-    { code: 'kz', name: 'Қазақша', flag: '🇰🇿' },
-  ];
-
-  const currencies = [
-    { code: 'USD', symbol: '$' },
-    { code: 'EUR', symbol: '€' },
-    { code: 'RUB', symbol: '₽' },
-    { code: 'KZT', symbol: '₸' },
-    { code: 'INR', symbol: '₹' },
+    { name: t('nav.home', 'Home'), href: '/' },
+    { name: t('nav.shop', 'Shop'), href: '/shop' },
+    { name: t('nav.about', 'About'), href: '/about' },
+    { name: t('nav.contact', 'Contact'), href: '/contact' },
   ];
 
   return (
