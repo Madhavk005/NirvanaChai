@@ -158,9 +158,9 @@ export function Layout({ children }: LayoutProps) {
               <Link to="/account" className="p-2 hover:bg-muted rounded-md">
                 <User className="h-5 w-5" />
               </Link>
-              <Link to="/cart" className="p-2 hover:bg-muted rounded-md relative">
-                <ShoppingCart className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 bg-accent text-accent-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
+              <Link to="/cart" className="p-2 hover:bg-muted rounded-md relative group transition-all duration-200">
+                <ShoppingCart className="h-5 w-5 group-hover:scale-110 transition-transform duration-200" />
+                <span className="absolute -top-1 -right-1 bg-sage-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium shadow-lg animate-pulse">
                   0
                 </span>
               </Link>
