@@ -170,8 +170,9 @@ export function Layout({ children }: LayoutProps) {
               
               {/* Mobile Menu Button */}
               <button
-                className="md:hidden p-2 hover:bg-muted rounded-md"
+                className="lg:hidden p-2 hover:bg-muted rounded-md transition-all duration-200 hover:scale-110"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Toggle mobile menu"
               >
                 {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </button>
