@@ -220,40 +220,41 @@ export default function Index() {
       <section className="py-16 sm:py-20 lg:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
-            ref={featuresRef.elementRef as React.RefObject<HTMLDivElement>}
-            className={`text-center mb-16 ${fadeInUp} ${
-              featuresRef.isVisible ? fadeInUpVisible : fadeInUpHidden
-            }`}
+            ref={featuresMotion.elementRef as React.RefObject<HTMLDivElement>}
+            style={featuresMotion.getMotionStyles('fadeInUp')}
+            className="text-center mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-sage-800 mb-4">
-              {t('why_choose.title', 'Why Choose Nirvanachai?')}
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-sage-800 mb-6">
+              {t('why_choose.title', 'Why Tea Lovers Choose Nirvanachai')}
             </h2>
-            <p className="text-lg sm:text-xl text-sage-600 max-w-3xl mx-auto leading-relaxed">
-              {t('why_choose.subtitle', 'Discover what makes our tea journey extraordinary and why tea lovers worldwide trust our heritage.')}
+            <p className="text-lg sm:text-xl text-sage-600 max-w-4xl mx-auto leading-relaxed">
+              {t('why_choose.subtitle', 'Discover the difference that three generations of passion, premium sourcing, and mindful curation make in every sip.')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {features.map((feature, index) => {
-              const featureReveal = useScrollReveal({ threshold: 0.2 });
+              const hoverMotion = useHoverMotion();
 
               return (
                 <div
                   key={index}
-                  ref={featureReveal.elementRef as React.RefObject<HTMLDivElement>}
-                  className={`bg-card border border-border rounded-2xl p-6 lg:p-8 text-center hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:scale-105 group ${fadeInUp} ${
-                    featureReveal.isVisible ? fadeInUpVisible : fadeInUpHidden
-                  }`}
-                  style={{ transitionDelay: `${index * 150}ms` }}
+                  ref={featureStaggered[index].elementRef as React.RefObject<HTMLDivElement>}
+                  style={{
+                    ...featureStaggered[index].getMotionStyles('fadeInUp'),
+                    ...hoverMotion.getHoverStyles({ scale: 1.03, translateY: -8 })
+                  }}
+                  {...hoverMotion.hoverProps}
+                  className="bg-card border border-border rounded-2xl p-6 lg:p-8 text-center group cursor-pointer"
                 >
                   <div className="flex justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
                     {feature.icon}
                   </div>
                   <h3 className="text-lg sm:text-xl font-heading font-semibold text-sage-800 mb-4 group-hover:text-sage-900 transition-colors">
-                    {feature.title}
+                    {t(`why_choose.${feature.key}`, feature.title)}
                   </h3>
                   <p className="text-sage-600 leading-relaxed text-sm sm:text-base group-hover:text-sage-700 transition-colors">
-                    {feature.description}
+                    {t(`why_choose.${feature.key}_desc`, feature.description)}
                   </p>
                 </div>
               );
