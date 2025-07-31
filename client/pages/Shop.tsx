@@ -614,28 +614,50 @@ export default function Shop() {
                       </div>
 
                       {/* Price and Actions */}
-                      <div className={`mt-auto ${viewMode === 'list' ? 'flex items-end justify-between' : 'space-y-4'}`}>
-                        <div className={`${viewMode === 'list' ? 'flex-grow' : ''}`}>
-                          <div className="flex items-baseline gap-3 mb-2">
-                            <span className="text-2xl lg:text-3xl font-bold text-sage-800">
-                              {formatPrice(product.price)}
-                            </span>
-                            {product.originalPrice && (
-                              <span className="text-lg text-sage-400 line-through">
-                                {formatPrice(product.originalPrice)}
-                              </span>
-                            )}
-                          </div>
-                          {product.originalPrice && (
-                            <div className="flex items-center gap-2">
-                              <span className="text-sm text-green-600 font-bold bg-green-50 px-3 py-1 rounded-lg">
-                                Save {formatPrice(product.originalPrice - product.price)}
-                              </span>
-                              <span className="text-xs text-green-600 font-semibold">
-                                ({Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% off)
-                              </span>
+                      <div className={`mt-auto ${viewMode === 'list' ? 'flex items-end justify-between gap-6' : 'space-y-5'}`}>
+                        <div className={`${viewMode === 'list' ? 'flex-shrink-0' : ''}`}>
+                          {/* Price Display */}
+                          <div className="space-y-2">
+                            <div className="flex items-baseline gap-3">
+                              <div className="price-display">
+                                <span className="text-2xl lg:text-3xl font-bold text-sage-800 tabular-nums">
+                                  {formatPrice(product.price)}
+                                </span>
+                              </div>
+                              {product.originalPrice && (
+                                <div className="original-price">
+                                  <span className="text-lg text-sage-400 line-through tabular-nums">
+                                    {formatPrice(product.originalPrice)}
+                                  </span>
+                                </div>
+                              )}
                             </div>
-                          )}
+
+                            {/* Savings Display */}
+                            {product.originalPrice && (
+                              <div className="flex flex-wrap items-center gap-2">
+                                <span className="text-sm text-green-700 font-bold bg-green-100 px-3 py-1.5 rounded-lg border border-green-200">
+                                  Save {formatPrice(product.originalPrice - product.price)}
+                                </span>
+                                <span className="text-xs text-green-700 font-semibold bg-green-50 px-2 py-1 rounded-md">
+                                  {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF
+                                </span>
+                              </div>
+                            )}
+
+                            {/* Currency Info */}
+                            <div className="flex items-center gap-2 text-xs text-sage-500">
+                              <span className="flex items-center gap-1">
+                                <span className="w-1.5 h-1.5 bg-sage-400 rounded-full"></span>
+                                Prices in {currentCurrency.name}
+                              </span>
+                              {product.originalPrice && (
+                                <span className="text-green-600 font-medium">
+                                  Limited time offer
+                                </span>
+                              )}
+                            </div>
+                          </div>
                         </div>
                         
                         <div className={`${viewMode === 'list' ? 'ml-6' : ''}`}>
