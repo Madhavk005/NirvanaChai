@@ -1,39 +1,54 @@
-import { Leaf, Globe, Award, Heart, Recycle, Package } from 'lucide-react';
-import { OptimizedImage, teaImages } from '../components/OptimizedImage';
-import { useScrollReveal, fadeInUp, fadeInUpVisible, fadeInUpHidden, fadeInLeft, fadeInLeftVisible, fadeInLeftHidden, fadeInRight, fadeInRightVisible, fadeInRightHidden } from '../hooks/useScrollReveal';
+import { Leaf, Globe, Award, Heart, Recycle, Package } from "lucide-react";
+import { OptimizedImage, teaImages } from "../components/OptimizedImage";
+import {
+  useScrollReveal,
+  fadeInUp,
+  fadeInUpVisible,
+  fadeInUpHidden,
+  fadeInLeft,
+  fadeInLeftVisible,
+  fadeInLeftHidden,
+  fadeInRight,
+  fadeInRightVisible,
+  fadeInRightHidden,
+} from "../hooks/useScrollReveal";
 
 export default function About() {
   const features = [
     {
       icon: <Award className="h-12 w-12 text-sage-600" />,
       title: "Three generations of expertise",
-      description: "Crafted with knowledge passed down through generations of tea masters"
+      description:
+        "Crafted with knowledge passed down through generations of tea masters",
     },
     {
       icon: <Globe className="h-12 w-12 text-sage-600" />,
       title: "Sourced from India, Sri Lanka, Kenya, China, and Vietnam",
-      description: "Handpicked from the world's most celebrated tea-growing regions"
+      description:
+        "Handpicked from the world's most celebrated tea-growing regions",
     },
     {
       icon: <Leaf className="h-12 w-12 text-sage-600" />,
       title: "Curated blends & single-origin offerings",
-      description: "Carefully selected premium teas and expertly crafted signature blends"
+      description:
+        "Carefully selected premium teas and expertly crafted signature blends",
     },
     {
       icon: <Heart className="h-12 w-12 text-sage-600" />,
       title: "Pure ingredients, no artificial additives",
-      description: "Just pure, natural tea leaves and botanicals in every cup"
+      description: "Just pure, natural tea leaves and botanicals in every cup",
     },
     {
       icon: <Recycle className="h-12 w-12 text-sage-600" />,
       title: "Sustainably sourced, ethically crafted",
-      description: "Respecting our planet and supporting tea-growing communities"
+      description:
+        "Respecting our planet and supporting tea-growing communities",
     },
     {
       icon: <Package className="h-12 w-12 text-sage-600" />,
       title: "Freshly packed for maximum aroma & flavor",
-      description: "Premium quality preserved in every package we send"
-    }
+      description: "Premium quality preserved in every package we send",
+    },
   ];
 
   const regions = [
@@ -42,43 +57,50 @@ export default function About() {
       location: "Himalayan foothills, India",
       description: "Elegant, floral teas from the Himalayan foothills",
       image: "🏔️",
-      characteristics: "Known for its delicate muscatel flavor and golden liquor, Darjeeling teas are often called the 'Champagne of Teas'."
+      characteristics:
+        "Known for its delicate muscatel flavor and golden liquor, Darjeeling teas are often called the 'Champagne of Teas'.",
     },
     {
-      name: "Assam", 
+      name: "Assam",
       location: "Northeast India",
       description: "Bold, malty black teas with deep character",
       image: "🌿",
-      characteristics: "Rich, full-bodied teas perfect for breakfast blends, with a distinctive malty sweetness and robust flavor."
+      characteristics:
+        "Rich, full-bodied teas perfect for breakfast blends, with a distinctive malty sweetness and robust flavor.",
     },
     {
       name: "Kenya",
       location: "East Africa",
       description: "Bright, brisk flavors ideal for rich blends",
       image: "🦒",
-      characteristics: "High-grown teas with exceptional brightness and strength, perfect for adding body to breakfast blends."
+      characteristics:
+        "High-grown teas with exceptional brightness and strength, perfect for adding body to breakfast blends.",
     },
     {
       name: "Ceylon",
       location: "Sri Lanka",
       description: "Crisp, citrusy profiles from high-grown estates",
       image: "🌴",
-      characteristics: "Clean, bright teas with citrusy notes and excellent clarity, grown in high-altitude gardens."
+      characteristics:
+        "Clean, bright teas with citrusy notes and excellent clarity, grown in high-altitude gardens.",
     },
     {
       name: "China",
       location: "Various provinces",
-      description: "Ancient tea traditions and refined green, white, and oolong varieties",
+      description:
+        "Ancient tea traditions and refined green, white, and oolong varieties",
       image: "🏮",
-      characteristics: "The birthplace of tea, offering diverse flavors from delicate whites to complex oolongs and earthy pu-erhs."
+      characteristics:
+        "The birthplace of tea, offering diverse flavors from delicate whites to complex oolongs and earthy pu-erhs.",
     },
     {
       name: "Vietnam",
       location: "Southeast Asia",
       description: "Smooth, delicate teas with unique regional character",
       image: "🎋",
-      characteristics: "Artisanal teas with unique processing methods, offering smooth, clean flavors with distinctive regional notes."
-    }
+      characteristics:
+        "Artisanal teas with unique processing methods, offering smooth, clean flavors with distinctive regional notes.",
+    },
   ];
 
   const heroRef = useScrollReveal();
@@ -119,7 +141,8 @@ export default function About() {
 
               <div className="text-lg sm:text-xl leading-relaxed space-y-4 max-w-2xl">
                 <p className="text-sage-100">
-                  More than a drink — tea is a daily ritual, a quiet companion, and a global connector.
+                  More than a drink — tea is a daily ritual, a quiet companion,
+                  and a global connector.
                 </p>
                 <p className="text-sage-200">
                   Join us on a journey that spans continents and generations.
@@ -153,7 +176,9 @@ export default function About() {
             <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
               <div className="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
             </div>
-            <span className="text-sm mt-2 text-white/70">Scroll to explore</span>
+            <span className="text-sm mt-2 text-white/70">
+              Scroll to explore
+            </span>
           </div>
         </div>
       </section>
@@ -171,7 +196,8 @@ export default function About() {
               Why Choose Nirvanachai?
             </h2>
             <p className="text-lg sm:text-xl text-sage-600 max-w-3xl mx-auto leading-relaxed">
-              Discover what makes our tea journey extraordinary and why tea lovers worldwide trust our heritage.
+              Discover what makes our tea journey extraordinary and why tea
+              lovers worldwide trust our heritage.
             </p>
           </div>
 
@@ -182,7 +208,9 @@ export default function About() {
               return (
                 <div
                   key={index}
-                  ref={featureReveal.elementRef as React.RefObject<HTMLDivElement>}
+                  ref={
+                    featureReveal.elementRef as React.RefObject<HTMLDivElement>
+                  }
                   className={`bg-card border border-border rounded-2xl p-6 lg:p-8 text-center hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:scale-105 group ${fadeInUp} ${
                     featureReveal.isVisible ? fadeInUpVisible : fadeInUpHidden
                   }`}
@@ -218,8 +246,9 @@ export default function About() {
             </h2>
             <div className="text-lg sm:text-xl text-sage-700 max-w-4xl mx-auto leading-relaxed">
               <p className="mb-4">
-                While proudly rooted in India's rich tea heritage, Nirvanachai goes beyond borders to source
-                handpicked, high-grade teas from some of the most celebrated tea-growing regions in the world:
+                While proudly rooted in India's rich tea heritage, Nirvanachai
+                goes beyond borders to source handpicked, high-grade teas from
+                some of the most celebrated tea-growing regions in the world:
               </p>
             </div>
           </div>
@@ -233,13 +262,15 @@ export default function About() {
                 teaImages.kenya,
                 teaImages.ceylon,
                 teaImages.china,
-                teaImages.vietnam
+                teaImages.vietnam,
               ];
 
               return (
                 <div
                   key={index}
-                  ref={regionReveal.elementRef as React.RefObject<HTMLDivElement>}
+                  ref={
+                    regionReveal.elementRef as React.RefObject<HTMLDivElement>
+                  }
                   className={`group bg-card border border-border rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2 ${fadeInUp} ${
                     regionReveal.isVisible ? fadeInUpVisible : fadeInUpHidden
                   }`}
@@ -256,7 +287,9 @@ export default function About() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     <div className="absolute bottom-4 left-4 text-white">
                       <span className="text-3xl mr-2">{region.image}</span>
-                      <span className="text-lg font-semibold">{region.location}</span>
+                      <span className="text-lg font-semibold">
+                        {region.location}
+                      </span>
                     </div>
                   </div>
 
@@ -297,18 +330,22 @@ export default function About() {
               </h2>
               <div className="space-y-6 text-sage-700 leading-relaxed text-base sm:text-lg">
                 <p>
-                  Our journey began three generations ago in the rolling hills of India, where our ancestors
-                  first learned the ancient art of tea cultivation and processing. What started as a family
-                  tradition has grown into a global mission to share the finest teas with the world.
+                  Our journey began three generations ago in the rolling hills
+                  of India, where our ancestors first learned the ancient art of
+                  tea cultivation and processing. What started as a family
+                  tradition has grown into a global mission to share the finest
+                  teas with the world.
                 </p>
                 <p>
-                  Today, we honor this legacy by combining traditional knowledge with modern quality standards,
-                  ensuring every cup of Nirvanachai carries the wisdom of generations past and the promise
-                  of excellence for generations to come.
+                  Today, we honor this legacy by combining traditional knowledge
+                  with modern quality standards, ensuring every cup of
+                  Nirvanachai carries the wisdom of generations past and the
+                  promise of excellence for generations to come.
                 </p>
                 <p className="text-chai-600 font-medium">
-                  From our family to yours, we invite you to experience the meditation in every sip,
-                  the mindfulness in every moment, and the connection that only a perfect cup of tea can provide.
+                  From our family to yours, we invite you to experience the
+                  meditation in every sip, the mindfulness in every moment, and
+                  the connection that only a perfect cup of tea can provide.
                 </p>
               </div>
             </div>
@@ -335,9 +372,11 @@ export default function About() {
                   Our Promise
                 </h3>
                 <p className="text-sage-700 leading-relaxed text-sm sm:text-base">
-                  Every tea in our collection is carefully selected, ethically sourced, and packed with care
-                  to preserve the authentic flavors and aromas that make each origin unique. We believe that
-                  great tea should not only taste exceptional but also support the communities that grow it.
+                  Every tea in our collection is carefully selected, ethically
+                  sourced, and packed with care to preserve the authentic
+                  flavors and aromas that make each origin unique. We believe
+                  that great tea should not only taste exceptional but also
+                  support the communities that grow it.
                 </p>
               </div>
             </div>
@@ -373,25 +412,30 @@ export default function About() {
               {
                 icon: "🌱",
                 title: "Sustainability",
-                description: "We partner with farms that prioritize environmental stewardship and sustainable growing practices."
+                description:
+                  "We partner with farms that prioritize environmental stewardship and sustainable growing practices.",
               },
               {
                 icon: "🤝",
                 title: "Fair Trade",
-                description: "Our partnerships ensure fair wages and working conditions for tea growers and their communities."
+                description:
+                  "Our partnerships ensure fair wages and working conditions for tea growers and their communities.",
               },
               {
                 icon: "✨",
                 title: "Quality",
-                description: "We never compromise on quality, selecting only the finest leaves that meet our exacting standards."
-              }
+                description:
+                  "We never compromise on quality, selecting only the finest leaves that meet our exacting standards.",
+              },
             ].map((value, index) => {
               const valueReveal = useScrollReveal({ threshold: 0.3 });
 
               return (
                 <div
                   key={index}
-                  ref={valueReveal.elementRef as React.RefObject<HTMLDivElement>}
+                  ref={
+                    valueReveal.elementRef as React.RefObject<HTMLDivElement>
+                  }
                   className={`bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 lg:p-8 hover:bg-white/20 transition-all duration-500 hover:-translate-y-2 group ${fadeInUp} ${
                     valueReveal.isVisible ? fadeInUpVisible : fadeInUpHidden
                   }`}

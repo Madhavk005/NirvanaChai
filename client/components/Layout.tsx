@@ -9,12 +9,17 @@ import {
   Phone,
   Mail,
   ChevronDown,
+  Heart,
+  Bell,
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useLanguageCurrency } from "../contexts/LanguageCurrencyContext";
-import { useCartStore } from "../stores/useStore";
+import { useCartStore, useWishlistStore, useUIStore } from "../stores/useStore";
 import { FloatingActions } from "./FloatingActions";
 import { AnnouncementBar } from "./AnnouncementBar";
+import SearchAutocomplete from "./SearchAutocomplete";
+import { ProductInCart } from "../stores/useStore";
+import { useRecentlyViewedStore } from "../stores/useStore";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -24,6 +29,7 @@ export function Layout({ children }: LayoutProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const location = useLocation();
   const {
     currentLanguage,
@@ -35,6 +41,8 @@ export function Layout({ children }: LayoutProps) {
     t,
   } = useLanguageCurrency();
   const { getTotalItems, toggleCart } = useCartStore();
+  const { getWishlistCount } = useWishlistStore();
+  const { addItem: addToRecentlyViewed } = useRecentlyViewedStore();
 
   const languageRef = useRef<HTMLDivElement>(null);
   const currencyRef = useRef<HTMLDivElement>(null);
@@ -67,8 +75,22 @@ export function Layout({ children }: LayoutProps) {
     { name: t("nav.contact", "Contact"), href: "/contact" },
   ];
 
+  // Sample products for search (in a real app, this would come from an API)
+  // Removed sampleProducts to fix type errors and use backend data instead
+  const sampleProducts: ProductInCart[] = [];
+
+  const handleProductSelect = (product: ProductInCart) => {
+    addToRecentlyViewed(product);
+    setIsSearchOpen(false);
+  };
+
+  const handleSearch = (query: string) => {
+    console.log('Searching for:', query);
+    setIsSearchOpen(false);
+  };
+
   return (
-    <div className="min-h-screen bg-background font-body">
+    <div className="min-h-screen font-body transition-colors duration-300">
       {/* Announcement Bar */}
       <AnnouncementBar />
 
@@ -202,15 +224,49 @@ export function Layout({ children }: LayoutProps) {
 
             {/* Right Actions */}
             <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4">
-              <button className="p-2 hover:bg-muted rounded-md transition-all duration-200 hover:scale-110">
-                <Search className="h-4 w-4 sm:h-5 sm:w-5" />
-              </button>
+              {/* Search */}
+              <div className="relative">
+                <button 
+                  onClick={() => setIsSearchOpen(!isSearchOpen)}
+                  className="p-2 hover:bg-muted rounded-md transition-all duration-200 hover:scale-110"
+                >
+                  <Search className="h-4 w-4 sm:h-5 sm:w-5" />
+                </button>
+                {isSearchOpen && (
+                  <div className="absolute right-0 mt-2 w-80 z-50">
+                    <SearchAutocomplete
+                      products={sampleProducts}
+                      onProductSelect={handleProductSelect}
+                      onSearch={handleSearch}
+                      placeholder="Search teas..."
+                      className="w-full"
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* Wishlist */}
+              <Link
+                to="/wishlist"
+                className="p-2 hover:bg-muted rounded-md relative group transition-all duration-200 hover:scale-110"
+              >
+                <Heart className="h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform duration-200" />
+                {getWishlistCount() > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center font-bold shadow-lg border-2 border-white">
+                    {getWishlistCount()}
+                  </span>
+                )}
+              </Link>
+
+              {/* Account */}
               <Link
                 to="/account"
                 className="p-2 hover:bg-muted rounded-md transition-all duration-200 hover:scale-110"
               >
                 <User className="h-4 w-4 sm:h-5 sm:w-5" />
               </Link>
+
+              {/* Cart */}
               <button
                 onClick={toggleCart}
                 className="p-2 hover:bg-muted rounded-md relative group transition-all duration-200 hover:scale-110"

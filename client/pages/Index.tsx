@@ -19,6 +19,8 @@ import {
 } from "../hooks/useSimpleAnimation";
 import { useTranslation } from "react-i18next";
 import { CompactTrustIndicators } from "../components/TrustIndicators";
+import RecentlyViewed from "../components/RecentlyViewed";
+import { useRecentlyViewedStore } from "../stores/useStore";
 
 export default function Index() {
   const {
@@ -29,6 +31,8 @@ export default function Index() {
     isLocationDetected,
   } = useLanguageCurrency();
   const { t } = useTranslation();
+  const { getRecentlyViewed } = useRecentlyViewedStore();
+  const recentlyViewed = getRecentlyViewed();
 
   // Features array - moved before hooks to prevent reference error
   const features = [
@@ -436,6 +440,22 @@ export default function Index() {
           </div>
         </div>
       </section>
+
+      {/* Recently Viewed Section */}
+      {recentlyViewed.length > 0 && (
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <RecentlyViewed
+              onProductClick={(product) => {
+                // In a real app, this would navigate to the product detail page
+                console.log('Viewing recently viewed product:', product.name);
+              }}
+              maxItems={4}
+              showTitle={true}
+            />
+          </div>
+        </section>
+      )}
 
       {/* Newsletter Signup - Enhanced with FOMO and value props */}
       <section className="py-20 bg-sage-800 text-white relative overflow-hidden">

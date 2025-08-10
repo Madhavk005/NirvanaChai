@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 interface TeaLoaderProps {
   isLoading: boolean;
@@ -11,7 +11,7 @@ export function TeaLoader({ isLoading, onComplete }: TeaLoaderProps) {
   useEffect(() => {
     if (isLoading) {
       const interval = setInterval(() => {
-        setProgress(prev => {
+        setProgress((prev) => {
           if (prev >= 100) {
             clearInterval(interval);
             setTimeout(() => onComplete?.(), 500);
@@ -65,7 +65,7 @@ export function TeaLoader({ isLoading, onComplete }: TeaLoaderProps) {
                 strokeLinecap="round"
               />
               {/* Steam */}
-              <g className="animate-bounce" style={{ animationDelay: '0.5s' }}>
+              <g className="animate-bounce" style={{ animationDelay: "0.5s" }}>
                 <circle cx="65" cy="20" r="2" fill="#E5E7EB" opacity="0.7" />
                 <circle cx="55" cy="15" r="1.5" fill="#E5E7EB" opacity="0.5" />
                 <circle cx="70" cy="12" r="1" fill="#E5E7EB" opacity="0.6" />
@@ -75,7 +75,7 @@ export function TeaLoader({ isLoading, onComplete }: TeaLoaderProps) {
             {/* Tea Stream */}
             <div
               className="absolute top-full left-1/2 transform -translate-x-1/2"
-              style={{ left: '85%' }}
+              style={{ left: "85%" }}
             >
               <div
                 className="w-1 bg-gradient-to-b from-amber-600 to-amber-800 origin-top transition-all duration-1000 ease-out"
@@ -112,7 +112,7 @@ export function TeaLoader({ isLoading, onComplete }: TeaLoaderProps) {
               />
               {/* Tea Level */}
               <path
-                d={`M20 ${50 - (progress * 0.25)} L60 ${50 - (progress * 0.25)} L60 50 L20 50 Z`}
+                d={`M20 ${50 - progress * 0.25} L60 ${50 - progress * 0.25} L60 50 L20 50 Z`}
                 fill="#8B5A2B"
                 opacity="0.8"
                 className="transition-all duration-300 ease-out"
@@ -121,7 +121,7 @@ export function TeaLoader({ isLoading, onComplete }: TeaLoaderProps) {
               {progress > 50 && (
                 <ellipse
                   cx="40"
-                  cy={50 - (progress * 0.25)}
+                  cy={50 - progress * 0.25}
                   rx="15"
                   ry="2"
                   fill="#A0522D"
@@ -141,7 +141,7 @@ export function TeaLoader({ isLoading, onComplete }: TeaLoaderProps) {
           <p className="text-sage-600">
             Preparing the perfect cup of tea takes time...
           </p>
-          
+
           {/* Progress Bar */}
           <div className="w-64 h-2 bg-sage-200 rounded-full mx-auto overflow-hidden">
             <div
@@ -149,11 +149,9 @@ export function TeaLoader({ isLoading, onComplete }: TeaLoaderProps) {
               style={{ width: `${progress}%` }}
             />
           </div>
-          
+
           {/* Percentage */}
-          <p className="text-sm text-sage-500 font-medium">
-            {progress}%
-          </p>
+          <p className="text-sm text-sage-500 font-medium">{progress}%</p>
         </div>
 
         {/* Floating Tea Leaves */}
@@ -161,10 +159,10 @@ export function TeaLoader({ isLoading, onComplete }: TeaLoaderProps) {
           <div
             className="absolute text-sage-300 animate-bounce opacity-60"
             style={{
-              top: '20%',
-              left: '20%',
-              animationDelay: '0s',
-              animationDuration: '3s',
+              top: "20%",
+              left: "20%",
+              animationDelay: "0s",
+              animationDuration: "3s",
             }}
           >
             🍃
@@ -172,10 +170,10 @@ export function TeaLoader({ isLoading, onComplete }: TeaLoaderProps) {
           <div
             className="absolute text-sage-300 animate-bounce opacity-40"
             style={{
-              top: '30%',
-              right: '25%',
-              animationDelay: '1s',
-              animationDuration: '4s',
+              top: "30%",
+              right: "25%",
+              animationDelay: "1s",
+              animationDuration: "4s",
             }}
           >
             🍃
@@ -183,10 +181,10 @@ export function TeaLoader({ isLoading, onComplete }: TeaLoaderProps) {
           <div
             className="absolute text-sage-300 animate-bounce opacity-50"
             style={{
-              bottom: '25%',
-              left: '30%',
-              animationDelay: '2s',
-              animationDuration: '5s',
+              bottom: "25%",
+              left: "30%",
+              animationDelay: "2s",
+              animationDuration: "5s",
             }}
           >
             🍃
@@ -194,10 +192,10 @@ export function TeaLoader({ isLoading, onComplete }: TeaLoaderProps) {
           <div
             className="absolute text-sage-300 animate-bounce opacity-30"
             style={{
-              bottom: '20%',
-              right: '20%',
-              animationDelay: '1.5s',
-              animationDuration: '3.5s',
+              bottom: "20%",
+              right: "20%",
+              animationDelay: "1.5s",
+              animationDuration: "3.5s",
             }}
           >
             🍃

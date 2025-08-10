@@ -1,6 +1,15 @@
-import { useState } from 'react';
-import { Minus, Plus, Trash2, ShoppingBag, CreditCard, Truck, Shield, ArrowRight } from 'lucide-react';
-import { useLanguageCurrency } from '../contexts/LanguageCurrencyContext';
+import { useState } from "react";
+import {
+  Minus,
+  Plus,
+  Trash2,
+  ShoppingBag,
+  CreditCard,
+  Truck,
+  Shield,
+  ArrowRight,
+} from "lucide-react";
+import { useLanguageCurrency } from "../contexts/LanguageCurrencyContext";
 
 export default function Cart() {
   const { formatPrice } = useLanguageCurrency();
@@ -12,7 +21,7 @@ export default function Cart() {
       originalPrice: 29.99,
       quantity: 2,
       image: "☕",
-      weight: "100g"
+      weight: "100g",
     },
     {
       id: 2,
@@ -20,7 +29,7 @@ export default function Cart() {
       price: 32.99,
       quantity: 1,
       image: "🐉",
-      weight: "100g"
+      weight: "100g",
     },
     {
       id: 3,
@@ -28,22 +37,22 @@ export default function Cart() {
       price: 45.99,
       quantity: 1,
       image: "🏔️",
-      weight: "100g"
-    }
+      weight: "100g",
+    },
   ]);
 
   const [checkoutStep, setCheckoutStep] = useState(1);
   const [shippingInfo, setShippingInfo] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    address: '',
-    city: '',
-    country: 'Kazakhstan',
-    postalCode: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    address: "",
+    city: "",
+    country: "Kazakhstan",
+    postalCode: "",
   });
-  const [paymentMethod, setPaymentMethod] = useState('card');
+  const [paymentMethod, setPaymentMethod] = useState("card");
   const [isProcessing, setIsProcessing] = useState(false);
 
   const updateQuantity = (id: number, newQuantity: number) => {
@@ -51,28 +60,31 @@ export default function Cart() {
       removeItem(id);
       return;
     }
-    setCartItems(items =>
-      items.map(item =>
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
+    setCartItems((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, quantity: newQuantity } : item,
+      ),
     );
   };
 
   const removeItem = (id: number) => {
-    setCartItems(items => items.filter(item => item.id !== id));
+    setCartItems((items) => items.filter((item) => item.id !== id));
   };
 
-  const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
   const shipping = subtotal > 50 ? 0 : 5.99;
   const tax = subtotal * 0.12; // 12% tax
   const total = subtotal + shipping + tax;
 
   const handleCheckout = async () => {
     setIsProcessing(true);
-    
+
     // Simulate payment processing
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+
     // Clear cart and show success
     setCartItems([]);
     setCheckoutStep(4);
@@ -89,7 +101,8 @@ export default function Cart() {
               Your cart is empty
             </h1>
             <p className="text-lg text-sage-600 mb-8">
-              Discover our premium tea collection and start your journey to the perfect cup.
+              Discover our premium tea collection and start your journey to the
+              perfect cup.
             </p>
             <a
               href="/shop"
@@ -110,17 +123,33 @@ export default function Cart() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-heading font-bold text-sage-800 mb-2">
-            {checkoutStep === 4 ? 'Order Confirmed!' : 'Shopping Cart'}
+            {checkoutStep === 4 ? "Order Confirmed!" : "Shopping Cart"}
           </h1>
           {checkoutStep !== 4 && (
             <div className="flex items-center space-x-2 text-sm text-sage-600">
-              <span className={checkoutStep >= 1 ? 'text-sage-800 font-medium' : ''}>Cart</span>
+              <span
+                className={checkoutStep >= 1 ? "text-sage-800 font-medium" : ""}
+              >
+                Cart
+              </span>
               <span>→</span>
-              <span className={checkoutStep >= 2 ? 'text-sage-800 font-medium' : ''}>Shipping</span>
+              <span
+                className={checkoutStep >= 2 ? "text-sage-800 font-medium" : ""}
+              >
+                Shipping
+              </span>
               <span>→</span>
-              <span className={checkoutStep >= 3 ? 'text-sage-800 font-medium' : ''}>Payment</span>
+              <span
+                className={checkoutStep >= 3 ? "text-sage-800 font-medium" : ""}
+              >
+                Payment
+              </span>
               <span>→</span>
-              <span className={checkoutStep >= 4 ? 'text-sage-800 font-medium' : ''}>Confirmation</span>
+              <span
+                className={checkoutStep >= 4 ? "text-sage-800 font-medium" : ""}
+              >
+                Confirmation
+              </span>
             </div>
           )}
         </div>
@@ -134,11 +163,14 @@ export default function Cart() {
                 Thank You for Your Order!
               </h2>
               <p className="text-lg text-sage-600 mb-6">
-                Your order has been confirmed and will be shipped within 1-2 business days.
+                Your order has been confirmed and will be shipped within 1-2
+                business days.
               </p>
               <div className="bg-sage-50 border border-sage-200 rounded-lg p-4 mb-6">
                 <div className="text-sm text-sage-600">Order Number</div>
-                <div className="text-lg font-semibold text-sage-800">#12346</div>
+                <div className="text-lg font-semibold text-sage-800">
+                  #12346
+                </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
@@ -169,16 +201,21 @@ export default function Cart() {
                   <h2 className="text-xl font-heading font-bold text-sage-800 mb-6">
                     Your Items ({cartItems.length})
                   </h2>
-                  
+
                   <div className="space-y-6">
                     {cartItems.map((item) => (
-                      <div key={item.id} className="flex items-center gap-4 p-4 border border-border rounded-lg">
+                      <div
+                        key={item.id}
+                        className="flex items-center gap-4 p-4 border border-border rounded-lg"
+                      >
                         <div className="w-16 h-16 bg-gradient-to-br from-sage-50 to-clay-50 rounded-lg flex items-center justify-center text-2xl">
                           {item.image}
                         </div>
-                        
+
                         <div className="flex-1">
-                          <h3 className="font-semibold text-sage-800">{item.name}</h3>
+                          <h3 className="font-semibold text-sage-800">
+                            {item.name}
+                          </h3>
                           <p className="text-sm text-sage-600">{item.weight}</p>
                           <div className="flex items-center gap-2 mt-1">
                             <span className="text-lg font-semibold text-sage-800">
@@ -191,23 +228,29 @@ export default function Cart() {
                             )}
                           </div>
                         </div>
-                        
+
                         <div className="flex items-center gap-3">
                           <button
-                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                            onClick={() =>
+                              updateQuantity(item.id, item.quantity - 1)
+                            }
                             className="w-8 h-8 flex items-center justify-center border border-border rounded-md hover:bg-sage-50"
                           >
                             <Minus className="h-4 w-4" />
                           </button>
-                          <span className="w-8 text-center font-medium">{item.quantity}</span>
+                          <span className="w-8 text-center font-medium">
+                            {item.quantity}
+                          </span>
                           <button
-                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                            onClick={() =>
+                              updateQuantity(item.id, item.quantity + 1)
+                            }
                             className="w-8 h-8 flex items-center justify-center border border-border rounded-md hover:bg-sage-50"
                           >
                             <Plus className="h-4 w-4" />
                           </button>
                         </div>
-                        
+
                         <button
                           onClick={() => removeItem(item.id)}
                           className="p-2 text-red-500 hover:bg-red-50 rounded-md"
@@ -226,7 +269,7 @@ export default function Cart() {
                   <h2 className="text-xl font-heading font-bold text-sage-800 mb-6">
                     Shipping Information
                   </h2>
-                  
+
                   <form className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
@@ -236,7 +279,12 @@ export default function Cart() {
                         <input
                           type="text"
                           value={shippingInfo.firstName}
-                          onChange={(e) => setShippingInfo({...shippingInfo, firstName: e.target.value})}
+                          onChange={(e) =>
+                            setShippingInfo({
+                              ...shippingInfo,
+                              firstName: e.target.value,
+                            })
+                          }
                           required
                           className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-400"
                         />
@@ -248,13 +296,18 @@ export default function Cart() {
                         <input
                           type="text"
                           value={shippingInfo.lastName}
-                          onChange={(e) => setShippingInfo({...shippingInfo, lastName: e.target.value})}
+                          onChange={(e) =>
+                            setShippingInfo({
+                              ...shippingInfo,
+                              lastName: e.target.value,
+                            })
+                          }
                           required
                           className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-400"
                         />
                       </div>
                     </div>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-sage-700 mb-2">
@@ -263,7 +316,12 @@ export default function Cart() {
                         <input
                           type="email"
                           value={shippingInfo.email}
-                          onChange={(e) => setShippingInfo({...shippingInfo, email: e.target.value})}
+                          onChange={(e) =>
+                            setShippingInfo({
+                              ...shippingInfo,
+                              email: e.target.value,
+                            })
+                          }
                           required
                           className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-400"
                         />
@@ -275,12 +333,17 @@ export default function Cart() {
                         <input
                           type="tel"
                           value={shippingInfo.phone}
-                          onChange={(e) => setShippingInfo({...shippingInfo, phone: e.target.value})}
+                          onChange={(e) =>
+                            setShippingInfo({
+                              ...shippingInfo,
+                              phone: e.target.value,
+                            })
+                          }
                           className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-400"
                         />
                       </div>
                     </div>
-                    
+
                     <div>
                       <label className="block text-sm font-medium text-sage-700 mb-2">
                         Address *
@@ -288,13 +351,18 @@ export default function Cart() {
                       <input
                         type="text"
                         value={shippingInfo.address}
-                        onChange={(e) => setShippingInfo({...shippingInfo, address: e.target.value})}
+                        onChange={(e) =>
+                          setShippingInfo({
+                            ...shippingInfo,
+                            address: e.target.value,
+                          })
+                        }
                         required
                         className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-400"
                         placeholder="Street address, apartment, suite, etc."
                       />
                     </div>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-sage-700 mb-2">
@@ -303,7 +371,12 @@ export default function Cart() {
                         <input
                           type="text"
                           value={shippingInfo.city}
-                          onChange={(e) => setShippingInfo({...shippingInfo, city: e.target.value})}
+                          onChange={(e) =>
+                            setShippingInfo({
+                              ...shippingInfo,
+                              city: e.target.value,
+                            })
+                          }
                           required
                           className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-400"
                         />
@@ -314,7 +387,12 @@ export default function Cart() {
                         </label>
                         <select
                           value={shippingInfo.country}
-                          onChange={(e) => setShippingInfo({...shippingInfo, country: e.target.value})}
+                          onChange={(e) =>
+                            setShippingInfo({
+                              ...shippingInfo,
+                              country: e.target.value,
+                            })
+                          }
                           required
                           className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-400"
                         >
@@ -332,7 +410,12 @@ export default function Cart() {
                         <input
                           type="text"
                           value={shippingInfo.postalCode}
-                          onChange={(e) => setShippingInfo({...shippingInfo, postalCode: e.target.value})}
+                          onChange={(e) =>
+                            setShippingInfo({
+                              ...shippingInfo,
+                              postalCode: e.target.value,
+                            })
+                          }
                           className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-400"
                         />
                       </div>
@@ -347,36 +430,38 @@ export default function Cart() {
                   <h2 className="text-xl font-heading font-bold text-sage-800 mb-6">
                     Payment Method
                   </h2>
-                  
+
                   <div className="space-y-4 mb-6">
                     <label className="flex items-center p-4 border border-border rounded-lg cursor-pointer hover:bg-sage-50">
                       <input
                         type="radio"
                         name="payment"
                         value="card"
-                        checked={paymentMethod === 'card'}
+                        checked={paymentMethod === "card"}
                         onChange={(e) => setPaymentMethod(e.target.value)}
                         className="mr-3"
                       />
                       <CreditCard className="h-5 w-5 mr-3 text-sage-600" />
                       <span className="font-medium">Credit/Debit Card</span>
                     </label>
-                    
+
                     <label className="flex items-center p-4 border border-border rounded-lg cursor-pointer hover:bg-sage-50">
                       <input
                         type="radio"
                         name="payment"
                         value="paypal"
-                        checked={paymentMethod === 'paypal'}
+                        checked={paymentMethod === "paypal"}
                         onChange={(e) => setPaymentMethod(e.target.value)}
                         className="mr-3"
                       />
-                      <div className="w-5 h-5 mr-3 bg-blue-600 rounded text-white text-xs flex items-center justify-center">P</div>
+                      <div className="w-5 h-5 mr-3 bg-blue-600 rounded text-white text-xs flex items-center justify-center">
+                        P
+                      </div>
                       <span className="font-medium">PayPal</span>
                     </label>
                   </div>
 
-                  {paymentMethod === 'card' && (
+                  {paymentMethod === "card" && (
                     <div className="space-y-4">
                       <div>
                         <label className="block text-sm font-medium text-sage-700 mb-2">
@@ -388,7 +473,7 @@ export default function Cart() {
                           className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-sage-400"
                         />
                       </div>
-                      
+
                       <div className="grid grid-cols-2 gap-4">
                         <div>
                           <label className="block text-sm font-medium text-sage-700 mb-2">
@@ -423,7 +508,7 @@ export default function Cart() {
                 <h3 className="text-xl font-heading font-bold text-sage-800 mb-6">
                   Order Summary
                 </h3>
-                
+
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between text-sage-600">
                     <span>Subtotal</span>
@@ -431,7 +516,9 @@ export default function Cart() {
                   </div>
                   <div className="flex justify-between text-sage-600">
                     <span>Shipping</span>
-                    <span>{shipping === 0 ? 'Free' : formatPrice(shipping)}</span>
+                    <span>
+                      {shipping === 0 ? "Free" : formatPrice(shipping)}
+                    </span>
                   </div>
                   <div className="flex justify-between text-sage-600">
                     <span>Tax</span>
@@ -474,7 +561,7 @@ export default function Cart() {
                       <ArrowRight className="h-4 w-4" />
                     </button>
                   )}
-                  
+
                   {checkoutStep === 2 && (
                     <div className="space-y-2">
                       <button
@@ -492,7 +579,7 @@ export default function Cart() {
                       </button>
                     </div>
                   )}
-                  
+
                   {checkoutStep === 3 && (
                     <div className="space-y-2">
                       <button
